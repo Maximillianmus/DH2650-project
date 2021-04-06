@@ -4,7 +4,7 @@
 
 - Style: Low poly, make our own models?
 - Core mechanic: Grappling Hook/Harpoon
-- Having seamap as a level select hub
+- Having nautical chart / map of an ocean as a level select hub
 
 ## Alternative 1) Focus on Combat
 
