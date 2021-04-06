@@ -6,11 +6,12 @@
 - Core mechanic: Grappling Hook/Harpoon
 - Having seamap as a level select hub
 
-## Alternative 1)
+## Alternative 1) Focus on Combat
 
 - Perhaps procedurally generated levels
-- Combat based
 - Can feature simple puzzles
+- Seamap has ports, gives player ability to buy/sell
+- Players find loot (money, relics that strengthens their character, harpoon/grappeling hook improvements)
 
 	**Combat mechanics:**
 
@@ -20,11 +21,9 @@
 		- reset cooldown on kill
 		- Greater speed/length
 		- Move through certain walls?
-	- Players can find loot, improved
 
-## Alternative 2)
+## Alternative 2) Focus on Puzzles
 
-- Puzzlebased
 - We design a set of levels
 
 	**Puzzle idea:**
@@ -40,4 +39,4 @@
 
 - Swim underwater
 - Player can unlock another harpoon/grappling hook
-
+- To get to a location on the seamap you may have to cross an unkown event, can be nothing, a storm or perhaps the KRAKEN
