@@ -1,60 +1,43 @@
 # DH2650
 
-Set Features:
+**Set Features:**
 
-Style: Low poly, make our own models?
+- Style: Low poly, make our own models?
+- Core mechanic: Grappling Hook/Harpoon
+- Having seamap as a level select hub
 
-Core mechanic: Grappling Hook/Harpoon
+## Alternative 1)
 
-Having seamap as a level select hub
+- Perhaps procedurally generated levels
+- Combat based
+- Can feature simple puzzles
 
-Alternative 1)
+	**Combat mechanics:**
 
-Perhaps procedurally generated levels
+	- Grab enemies with hook
+	- “Fly” to enemies with hook
+	- Could offer player harpoon tweaks/enhancements
+		- reset cooldown on kill
+		- Greater speed/length
+		- Move through certain walls?
+	- Players can find loot, improved
 
-Combat based
+## Alternative 2)
 
-Can feature simple puzzles
+- Puzzlebased
+- We design a set of levels
 
-Combat mechanics:
-
-Grab enemies with hook
-
-“Fly” to enemies with hook
-
-Could offer player harpoon tweaks/enhancements
-
-Reset cooldown on kill
-
-Greater speed/length
-
-Move through certain walls?
-
-Players can find loot, improved
-
-
-Alternative 2)
-
-Puzzlebased
-
-We design a set of levels
-
-	Puzzle idea:
+	**Puzzle idea:**
 	
-Treasure hunt
-
-Solve riddles
-
-Pull lever from distance
-
-Pull objects to you
-
-Harpoon can drag you through certain walls?
+	- Treasure hunt
+	- Solve riddles
+	- Pull lever from distance
+	- Pull objects to you
+	- Harpoon can drag you through certain walls?
 
 
-Additional Ideas
+**Additional Ideas**
 
-Swim underwater
-
-Player can unlock another harpoon/grappling hook
+- Swim underwater
+- Player can unlock another harpoon/grappling hook
 
