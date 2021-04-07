@@ -40,3 +40,6 @@
 - Swim underwater
 - Player can unlock another harpoon/grappling hook
 - To get to a location on the seamap you may have to cross an unkown event, can be nothing, a storm or perhaps the KRAKEN
+- Player can have some resource (ex. mana) that they can use for special abilities. Empowered harpoon, stealth, etc
+- Some enemies can have some shield, shields them from a direct hit of the harpoon?
+- Some enemies can fly. The player can then hook themselves to "fly" around. Could be a fun thing.
