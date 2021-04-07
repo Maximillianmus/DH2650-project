@@ -7,6 +7,8 @@ public class GrapplingGun : MonoBehaviour {
     public LayerMask whatIsGrappleable;
     public Transform gunTip, camera, player;
     public float pullSpeed = 1f;
+    public int IgnoredGrapelingLayer;
+    public bool BreakIfObstructed = false;
     private float maxDistance = 100f;
     private SpringJoint joint;
     private float ropeLength;
@@ -28,6 +30,8 @@ public class GrapplingGun : MonoBehaviour {
         {
             PullIn();
         }
+
+        BreakIfObstruction();
     }
 
     //Called after Update
@@ -72,13 +76,23 @@ public class GrapplingGun : MonoBehaviour {
     // Call to pull the player towards the grapple point
     void PullIn()
     {
-
-        
         ropeLength -= pullSpeed;
 
 
         joint.maxDistance = ropeLength * 0.8f;
         joint.minDistance = ropeLength * 0.25f;
+    }
+
+    //call to check if the path between the player and the grapling point is obstructed
+    void BreakIfObstruction()
+    {
+        //the 7 is the layer that the linecast should ignore, which in this case is layer 7,  ~ inverts the bitmask so 7 is 0, and all other layers are 1
+        if (Physics.Linecast(gunTip.position, currentGrapplePosition, ~(1 << IgnoredGrapelingLayer)) && BreakIfObstructed)
+        {
+                StopGrapple();
+                
+        }
+
     }
 
     private Vector3 currentGrapplePosition;
