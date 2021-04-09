@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour {
     //Assingables
     public Transform playerCam;
     public Transform orientation;
-    
+
     //Other
     private Rigidbody rb;
 
@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour {
     private float xRotation;
     private float sensitivity = 50f;
     private float sensMultiplier = 1f;
+    private float collisionDistance = 1f;
     
     //Movement
     public float moveSpeed = 4500;
@@ -66,9 +67,7 @@ public class PlayerMovement : MonoBehaviour {
         Look();
     }
 
-    /// <summary>
-    /// Find user input. Should put this in its own class but im lazy
-    /// </summary>
+    // Find user input.
     private void MyInput() {
         x = Input.GetAxisRaw("Horizontal");
         y = Input.GetAxisRaw("Vertical");
@@ -106,6 +105,7 @@ public class PlayerMovement : MonoBehaviour {
         float xMag = mag.x, yMag = mag.y;
 
         //Counteract sliding and sloppy movement
+        //Makes it so the player stops if you stop pressing buttons
         CounterMovement(x, y, mag);
         
         //If holding jump && ready to jump, then jump
@@ -119,12 +119,14 @@ public class PlayerMovement : MonoBehaviour {
             rb.AddForce(Vector3.down * Time.deltaTime * 3000);
             return;
         }
-        
+
         //If speed is larger than maxspeed, cancel out the input so you don't go over max speed
-        if (x > 0 && xMag > maxSpeed) x = 0;
-        if (x < 0 && xMag < -maxSpeed) x = 0;
-        if (y > 0 && yMag > maxSpeed) y = 0;
-        if (y < 0 && yMag < -maxSpeed) y = 0;
+        //also cancel out the input if there is a object in the way
+        int layer = whatIsGround.GetHashCode();
+        if (x > 0 && (xMag > maxSpeed || Physics.Raycast(orientation.position, orientation.transform.right, collisionDistance, whatIsGround))) x = 0;
+        if (x < 0 && (xMag < -maxSpeed || Physics.Raycast(orientation.position, -orientation.transform.right, collisionDistance, whatIsGround))) x = 0;
+        if (y > 0 && (yMag > maxSpeed || Physics.Raycast(orientation.position, orientation.transform.forward, collisionDistance, whatIsGround))) y = 0;
+        if (y < 0 && (yMag < -maxSpeed || Physics.Raycast(orientation.position, -orientation.transform.forward, collisionDistance, whatIsGround))) y = 0;
 
         //Some multipliers
         float multiplier = 1f, multiplierV = 1f;
@@ -209,11 +211,8 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// Find the velocity relative to where the player is looking
-    /// Useful for vectors calculations regarding movement and limiting movement
-    /// </summary>
-    /// <returns></returns>
+    // Find the velocity relative to where the player is looking
+    // Useful for vectors calculations regarding movement and limiting movement
     public Vector2 FindVelRelativeToLook() {
         float lookAngle = orientation.transform.eulerAngles.y;
         float moveAngle = Mathf.Atan2(rb.velocity.x, rb.velocity.z) * Mathf.Rad2Deg;
@@ -235,9 +234,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private bool cancellingGrounded;
     
-    /// <summary>
-    /// Handle ground detection
-    /// </summary>
+    // Handle ground detection
     private void OnCollisionStay(Collision other) {
         //Make sure we are only checking for walkable layers
         int layer = other.gameObject.layer;
