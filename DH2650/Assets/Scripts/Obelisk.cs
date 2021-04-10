@@ -11,6 +11,7 @@ public class Obelisk : ContainerInteraction
     private bool hasItem = false;
 
     // Define what happens when player interacts with Obelisk
+    // Item is the item the offhand is holding
     public override void Interact(GameObject item, OffHandInteraction offHandInteraction)
     {   
         // If offHand has an item, then try and place that item
@@ -44,12 +45,16 @@ public class Obelisk : ContainerInteraction
             item.transform.localPosition = Vector3.zero;
             item.transform.localRotation = Quaternion.Euler(Vector3.zero);
 
+            // Prevent player from selecting the item
+            item.layer = 0;
+
             // Make it so item has collision
             Collider coll = item.GetComponent<Collider>();
             coll.isTrigger = false;
 
             // Activate the connected object
-            connectedObject.Activate();
+            if(connectedObject != null)
+                connectedObject.Activate();
         }
     }
 
@@ -64,6 +69,9 @@ public class Obelisk : ContainerInteraction
             containedItem.transform.localPosition = Vector3.zero;
             containedItem.transform.localRotation = Quaternion.Euler(Vector3.zero);
 
+            // Make it possible to target item again
+            containedItem.layer = 7;
+
             // offHand has an item
             offHandInteraction.slotFull = true;
             offHandInteraction.heldItem = containedItem;
@@ -77,7 +85,8 @@ public class Obelisk : ContainerInteraction
             containedItem = null;
 
             // Activate the connected object
-            connectedObject.Activate();
+            if(connectedObject != null)
+                connectedObject.DeActivate();
         }
     }
 }

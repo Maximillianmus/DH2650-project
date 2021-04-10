@@ -4,22 +4,28 @@ using UnityEngine;
 
 public class Door : Activation
 {
-    private bool open = false;
+    private bool isOpen = false;
     [SerializeField] Vector3 change = new Vector3(0, 10, 0);
 
+    // Opens the door
     public override void Activate()
     {
-        // Close the door
-        if(open)
+        if(!isOpen)
+        {
+            transform.position += change;
+            isOpen = true;
+        }
+            
+    }
+
+    // Closes the door
+    public override void DeActivate()
+    {
+        if(isOpen)
         {
             transform.position -= change;
+            isOpen = false;
         }
-        // Open the door
-        else
-        {
-
-            transform.position += change;
-        }
-        open = !open;
+        
     }
 }

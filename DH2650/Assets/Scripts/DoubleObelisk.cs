@@ -34,6 +34,9 @@ public class DoubleObelisk : ContainerInteraction
             offHandInteraction.slotFull = false;
             offHandInteraction.heldItem = null;
 
+            // Prevent player from selecting the item
+            item.layer = 0;
+
             // Container now holds the item
             containedItems[currentNumberOfItems] = item;
             
@@ -60,27 +63,30 @@ public class DoubleObelisk : ContainerInteraction
         // If container has an item, then the player can take it.
         if(currentNumberOfItems > 0)
         {
+            GameObject item = containedItems[currentNumberOfItems-1];
             // Add item to off hand
-            containedItems[currentNumberOfItems-1].transform.SetParent(offHandInteraction.offHand.transform);
+            item.transform.SetParent(offHandInteraction.offHand.transform);
             // Reset position and rotation
-            containedItems[currentNumberOfItems-1].transform.localPosition = Vector3.zero;
-            containedItems[currentNumberOfItems-1].transform.localRotation = Quaternion.Euler(Vector3.zero);
+            item.transform.localPosition = Vector3.zero;
+            item.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
+            // Make it possible to target item again
+            item.layer = 7;
 
             // offHand has an item
             offHandInteraction.slotFull = true;
-            offHandInteraction.heldItem = containedItems[currentNumberOfItems-1];
+            offHandInteraction.heldItem = item;
 
             // Make it so item has no collision
-            Collider coll = containedItems[currentNumberOfItems-1].GetComponent<Collider>();
+            Collider coll = item.GetComponent<Collider>();
             coll.isTrigger = true;
             
             // Container no longer has an item
-            containedItems[currentNumberOfItems-1] = null;
+            item = null;
             currentNumberOfItems--;
 
-            // Activate the connected object
-            if(currentNumberOfItems == 1)
-                connectedObject.Activate();
+            // DeActivate the connected object
+            connectedObject.DeActivate();
         }
     }
     
