@@ -81,7 +81,7 @@ public class DoubleObelisk : ContainerInteraction
             item.transform.localRotation = Quaternion.Euler(Vector3.zero);
 
             // Make it possible to target item again
-            item.layer = 7;
+            item.layer = 8;
 
             // offHand has an item
             offHandInteraction.slotFull = true;
