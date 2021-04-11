@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class DoubleObelisk : ContainerInteraction
 {
+    [Header("Must Set these")]
     [SerializeField] Transform[] itemContainers = new Transform[2];
     [SerializeField] GameObject[] containedItems = new GameObject[2];
-    [SerializeField] Activation connectedObject;
+    [Header("Optional")]
+    [SerializeField] Activation[] connectedObjects = new Activation[0];
     private int maxNumberOfItems = 2;
     private int currentNumberOfItems = 0;
 
@@ -52,9 +54,17 @@ public class DoubleObelisk : ContainerInteraction
             Collider coll = item.GetComponent<Collider>();
             coll.isTrigger = false;
 
-            // Activate the connected object
+            // Activate the connected objects
             if(currentNumberOfItems == maxNumberOfItems)
-                connectedObject.Activate();
+            {
+                if(connectedObjects.Length > 0)
+                {
+                    foreach (Activation connObj in connectedObjects)
+                    {
+                        connObj.Activate();
+                    }
+                }
+            }
         }
     }
 
@@ -85,8 +95,11 @@ public class DoubleObelisk : ContainerInteraction
             item = null;
             currentNumberOfItems--;
 
-            // DeActivate the connected object
-            connectedObject.DeActivate();
+            // DeActivate the connected objects
+            foreach (Activation connObj in connectedObjects)
+                {
+                    connObj.DeActivate();
+                }
         }
     }
     

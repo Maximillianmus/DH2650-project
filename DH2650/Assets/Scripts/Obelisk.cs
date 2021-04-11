@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Obelisk : ContainerInteraction
 {
-    
+    [Header("Must set these")]
     [SerializeField] Transform itemContainer;
     [SerializeField] GameObject containedItem;
-    [SerializeField] Activation connectedObject;
+    [Header("Optional")]
+    [SerializeField] Activation[] connectedObjects = new Activation[0];
     private bool hasItem = false;
 
     // Define what happens when player interacts with Obelisk
@@ -53,8 +54,12 @@ public class Obelisk : ContainerInteraction
             coll.isTrigger = false;
 
             // Activate the connected object
-            if(connectedObject != null)
-                connectedObject.Activate();
+            if(connectedObjects.Length > 0){
+                foreach (Activation connObj in connectedObjects)
+                {
+                    connObj.Activate();
+                }
+            }
         }
     }
 
@@ -85,8 +90,13 @@ public class Obelisk : ContainerInteraction
             containedItem = null;
 
             // Activate the connected object
-            if(connectedObject != null)
-                connectedObject.DeActivate();
+            if(connectedObjects.Length > 0)
+            {
+                foreach (Activation connObj in connectedObjects)
+                {
+                    connObj.DeActivate();
+                }
+            }
         }
     }
 }

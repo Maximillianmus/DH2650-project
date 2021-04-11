@@ -142,4 +142,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemContainer: {fileID: 8909818531117476362}
   containedItem: {fileID: 0}
-  activatedObject: {fileID: 0}
+  connectedObjects: []
