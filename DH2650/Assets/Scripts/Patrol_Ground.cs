@@ -10,7 +10,7 @@ public class Patrol_Ground : MonoBehaviour
     GameObject Player;
 
     public Transform[] waypoints;
-    public int speed;
+    public float speed;
     public float detectionRange;
 
     private int waypointIndex;
@@ -20,53 +20,56 @@ public class Patrol_Ground : MonoBehaviour
     //Initialize here, or it won't work
     void Start()
     {
-        Player = GameObject.Find("Player Container");
+        Player = GameObject.Find("Player");
 
         detectionRange = 10f;
         waypointIndex = 0;
-        transform.LookAt(waypoints[waypointIndex].position);
         playerMask = LayerMask.GetMask("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        /*
+         * The enemy will now chase the player if detected. If not, it goes back to patrolling.
+         */
+
         dist = Vector3.Distance(transform.position, waypoints[waypointIndex].position);
-        //while(DetectPlayer())
-        //{
-        //    Vector3 playerPos = Player.transform.position;
-        //    Vector3 direction = playerPos - this.transform.position;
-        //    ChasePlayer(playerPos, direction);
-        //}
-        if(dist < 1f)
+        print(DetectPlayer());
+        if(DetectPlayer())
         {
-            IncreaseIndex(); //Updates the waypoint when close enough
+            ChasePlayer();
+        } else
+        {
+            Patrol(dist);
         }
-        Patrol();
 
-
+        
+        
     }
 
 
     /*
      *  Enemy movement
      */
-    void Patrol()
+    void Patrol(float dist)
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-    }
-
-    /*
-     *  Checks which way to patrol/move
-     */
-    void IncreaseIndex()
-    {
-        waypointIndex++;
-        if(waypointIndex > waypoints.Length - 1)
-        {
-            waypointIndex = 0;
-        }
         transform.LookAt(waypoints[waypointIndex].position);
+        if (dist < 1f)
+        {
+            /*
+             *  Checks which way to patrol/move
+             */
+            //Updates the waypoint when close enough
+            waypointIndex++;
+            if (waypointIndex > waypoints.Length - 1)
+            {
+                waypointIndex = 0;
+            }
+            transform.LookAt(waypoints[waypointIndex].position); 
+        }
+        transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].position, speed);
     }
 
     /*
@@ -94,14 +97,10 @@ public class Patrol_Ground : MonoBehaviour
     /*
      * Chases player
      */
-    void ChasePlayer(Vector3 playerPos, Vector3 direction)
+    void ChasePlayer()
     {
-        
-        //transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-        this.transform.LookAt(playerPos);
-        direction.y = 0;
-        print(direction);
-        transform.Translate(direction * speed * Time.deltaTime);
+        transform.LookAt(Player.transform);
+        transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, speed);
     }
 }
