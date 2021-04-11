@@ -6,8 +6,13 @@ public class GrapplingGun : MonoBehaviour {
     private Vector3 grapplePoint;
     public LayerMask whatIsGrappleable;
     public Transform gunTip, camera, player;
+    public float pullSpeed = 1f;
+    public int IgnoredGrapelingLayer;
+    public bool BreakIfObstructed = false;
     private float maxDistance = 100f;
     private SpringJoint joint;
+    private float ropeLength;
+
 
     void Awake() {
         lr = GetComponent<LineRenderer>();
@@ -20,6 +25,13 @@ public class GrapplingGun : MonoBehaviour {
         else if (Input.GetMouseButtonUp(0)) {
             StopGrapple();
         }
+
+        if (Input.GetMouseButton(1))
+        {
+            PullIn();
+        }
+
+        BreakIfObstruction();
     }
 
     //Called after Update
@@ -27,9 +39,8 @@ public class GrapplingGun : MonoBehaviour {
         DrawRope();
     }
 
-    /// <summary>
-    /// Call whenever we want to start a grapple
-    /// </summary>
+
+    // Call at start of graple
     void StartGrapple() {
         RaycastHit hit;
         if (Physics.Raycast(camera.position, camera.forward, out hit, maxDistance, whatIsGrappleable)) {
@@ -39,12 +50,13 @@ public class GrapplingGun : MonoBehaviour {
             joint.connectedAnchor = grapplePoint;
 
             float distanceFromPoint = Vector3.Distance(player.position, grapplePoint);
+            ropeLength = distanceFromPoint;
 
             //The distance grapple will try to keep from grapple point. 
             joint.maxDistance = distanceFromPoint * 0.8f;
             joint.minDistance = distanceFromPoint * 0.25f;
 
-            //Adjust these values to fit your game.
+            //Adjust these values
             joint.spring = 4.5f;
             joint.damper = 7f;
             joint.massScale = 4.5f;
@@ -55,12 +67,32 @@ public class GrapplingGun : MonoBehaviour {
     }
 
 
-    /// <summary>
-    /// Call whenever we want to stop a grapple
-    /// </summary>
+    // Call to stop grapple
     void StopGrapple() {
         lr.positionCount = 0;
         Destroy(joint);
+    }
+
+    // Call to pull the player towards the grapple point
+    void PullIn()
+    {
+        ropeLength -= pullSpeed;
+
+
+        joint.maxDistance = ropeLength * 0.8f;
+        joint.minDistance = ropeLength * 0.25f;
+    }
+
+    //call to check if the path between the player and the grapling point is obstructed
+    void BreakIfObstruction()
+    {
+        //the 7 is the layer that the linecast should ignore, which in this case is layer 7,  ~ inverts the bitmask so 7 is 0, and all other layers are 1
+        if (Physics.Linecast(gunTip.position, currentGrapplePosition, ~(1 << IgnoredGrapelingLayer)) && BreakIfObstructed)
+        {
+                StopGrapple();
+                
+        }
+
     }
 
     private Vector3 currentGrapplePosition;
