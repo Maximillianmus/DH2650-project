@@ -7,12 +7,16 @@ public class GrapplingGun : MonoBehaviour {
     public LayerMask whatIsGrappleable;
     public Transform gunTip, camera, player;
     public float pullSpeed = 1f;
+    public float FastPullSpeed = 20f;
     public int IgnoredGrapelingLayer;
     public bool BreakIfObstructed = false;
+    public Collider FootCollider;
+
     private float maxDistance = 100f;
     private SpringJoint joint;
     private float ropeLength;
-
+    private bool colliderOff = false;
+    private bool startFastPull = false;
 
     void Awake() {
         lr = GetComponent<LineRenderer>();
@@ -26,9 +30,18 @@ public class GrapplingGun : MonoBehaviour {
             StopGrapple();
         }
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && IsGrappling())
         {
-            PullIn();
+            PullIn();   
+        }
+        else if(Input.GetKeyDown("e") && IsGrappling())
+        {
+            StartPullInFast();
+        }
+        if (colliderOff && (!IsGrappling() || (grapplePoint - gunTip.position).magnitude < 10f))
+        {
+            colliderOff = false;
+            FootCollider.enabled = true;
         }
 
         BreakIfObstruction();
@@ -37,6 +50,8 @@ public class GrapplingGun : MonoBehaviour {
     //Called after Update
     void LateUpdate() {
         DrawRope();
+     
+        PullInFast();
     }
 
 
@@ -78,10 +93,37 @@ public class GrapplingGun : MonoBehaviour {
     {
         ropeLength -= pullSpeed;
 
-
         joint.maxDistance = ropeLength * 0.8f;
         joint.minDistance = ropeLength * 0.25f;
     }
+
+    // Fast pull,
+    void StartPullInFast()
+    {
+        Vector3 dir = (grapplePoint - gunTip.position).normalized;
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+        FootCollider.enabled = false;
+        colliderOff = true;
+        rb.velocity =  new Vector3(0f, 0f, 0f);
+
+        ropeLength = 0.05f * ropeLength;
+
+        joint.maxDistance = ropeLength * 0.8f;
+        joint.minDistance = ropeLength * 0.25f;
+        startFastPull = true;
+    }
+    //adds the force, has to be done a bit latter so the collision doesn't affect the pull
+    void PullInFast()
+    {
+        if (startFastPull)
+        {
+            Vector3 dir = (grapplePoint - gunTip.position).normalized;
+            Rigidbody rb = player.GetComponent<Rigidbody>();
+            rb.AddForce(dir * FastPullSpeed);
+            startFastPull = false;
+        }
+    }
+
 
     //call to check if the path between the player and the grapling point is obstructed
     void BreakIfObstruction()
