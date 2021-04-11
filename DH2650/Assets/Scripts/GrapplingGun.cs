@@ -14,6 +14,10 @@ public class GrapplingGun : MonoBehaviour {
     public float ObstructionThreshold = 0;
     public Collider FootCollider;
     public KeyCode HookShootButton;
+
+    //this is for the harpoon
+    public Transform harpoon, harpoonStatic,harpoonPos;
+    private Renderer HarpStaticRend, HarpRend;
   
 
     private float maxDistance = 100f;
@@ -22,12 +26,17 @@ public class GrapplingGun : MonoBehaviour {
     private bool colliderOff = false;
     private bool startFastPull = false;
     private float currentObstructionIteration = 0;
+    private Vector3 harpoonRestingPos;
 
-    
 
     void Awake() {
         lr = GetComponent<LineRenderer>();
         rb = player.GetComponent<Rigidbody>();
+        harpoonRestingPos = harpoonStatic.position;
+        HarpRend = harpoon.GetComponent<Renderer>();
+        HarpStaticRend = harpoonStatic.GetComponent<Renderer>();
+        HarpRend.enabled = false;
+
     }
 
     void Update() {
@@ -75,9 +84,15 @@ public class GrapplingGun : MonoBehaviour {
 
             float distanceFromPoint = Vector3.Distance(player.position, grapplePoint);
             ropeLength = distanceFromPoint;
-
+            harpoonStatic.GetComponent<Renderer>().enabled = false; 
             //The distance grapple will try to keep from grapple point. 
             joint.maxDistance = distanceFromPoint * 0.8f;
+
+
+            //make prop harpoon invisiable and animated visiable
+            HarpRend.transform.rotation = Quaternion.LookRotation(grapplePoint -gunTip.position)* Quaternion.Euler(0,90,0);
+            HarpRend.enabled = true;
+            HarpStaticRend.enabled = false;
 
             //Adjust these values
             joint.spring = 4.5f;
@@ -94,6 +109,11 @@ public class GrapplingGun : MonoBehaviour {
     void StopGrapple() {
         lr.positionCount = 0;
         currentObstructionIteration = 0;
+
+        //reset the harpoon model
+        harpoon.position = harpoonPos.position;
+        HarpRend.enabled = false;
+        HarpStaticRend.enabled = true;
         Destroy(joint);
     }
 
@@ -159,7 +179,13 @@ public class GrapplingGun : MonoBehaviour {
         if (!joint) return;
 
         currentGrapplePosition = Vector3.Lerp(currentGrapplePosition, grapplePoint, Time.deltaTime * 8f);
-        
+        //moves the harpoon
+
+     
+        harpoon.position = currentGrapplePosition;
+
+ 
+           
         lr.SetPosition(0, gunTip.position);
         lr.SetPosition(1, currentGrapplePosition);
     }
