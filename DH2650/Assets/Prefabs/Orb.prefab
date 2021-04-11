@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5015419899243352546}
   - component: {fileID: 5015419899243352550}
   - component: {fileID: 5015419899243352477}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Orb
   m_TagString: Item
   m_Icon: {fileID: 0}
