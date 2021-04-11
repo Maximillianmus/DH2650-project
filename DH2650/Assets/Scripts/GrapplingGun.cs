@@ -8,7 +8,7 @@ public class GrapplingGun : MonoBehaviour {
     public Transform gunTip, camera, player;
     public float pullSpeed = 1f;
     public float FastPullSpeed = 20f;
-    public int IgnoredGrapelingLayer;
+    public LayerMask IgnoredGrapelingLayer;
     public bool BreakIfObstructed = false;
     public Collider FootCollider;
 
@@ -129,7 +129,7 @@ public class GrapplingGun : MonoBehaviour {
     void BreakIfObstruction()
     {
         //the 7 is the layer that the linecast should ignore, which in this case is layer 7,  ~ inverts the bitmask so 7 is 0, and all other layers are 1
-        if (Physics.Linecast(gunTip.position, currentGrapplePosition, ~(1 << IgnoredGrapelingLayer)) && BreakIfObstructed)
+        if (Physics.Linecast(gunTip.position, currentGrapplePosition, ~IgnoredGrapelingLayer) && BreakIfObstructed)
         {
                 StopGrapple();
                 
