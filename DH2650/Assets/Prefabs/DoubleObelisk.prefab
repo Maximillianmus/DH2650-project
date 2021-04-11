@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 8274615641542289012}
   - component: {fileID: 8953090883837328435}
   - component: {fileID: 4965933319774595633}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: DoubleObelisk
   m_TagString: Container
   m_Icon: {fileID: 0}

@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4893582021455999721}
   - component: {fileID: 5549540055987710126}
   - component: {fileID: 4568011894287463330}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Obelisk
   m_TagString: Container
   m_Icon: {fileID: 0}
