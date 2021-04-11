@@ -9,8 +9,10 @@ public class OffHandInteraction : MonoBehaviour
     public Transform offHand;
     [SerializeField] float pickUpRange = 2f;
     [SerializeField] LayerMask whatIsInteractable;
+    public LayerMask GroundLayer;
     public bool slotFull;
     public GameObject heldItem;
+    public KeyCode InteractButton;
 
     // Update is called once per frame
     void Update()
@@ -28,7 +30,7 @@ public class OffHandInteraction : MonoBehaviour
                 performedAction = true;
             }
             // If we look at a container, press E, then we interact with it.
-            else if(hit.collider.tag == "Container" && Input.GetKeyDown(KeyCode.E))
+            else if(hit.collider.tag == "Container" && Input.GetKeyDown(InteractButton))
             {
                 hit.collider.gameObject.GetComponent<ContainerInteraction>().Interact(heldItem, this);
                 performedAction = true;
@@ -49,6 +51,7 @@ public class OffHandInteraction : MonoBehaviour
         // Restore collisions and physics and stuff
         Rigidbody rb = heldItem.GetComponent<Collider>().gameObject.GetComponent<Rigidbody>();
         rb.isKinematic = false;
+        heldItem.layer = GroundLayer;
         Collider coll = heldItem.GetComponent<Collider>().gameObject.GetComponent<Collider>();
         coll.isTrigger = false;
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Orb : ItemInteraction
 {
+    // Used to make sure the object doesn't change anything about the player movement.
+    public LayerMask PlayerLayer;
     // Define what happens when player interacts with the orb
     public override void Interact(OffHandInteraction offHandInteraction)
     {
@@ -26,6 +28,7 @@ public class Orb : ItemInteraction
             // Remove collisions and physics and stuff
             Rigidbody rb = GetComponent<Collider>().gameObject.GetComponent<Rigidbody>();
             rb.isKinematic = true;
+            gameObject.layer = PlayerLayer;
             Collider coll = GetComponent<Collider>().gameObject.GetComponent<Collider>();
             coll.isTrigger = true;
         }
