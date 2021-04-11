@@ -432,6 +432,7 @@ MonoBehaviour:
     m_Bits: 320
   slotFull: 0
   heldItem: {fileID: 0}
+  InteractButton: 101
 --- !u!1 &478378191
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,8 +810,14 @@ MonoBehaviour:
   camera: {fileID: 1845185145}
   player: {fileID: 1683190309}
   pullSpeed: 1
-  IgnoredGrapelingLayer: 0
+  FastPullSpeed: 20
+  IgnoredGrapelingLayer:
+    serializedVersion: 2
+    m_Bits: 0
   BreakIfObstructed: 0
+  ObstructionThreshold: 0
+  FootCollider: {fileID: 0}
+  HookShootButton: 0
 --- !u!120 &1364206489
 LineRenderer:
   m_ObjectHideFlags: 0

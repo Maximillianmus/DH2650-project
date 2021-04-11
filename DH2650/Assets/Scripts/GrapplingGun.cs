@@ -3,6 +3,7 @@ using UnityEngine;
 public class GrapplingGun : MonoBehaviour {
 
     private LineRenderer lr;
+    private Rigidbody rb;
     private Vector3 grapplePoint;
     public LayerMask whatIsGrappleable;
     public Transform gunTip, camera, player;
@@ -10,20 +11,28 @@ public class GrapplingGun : MonoBehaviour {
     public float FastPullSpeed = 20f;
     public LayerMask IgnoredGrapelingLayer;
     public bool BreakIfObstructed = false;
+    public float ObstructionThreshold = 0;
     public Collider FootCollider;
+    public KeyCode HookShootButton;
+  
 
     private float maxDistance = 100f;
     private SpringJoint joint;
     private float ropeLength;
     private bool colliderOff = false;
     private bool startFastPull = false;
+    private float currentObstructionIteration = 0;
+
+    
 
     void Awake() {
         lr = GetComponent<LineRenderer>();
+        rb = player.GetComponent<Rigidbody>();
     }
 
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
+            StopGrapple();
             StartGrapple();
         }
         else if (Input.GetMouseButtonUp(0)) {
@@ -34,13 +43,14 @@ public class GrapplingGun : MonoBehaviour {
         {
             PullIn();   
         }
-        else if(Input.GetKeyDown("e") && IsGrappling())
+        else if(Input.GetKeyDown(HookShootButton) && IsGrappling())
         {
             StartPullInFast();
         }
         if (colliderOff && (!IsGrappling() || (grapplePoint - gunTip.position).magnitude < 10f))
         {
             colliderOff = false;
+            rb.useGravity = true;
             FootCollider.enabled = true;
         }
 
@@ -51,7 +61,6 @@ public class GrapplingGun : MonoBehaviour {
     void LateUpdate() {
         DrawRope();
      
-        PullInFast();
     }
 
 
@@ -85,6 +94,7 @@ public class GrapplingGun : MonoBehaviour {
     // Call to stop grapple
     void StopGrapple() {
         lr.positionCount = 0;
+        currentObstructionIteration = 0;
         Destroy(joint);
     }
 
@@ -101,16 +111,19 @@ public class GrapplingGun : MonoBehaviour {
     void StartPullInFast()
     {
         Vector3 dir = (grapplePoint - gunTip.position).normalized;
-        Rigidbody rb = player.GetComponent<Rigidbody>();
         FootCollider.enabled = false;
         colliderOff = true;
         rb.velocity =  new Vector3(0f, 0f, 0f);
+        rb.useGravity = false;
+        player.position = player.position + (new Vector3(0, 1, 0));
 
         ropeLength = 0.05f * ropeLength;
 
         joint.maxDistance = ropeLength * 0.8f;
         joint.minDistance = ropeLength * 0.25f;
         startFastPull = true;
+
+        Invoke("PullInFast", 0.05f);
     }
     //adds the force, has to be done a bit latter so the collision doesn't affect the pull
     void PullInFast()
@@ -131,7 +144,12 @@ public class GrapplingGun : MonoBehaviour {
         //the 7 is the layer that the linecast should ignore, which in this case is layer 7,  ~ inverts the bitmask so 7 is 0, and all other layers are 1
         if (Physics.Linecast(gunTip.position, currentGrapplePosition, ~IgnoredGrapelingLayer) && BreakIfObstructed)
         {
+            if (currentObstructionIteration >= ObstructionThreshold)
+            {
                 StopGrapple();
+            }      
+            else
+                currentObstructionIteration++;
                 
         }
 
