@@ -919,7 +919,7 @@ MonoBehaviour:
   - {fileID: 1583423971}
   - {fileID: 500974978}
   - {fileID: 389681109}
-  speed: 2
+  speed: 0.01
   detectionRange: 0
 --- !u!1 &1263469622
 GameObject:
