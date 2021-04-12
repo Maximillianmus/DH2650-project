@@ -6,7 +6,7 @@ public class GrapplingGun : MonoBehaviour {
     private Rigidbody rb;
     private Vector3 grapplePoint;
     public LayerMask whatIsGrappleable;
-    public Transform gunTip, camera, player;
+    public Transform gunTip, m_camera, player;
     public float pullSpeed = 1f;
     public float FastPullSpeed = 20f;
     public LayerMask IgnoredGrapelingLayer;
@@ -79,7 +79,7 @@ public class GrapplingGun : MonoBehaviour {
             FootCollider.enabled = true;
         }
 
-        if ( isGrabbing && (grapplePoint - gunTip.position).magnitude < 1f)
+        if ( isGrabbing && (grapplePoint - gunTip.position).magnitude < 1.5f)
         {
             StopItemPull();
             itemTransform.GetComponent<Interactable>().Interact(offHand.GetComponent<OffHand>());
@@ -107,7 +107,7 @@ public class GrapplingGun : MonoBehaviour {
     void ActivateHookGun()
     {
         RaycastHit hit;
-        if (Physics.Raycast(camera.position, camera.forward, out hit, maxDistance, whatIsGrappleable))
+        if (Physics.Raycast(m_camera.position, m_camera.forward, out hit, maxDistance, whatIsGrappleable))
         {
             if(hit.transform.tag == "Item")
             {
