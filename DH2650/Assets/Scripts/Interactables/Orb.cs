@@ -19,15 +19,19 @@ public class Orb : Interactable
         {
             offHand.slotFull = true;
             offHand.heldItem = this.gameObject;
+            
+
 
             // Move the item to the offhand
             transform.SetParent(offHand.transform);
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.Euler(Vector3.zero);
+            
 
             // Remove collisions and physics and stuff
             Rigidbody rb = GetComponent<Collider>().gameObject.GetComponent<Rigidbody>();
             rb.isKinematic = true;
+
 
             gameObject.layer = PlayerLayer;
             
