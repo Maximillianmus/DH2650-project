@@ -2843,6 +2843,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1210030404636159949, guid: 83cee00a1fcee9548aeacdeb42978843, type: 3}
+      propertyPath: moveSpeed
+      value: 3500
+      objectReference: {fileID: 0}
     - target: {fileID: 2139417863726803408, guid: 83cee00a1fcee9548aeacdeb42978843, type: 3}
       propertyPath: m_ReceiveShadows
       value: 0
