@@ -78,7 +78,6 @@ public class GrapplingGun : MonoBehaviour {
 
             //The distance grapple will try to keep from grapple point. 
             joint.maxDistance = distanceFromPoint * 0.8f;
-            joint.minDistance = distanceFromPoint * 0.25f;
 
             //Adjust these values
             joint.spring = 4.5f;
@@ -104,7 +103,6 @@ public class GrapplingGun : MonoBehaviour {
         ropeLength -= pullSpeed;
 
         joint.maxDistance = ropeLength * 0.8f;
-        joint.minDistance = ropeLength * 0.25f;
     }
 
     // Fast pull,
@@ -120,7 +118,6 @@ public class GrapplingGun : MonoBehaviour {
         ropeLength = 0.05f * ropeLength;
 
         joint.maxDistance = ropeLength * 0.8f;
-        joint.minDistance = ropeLength * 0.25f;
         startFastPull = true;
 
         Invoke("PullInFast", 0.05f);
