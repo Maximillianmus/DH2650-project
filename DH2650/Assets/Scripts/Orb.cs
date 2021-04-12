@@ -5,7 +5,7 @@ using UnityEngine;
 public class Orb : ItemInteraction
 {
     // Used to make sure the object doesn't change anything about the player movement.
-    public LayerMask PlayerLayer;
+    public int PlayerLayer;
     // Define what happens when player interacts with the orb
     public override void Interact(OffHandInteraction offHandInteraction)
     {

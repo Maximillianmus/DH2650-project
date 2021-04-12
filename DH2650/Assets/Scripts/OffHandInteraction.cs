@@ -9,7 +9,7 @@ public class OffHandInteraction : MonoBehaviour
     public Transform offHand;
     [SerializeField] float pickUpRange = 2f;
     [SerializeField] LayerMask whatIsInteractable;
-    public LayerMask GroundLayer;
+    public int GroundLayer;
     public bool slotFull;
     public GameObject heldItem;
     public KeyCode InteractButton;

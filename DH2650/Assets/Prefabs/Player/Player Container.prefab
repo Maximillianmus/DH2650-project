@@ -624,9 +624,7 @@ MonoBehaviour:
   whatIsInteractable:
     serializedVersion: 2
     m_Bits: 320
-  GroundLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  GroundLayer: 6
   slotFull: 0
   heldItem: {fileID: 0}
   InteractButton: 101
