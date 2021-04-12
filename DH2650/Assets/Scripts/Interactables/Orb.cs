@@ -5,8 +5,7 @@ using UnityEngine;
 public class Orb : Interactable
 {
     // Used to make sure the object doesn't change anything about the player movement.
-    [SerializeField] LayerMask PlayerLayer;
-
+    public int PlayerLayer;
     // Define what happens when player interacts with the orb
     public override void Interact(OffHand offHand)
     {
@@ -30,8 +29,7 @@ public class Orb : Interactable
             Rigidbody rb = GetComponent<Collider>().gameObject.GetComponent<Rigidbody>();
             rb.isKinematic = true;
 
-            // THIS DOES NOT WORK
-            //gameObject.layer = PlayerLayer;
+            gameObject.layer = PlayerLayer;
             
             Collider coll = GetComponent<Collider>().gameObject.GetComponent<Collider>();
             coll.isTrigger = true;

@@ -6,7 +6,7 @@ public class GrapplingGun : MonoBehaviour {
     private Rigidbody rb;
     private Vector3 grapplePoint;
     public LayerMask whatIsGrappleable;
-    public Transform gunTip, camera, player;
+    public Transform gunTip, m_camera, player;
     public float pullSpeed = 1f;
     public float FastPullSpeed = 20f;
     public LayerMask IgnoredGrapelingLayer;
@@ -14,7 +14,25 @@ public class GrapplingGun : MonoBehaviour {
     public float ObstructionThreshold = 0;
     public Collider FootCollider;
     public KeyCode HookShootButton;
-  
+
+    //this is for the harpoon
+    public Transform harpoon, harpoonStatic,harpoonPos;
+    private Renderer HarpStaticRend, HarpRend;
+
+
+
+    //this is for Item grabbing
+    private Vector3 itemHitPoint;
+    public float grabbingSpeed = 200f;
+    public Transform offHand;
+    private bool isGrabbing = false;
+    private Rigidbody itemRb;
+    private Collider itemCollider;
+    private Transform itemTransform;
+    private Vector3 harpoonItemOffset;
+    private bool hasHit = false;
+
+
 
     private float maxDistance = 100f;
     private SpringJoint joint;
@@ -22,21 +40,28 @@ public class GrapplingGun : MonoBehaviour {
     private bool colliderOff = false;
     private bool startFastPull = false;
     private float currentObstructionIteration = 0;
+    private Vector3 harpoonRestingPos;
 
-    
 
     void Awake() {
         lr = GetComponent<LineRenderer>();
         rb = player.GetComponent<Rigidbody>();
+        harpoonRestingPos = harpoonStatic.position;
+        HarpRend = harpoon.GetComponent<Renderer>();
+        HarpStaticRend = harpoonStatic.GetComponent<Renderer>();
+        HarpRend.enabled = false;
+
     }
 
     void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && !isGrabbing) {
             StopGrapple();
-            StartGrapple();
+            ActivateHookGun();
         }
         else if (Input.GetMouseButtonUp(0)) {
-            StopGrapple();
+            if(IsGrappling())
+                StopGrapple();
+
         }
 
         if (Input.GetMouseButton(1) && IsGrappling())
@@ -54,7 +79,20 @@ public class GrapplingGun : MonoBehaviour {
             FootCollider.enabled = true;
         }
 
-        BreakIfObstruction();
+        if ( isGrabbing && (grapplePoint - gunTip.position).magnitude < 1.5f)
+        {
+            StopItemPull();
+            itemTransform.GetComponent<Interactable>().Interact(offHand.GetComponent<OffHand>());
+        }
+
+        if (isGrabbing)
+        {
+            UpdateItemPull();
+        }
+
+
+        if (IsGrappling())
+            BreakIfObstruction();
     }
 
     //Called after Update
@@ -64,10 +102,84 @@ public class GrapplingGun : MonoBehaviour {
     }
 
 
-    // Call at start of graple
-    void StartGrapple() {
+
+    //Does the raycasting and decides what hook script should be used
+    void ActivateHookGun()
+    {
         RaycastHit hit;
-        if (Physics.Raycast(camera.position, camera.forward, out hit, maxDistance, whatIsGrappleable)) {
+        if (Physics.Raycast(m_camera.position, m_camera.forward, out hit, maxDistance, whatIsGrappleable))
+        {
+            if(hit.transform.tag == "Item")
+            {
+                StartItemPull(hit);
+            }
+            else
+            {
+                StartGrapple(hit);
+            }
+        }
+    }
+
+
+    void StartItemPull(RaycastHit hit)
+    {
+        isGrabbing = true;
+        itemHitPoint = hit.point;
+        harpoonItemOffset = Vector3.zero;
+        grapplePoint = itemHitPoint;
+        itemRb = hit.transform.GetComponent<Rigidbody>();
+        itemRb.useGravity = false;
+        itemCollider = hit.transform.GetComponent<Collider>();
+        itemTransform = hit.transform;
+        itemCollider.enabled = false;
+       
+
+        //make prop harpoon invisible and animated harpoon visible
+        HarpRend.transform.rotation = Quaternion.LookRotation(grapplePoint - gunTip.position) * Quaternion.Euler(0, 90, 0);
+        HarpRend.enabled = true;
+        HarpStaticRend.enabled = false;
+
+
+        lr.positionCount = 2;
+        currentGrapplePosition = gunTip.position;
+    }
+
+    void UpdateItemPull()
+    {
+        itemRb.velocity = Vector3.zero;
+        itemHitPoint = itemRb.position + harpoonItemOffset;
+        grapplePoint = itemHitPoint;
+
+
+        if (hasHit)
+        {
+            itemRb.AddForce((gunTip.transform.position - itemHitPoint).normalized * grabbingSpeed);
+        }
+        else if((currentGrapplePosition - itemRb.position).magnitude < 0.5f)
+        {
+            harpoonItemOffset = currentGrapplePosition - itemRb.position;
+            hasHit = true;
+        }
+           
+    }
+
+
+    void StopItemPull()
+    {
+        lr.positionCount = 0;
+        harpoon.position = harpoonPos.position;
+        itemRb.useGravity = true;
+        itemCollider.enabled = true;
+
+        HarpRend.enabled = false;
+        HarpStaticRend.enabled = true;
+        isGrabbing = false;
+        hasHit = false;
+
+    }
+
+    // Call at start of graple
+    void StartGrapple(RaycastHit hit) {
             grapplePoint = hit.point;
             joint = player.gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;
@@ -75,9 +187,15 @@ public class GrapplingGun : MonoBehaviour {
 
             float distanceFromPoint = Vector3.Distance(player.position, grapplePoint);
             ropeLength = distanceFromPoint;
-
+            harpoonStatic.GetComponent<Renderer>().enabled = false; 
             //The distance grapple will try to keep from grapple point. 
             joint.maxDistance = distanceFromPoint * 0.8f;
+
+
+            //make prop harpoon invisible and animated harpoon visible
+            HarpRend.transform.rotation = Quaternion.LookRotation(grapplePoint -gunTip.position)* Quaternion.Euler(0,90,0);
+            HarpRend.enabled = true;
+            HarpStaticRend.enabled = false;
 
             //Adjust these values
             joint.spring = 4.5f;
@@ -86,7 +204,7 @@ public class GrapplingGun : MonoBehaviour {
 
             lr.positionCount = 2;
             currentGrapplePosition = gunTip.position;
-        }
+        
     }
 
 
@@ -94,7 +212,13 @@ public class GrapplingGun : MonoBehaviour {
     void StopGrapple() {
         lr.positionCount = 0;
         currentObstructionIteration = 0;
-        Destroy(joint);
+
+        //reset the harpoon model
+        harpoon.position = harpoonPos.position;
+        HarpRend.enabled = false;
+        HarpStaticRend.enabled = true;
+        if (joint)
+            Destroy(joint);
     }
 
     // Call to pull the player towards the grapple point
@@ -156,10 +280,25 @@ public class GrapplingGun : MonoBehaviour {
     
     void DrawRope() {
         //If not grappling, don't draw rope
-        if (!joint) return;
+        if (!joint && !isGrabbing) return;
 
-        currentGrapplePosition = Vector3.Lerp(currentGrapplePosition, grapplePoint, Time.deltaTime * 8f);
-        
+
+        if (!hasHit)
+        {
+            currentGrapplePosition = Vector3.Lerp(currentGrapplePosition, grapplePoint, Time.deltaTime * 12f);
+        }
+        else
+        {
+            //if we have already hit something
+            currentGrapplePosition = grapplePoint;
+        }
+        //moves the harpoon
+
+     
+        harpoon.position = currentGrapplePosition;
+
+ 
+           
         lr.SetPosition(0, gunTip.position);
         lr.SetPosition(1, currentGrapplePosition);
     }
