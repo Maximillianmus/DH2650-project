@@ -82,7 +82,7 @@ public class GrapplingGun : MonoBehaviour {
         if ( isGrabbing && (grapplePoint - gunTip.position).magnitude < 1f)
         {
             StopItemPull();
-            itemTransform.GetComponent<ItemInteraction>().Interact(offHand.GetComponent<OffHandInteraction>());
+            itemTransform.GetComponent<Interactable>().Interact(offHand.GetComponent<OffHand>());
         }
 
         if (isGrabbing)
