@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OffHandInteraction : MonoBehaviour
+public class OffHand : MonoBehaviour
 {
-    
     [SerializeField] Transform m_camera;
-    public Transform offHand;
     [SerializeField] float pickUpRange = 2f;
     [SerializeField] LayerMask whatIsInteractable;
     public int GroundLayer;
+    [SerializeField] KeyCode InteractButton;
     public bool slotFull;
     public GameObject heldItem;
-    public KeyCode InteractButton;
 
     // Update is called once per frame
     void Update()
@@ -23,16 +21,23 @@ public class OffHandInteraction : MonoBehaviour
         // Determine what player is looking at
         if (Physics.Raycast(m_camera.position, m_camera.forward, out hit, pickUpRange, whatIsInteractable)){
 
-            // If we look at an Item, press E, and dont hold anything. Pick it up.
+            // I have seperated these in case we might want to do different things based on what player is interacting with
+
             if(hit.collider.tag == "Item" && Input.GetKeyDown(KeyCode.E))
             {
-                hit.collider.gameObject.GetComponent<ItemInteraction>().Interact(this);
+                hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
                 performedAction = true;
             }
-            // If we look at a container, press E, then we interact with it.
+            
             else if(hit.collider.tag == "Container" && Input.GetKeyDown(InteractButton))
             {
-                hit.collider.gameObject.GetComponent<ContainerInteraction>().Interact(heldItem, this);
+                hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
+                performedAction = true;
+            }
+
+            else if(hit.collider.tag == "Interactable" && Input.GetKeyDown(InteractButton))
+            {
+                hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
                 performedAction = true;
             }
         }
@@ -51,7 +56,9 @@ public class OffHandInteraction : MonoBehaviour
         // Restore collisions and physics and stuff
         Rigidbody rb = heldItem.GetComponent<Collider>().gameObject.GetComponent<Rigidbody>();
         rb.isKinematic = false;
+
         heldItem.layer = GroundLayer;
+
         Collider coll = heldItem.GetComponent<Collider>().gameObject.GetComponent<Collider>();
         coll.isTrigger = false;
 
