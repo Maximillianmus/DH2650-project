@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class OffHand : MonoBehaviour
 {
-    
     [SerializeField] Transform m_camera;
     [SerializeField] float pickUpRange = 2f;
     [SerializeField] LayerMask whatIsInteractable;
@@ -22,14 +21,21 @@ public class OffHand : MonoBehaviour
         // Determine what player is looking at
         if (Physics.Raycast(m_camera.position, m_camera.forward, out hit, pickUpRange, whatIsInteractable)){
 
-            // If we look at an Item, press E, and dont hold anything. Pick it up.
+            // I have seperated these in case we might want to do different things based on what player is interacting with
+
             if(hit.collider.tag == "Item" && Input.GetKeyDown(KeyCode.E))
             {
                 hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
                 performedAction = true;
             }
-            // If we look at a container, press E, then we interact with it.
+            
             else if(hit.collider.tag == "Container" && Input.GetKeyDown(InteractButton))
+            {
+                hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
+                performedAction = true;
+            }
+
+            else if(hit.collider.tag == "Interactable" && Input.GetKeyDown(InteractButton))
             {
                 hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
                 performedAction = true;
@@ -53,7 +59,7 @@ public class OffHand : MonoBehaviour
 
         // THIS DOES NOT WORK
         //heldItem.layer = GroundLayer.value;
-        
+
         Collider coll = heldItem.GetComponent<Collider>().gameObject.GetComponent<Collider>();
         coll.isTrigger = false;
 
