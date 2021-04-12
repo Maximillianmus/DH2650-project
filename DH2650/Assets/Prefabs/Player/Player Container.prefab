@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 2050256599011188055}
   m_Layer: 7
   m_Name: Foot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -564,7 +564,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_camera: {fileID: 2050256599146821588}
-  offHand: {fileID: 2050256599299905642}
   pickUpRange: 4
   whatIsInteractable:
     serializedVersion: 2
@@ -572,9 +571,9 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
+  InteractButton: 101
   slotFull: 0
   heldItem: {fileID: 0}
-  InteractButton: 101
 --- !u!1 &2050256599370599779
 GameObject:
   m_ObjectHideFlags: 0

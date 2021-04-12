@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoubleObelisk : ContainerInteraction
+public class DoubleObelisk : Interactable
 {
     [Header("Must Set these")]
     [SerializeField] Transform[] itemContainers = new Transform[2];
@@ -13,28 +13,28 @@ public class DoubleObelisk : ContainerInteraction
     private int currentNumberOfItems = 0;
 
     // Define what happens when player interacts with Obelisk
-    public override void Interact(GameObject item, OffHandInteraction offHandInteraction)
+    public override void Interact(OffHand offHand)
     {   
         // If offHand has an item, then try and place that item
-        if(offHandInteraction.slotFull)
+        if(offHand.slotFull)
         {
-            PlaceItem(item, offHandInteraction);
+            PlaceItem(offHand.heldItem, offHand);
         }
         // If offHand has no item, then try and take item
         else
         {
-            TakeItem(offHandInteraction);
+            TakeItem(offHand);
         }
     }
 
-    private void PlaceItem(GameObject item, OffHandInteraction offHandInteraction)
+    private void PlaceItem(GameObject item, OffHand offHand)
     {
         // If container has no item already then, the player can place the item.
         if(currentNumberOfItems < maxNumberOfItems)
         {
             // offHand no longer has an item
-            offHandInteraction.slotFull = false;
-            offHandInteraction.heldItem = null;
+            offHand.slotFull = false;
+            offHand.heldItem = null;
 
             // Prevent player from selecting the item
             item.layer = 0;
@@ -68,14 +68,14 @@ public class DoubleObelisk : ContainerInteraction
         }
     }
 
-    private void TakeItem(OffHandInteraction offHandInteraction)
+    private void TakeItem(OffHand offHand)
     {
         // If container has an item, then the player can take it.
         if(currentNumberOfItems > 0)
         {
             GameObject item = containedItems[currentNumberOfItems-1];
             // Add item to off hand
-            item.transform.SetParent(offHandInteraction.offHand.transform);
+            item.transform.SetParent(offHand.transform);
             // Reset position and rotation
             item.transform.localPosition = Vector3.zero;
             item.transform.localRotation = Quaternion.Euler(Vector3.zero);
@@ -84,8 +84,8 @@ public class DoubleObelisk : ContainerInteraction
             item.layer = 6;
 
             // offHand has an item
-            offHandInteraction.slotFull = true;
-            offHandInteraction.heldItem = item;
+            offHand.slotFull = true;
+            offHand.heldItem = item;
 
             // Make it so item has no collision
             Collider coll = item.GetComponent<Collider>();
