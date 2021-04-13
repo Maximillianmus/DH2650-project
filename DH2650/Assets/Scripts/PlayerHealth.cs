@@ -27,8 +27,10 @@ public class PlayerHealth : MonoBehaviour
         }
         
     }
-
-    void TakeDamage(int damage)
+    /*
+    * Public so enemy can access this function
+    */
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthbar.SetHealth(currentHealth);
