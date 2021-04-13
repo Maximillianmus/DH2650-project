@@ -6,7 +6,6 @@ public class DamageTouch : MonoBehaviour
 {
     GameObject Player;
     public int damage;
-    public Collider collider;
     public PlayerHealth playerHealth;
 
     // Start is called before the first frame update
