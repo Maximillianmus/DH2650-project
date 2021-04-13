@@ -12,43 +12,65 @@ public class OffHand : MonoBehaviour
     public bool slotFull;
     public GameObject heldItem;
 
+    // for throwing items
+    private bool keyDown = false;
+    private float startTime = 0;
+    [SerializeField] float throwForce = 80;
+
     // Update is called once per frame
     void Update()
     {
         RaycastHit hit; 
         bool performedAction = false;
 
+        // Keep track of when player pressed interactButton (For throwing)
+        if(!keyDown && Input.GetKeyDown(InteractButton))
+        {
+            keyDown = true;
+            startTime = Time.time;
+        }
+
         // Determine what player is looking at
         if (Physics.Raycast(m_camera.position, m_camera.forward, out hit, pickUpRange, whatIsInteractable)){
 
             // I have seperated these in case we might want to do different things based on what player is interacting with
 
-            if(hit.collider.tag == "Item" && Input.GetKeyDown(KeyCode.E))
+            if(hit.collider.tag == "Item" && Input.GetKeyDown(InteractButton))
             {
                 hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
+                keyDown = false;
                 performedAction = true;
             }
             
             else if(hit.collider.tag == "Container" && Input.GetKeyDown(InteractButton))
             {
                 hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
+                keyDown = false;
                 performedAction = true;
             }
 
             else if(hit.collider.tag == "Interactable" && Input.GetKeyDown(InteractButton))
             {
                 hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
+                keyDown = false;
                 performedAction = true;
             }
         }
-        // If we have not done any other action, hold an item and press E. Then we drop it.
-        if(!performedAction && slotFull && Input.GetKeyDown(KeyCode.E))
+        // If we have not done any other action, hold an item and release E. Then we drop it.
+        if(!performedAction && slotFull && keyDown && Input.GetKeyUp(InteractButton))
         {
-            DropItem();
+            keyDown = false;
+            float elapsedTime = Time.time - startTime;
+            // Add a cap, holding interactButton for longer than 0.3 does not do more than just 0.3
+            if(elapsedTime > 0.3)
+            {
+                elapsedTime = 0.3f;
+            }
+            DropItem(elapsedTime);
         }
     }
 
-    private void DropItem()
+    private void DropItem(float elapsedTime)
     {
         slotFull = false;
         heldItem.transform.SetParent(null);
@@ -56,6 +78,13 @@ public class OffHand : MonoBehaviour
         // Restore collisions and physics and stuff
         Rigidbody rb = heldItem.GetComponent<Collider>().gameObject.GetComponent<Rigidbody>();
         rb.isKinematic = false;
+
+        // If player has not tapped, then apply a force to the object
+        if(elapsedTime > 0.1)
+        {
+            Vector3 force = m_camera.forward * (throwForce * (elapsedTime));
+            rb.AddForce(force, ForceMode.Impulse);
+        }
 
         heldItem.layer = GroundLayer;
 
