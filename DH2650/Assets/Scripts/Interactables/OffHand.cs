@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class OffHand : MonoBehaviour
 {
+    [SerializeField] Rigidbody playerRb;
     [SerializeField] Transform m_camera;
     [SerializeField] float pickUpRange = 2f;
     [SerializeField] LayerMask whatIsInteractable;
@@ -55,6 +56,7 @@ public class OffHand : MonoBehaviour
                 interactText.text = "Press E to interact";
                 if(Input.GetKeyDown(InteractButton))
                 {
+                    heldItem.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
                     hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
                     keyDown = false;
                     performedAction = true;
@@ -95,6 +97,7 @@ public class OffHand : MonoBehaviour
         // Restore collisions and physics and stuff
         Rigidbody rb = heldItem.GetComponent<Collider>().gameObject.GetComponent<Rigidbody>();
         rb.isKinematic = false;
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
 
         // If player has not tapped, then apply a force to the object
         if(elapsedTime > 0.1)
@@ -102,6 +105,8 @@ public class OffHand : MonoBehaviour
             Vector3 force = m_camera.forward * (throwForce * (elapsedTime));
             rb.AddForce(force, ForceMode.Impulse);
         }
+
+        rb.velocity += playerRb.velocity;
 
         heldItem.layer = GroundLayer;
 

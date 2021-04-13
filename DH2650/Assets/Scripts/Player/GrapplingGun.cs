@@ -194,6 +194,9 @@ public class GrapplingGun : MonoBehaviour {
 
     void StartItemPull(RaycastHit hit)
     {
+        itemTransform = hit.transform;
+        itemTransform.gameObject.GetComponent<Item>().ReleaseFromContainer();
+
         isGrabbing = true;
         itemHitPoint = hit.point;
         harpoonItemOffset = Vector3.zero;
@@ -201,7 +204,7 @@ public class GrapplingGun : MonoBehaviour {
         itemRb = hit.transform.GetComponent<Rigidbody>();
         itemRb.useGravity = false;
         itemCollider = hit.transform.GetComponent<Collider>();
-        itemTransform = hit.transform;
+
         itemCollider.enabled = false;
        
 

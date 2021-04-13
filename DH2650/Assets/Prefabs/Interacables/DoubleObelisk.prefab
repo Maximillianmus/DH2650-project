@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 862511706594501459}
   - component: {fileID: 8274615641542289012}
   - component: {fileID: 8953090883837328435}
-  - component: {fileID: 4965933319774595633}
+  - component: {fileID: 1486598979}
   m_Layer: 6
   m_Name: DoubleObelisk
   m_TagString: Container
@@ -225,7 +225,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &4965933319774595633
+--- !u!114 &1486598979
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,16 +234,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 4965933319774595632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f1617dcda30c804c8c37d725b4f5e65, type: 3}
+  m_Script: {fileID: 11500000, guid: 390f19f91b241814a8d45bba86a35e35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentNumberOfItems: 0
+  maxNumberOfItems: 2
   itemContainers:
   - {fileID: 5375645670078725783}
   - {fileID: 1864991973486434210}
+  connectedObjects:
+  - {fileID: 0}
   containedItems:
   - {fileID: 0}
   - {fileID: 0}
-  connectedObjects: []
+  usedContainers: 0000
 --- !u!1 &8342061611803246300
 GameObject:
   m_ObjectHideFlags: 0
