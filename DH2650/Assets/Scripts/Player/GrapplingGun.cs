@@ -54,6 +54,7 @@ public class GrapplingGun : MonoBehaviour {
     private bool startFastPull = false;
     private float currentObstructionIteration = 0;
     private Vector3 currentGrapplePosition;
+    private AudioSource gunSound;
 
 
     void Awake() {
@@ -61,6 +62,7 @@ public class GrapplingGun : MonoBehaviour {
         rb = player.GetComponent<Rigidbody>();
         HarpRend = harpoon.GetComponent<Renderer>();
         HarpStaticRend = harpoonStatic.GetComponent<Renderer>();
+        gunSound = transform.GetComponent<AudioSource>();
         HarpRend.enabled = false;
 
     }
@@ -133,6 +135,7 @@ public class GrapplingGun : MonoBehaviour {
         if (Physics.Raycast(m_camera.position, m_camera.forward, out hit, maxDistance, whatIsGrappleable))
         {
             Instantiate(FireHookEffectPrefab, gunTip.position, gunTip.rotation);
+            gunSound.Play();
             
             if(hit.transform.tag == "Item")
             {
@@ -349,12 +352,13 @@ public class GrapplingGun : MonoBehaviour {
     void BreakIfObstruction()
     {
         //the 7 is the layer that the linecast should ignore, which in this case is layer 7,  ~ inverts the bitmask so 7 is 0, and all other layers are 1
-        RaycastHit hit;
-        if (Physics.Linecast(gunTip.position, currentGrapplePosition, out hit, ~IgnoredGrapelingLayer) && BreakIfObstructed)
+
+        if (Physics.Linecast(gunTip.position, currentGrapplePosition, ~IgnoredGrapelingLayer) && BreakIfObstructed)
         {
             if (currentObstructionIteration >= ObstructionThreshold)
             {
                 StopGrapple();
+             
             }      
             else
                 currentObstructionIteration++;
