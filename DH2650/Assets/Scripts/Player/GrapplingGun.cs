@@ -5,8 +5,13 @@ public class GrapplingGun : MonoBehaviour {
     private LineRenderer lr;
     private Rigidbody rb;
     private Vector3 grapplePoint;
+
     public LayerMask whatIsGrappleable;
     public Transform gunTip, m_camera, player;
+
+    //particles
+    public ParticleSystem FireHookEffectPrefab;
+    public ParticleSystem HarpoonHitEffectPrefab;
     public float pullSpeed = 1f;
     public float FastPullSpeed = 20f;
     public LayerMask IgnoredGrapelingLayer;
@@ -42,19 +47,18 @@ public class GrapplingGun : MonoBehaviour {
     private Transform activationTransform;
 
 
-    private float maxDistance = 100f;
+    public float maxDistance = 100f;
     private SpringJoint joint;
     private float ropeLength;
     private bool colliderOff = false;
     private bool startFastPull = false;
     private float currentObstructionIteration = 0;
-    private Vector3 harpoonRestingPos;
+    private Vector3 currentGrapplePosition;
 
 
     void Awake() {
         lr = GetComponent<LineRenderer>();
         rb = player.GetComponent<Rigidbody>();
-        harpoonRestingPos = harpoonStatic.position;
         HarpRend = harpoon.GetComponent<Renderer>();
         HarpStaticRend = harpoonStatic.GetComponent<Renderer>();
         HarpRend.enabled = false;
@@ -128,6 +132,8 @@ public class GrapplingGun : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(m_camera.position, m_camera.forward, out hit, maxDistance, whatIsGrappleable))
         {
+            Instantiate(FireHookEffectPrefab, gunTip.position, gunTip.rotation);
+            
             if(hit.transform.tag == "Item")
             {
                 StartItemPull(hit);
@@ -161,7 +167,7 @@ public class GrapplingGun : MonoBehaviour {
 
     void UpdateActivationHook()
     {
-        if ((currentGrapplePosition - activationTransform.position).magnitude < 0.5f)
+        if ( CheckIfHit(currentGrapplePosition, activationTransform.position))
         {
             activationTransform.gameObject.GetComponent<Interactable>().Interact(offHand.GetComponent<OffHand>());
             StopActivationHook();
@@ -215,7 +221,7 @@ public class GrapplingGun : MonoBehaviour {
         {
             itemRb.AddForce((gunTip.transform.position - itemHitPoint).normalized * grabbingSpeed);
         }
-        else if((currentGrapplePosition - itemRb.position).magnitude < 0.5f)
+        else if(CheckIfHit(currentGrapplePosition, itemRb.position))
         {
             harpoonItemOffset = currentGrapplePosition - itemRb.position;
             hasHit = true;
@@ -242,7 +248,8 @@ public class GrapplingGun : MonoBehaviour {
     // Call at start of graple
     void StartGrapple(RaycastHit hit) {
         isGrappeling = true;
-        grapplePoint = hit.point;
+        //the expression after the + sign is to make the grapple point not be in the wall
+        grapplePoint = hit.point+((player.position-grapplePoint).normalized *0.1f);
  
         distanceFromPoint = Vector3.Distance(player.position, grapplePoint);
         ropeLength = distanceFromPoint;
@@ -267,7 +274,7 @@ public class GrapplingGun : MonoBehaviour {
     void UpdateGrapple()
     {
         
-        if (!hasHit && (currentGrapplePosition - grapplePoint).magnitude < 0.5f)
+        if (!hasHit && CheckIfHit(currentGrapplePosition, grapplePoint))
         {
             hasHit = true;
             joint = player.gameObject.AddComponent<SpringJoint>();
@@ -342,7 +349,8 @@ public class GrapplingGun : MonoBehaviour {
     void BreakIfObstruction()
     {
         //the 7 is the layer that the linecast should ignore, which in this case is layer 7,  ~ inverts the bitmask so 7 is 0, and all other layers are 1
-        if (Physics.Linecast(gunTip.position, currentGrapplePosition, ~IgnoredGrapelingLayer) && BreakIfObstructed)
+        RaycastHit hit;
+        if (Physics.Linecast(gunTip.position, currentGrapplePosition, out hit, ~IgnoredGrapelingLayer) && BreakIfObstructed)
         {
             if (currentObstructionIteration >= ObstructionThreshold)
             {
@@ -355,7 +363,21 @@ public class GrapplingGun : MonoBehaviour {
 
     }
 
-    private Vector3 currentGrapplePosition;
+
+    bool CheckIfHit(Vector3 posA, Vector3 posB)
+    {
+        if ((posA - posB).magnitude < 0.5f)
+        {
+            Instantiate(HarpoonHitEffectPrefab, harpoon.position, gunTip.rotation);
+
+            return true;
+        }
+
+
+        return false;
+    }
+
+ 
     
     void DrawRope() {
         //If not grappling, don't draw rope
@@ -389,4 +411,5 @@ public class GrapplingGun : MonoBehaviour {
     public Vector3 GetGrapplePoint() {
         return grapplePoint;
     }
+
 }
