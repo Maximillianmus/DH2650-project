@@ -1531,10 +1531,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3803358700301818559, guid: 77927ce0fc9c06547850545663950468, type: 3}
-      propertyPath: BreakIfObstructed
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5715001328954726785, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

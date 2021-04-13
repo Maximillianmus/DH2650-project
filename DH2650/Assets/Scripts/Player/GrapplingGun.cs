@@ -55,6 +55,7 @@ public class GrapplingGun : MonoBehaviour {
     private float currentObstructionIteration = 0;
     private Vector3 currentGrapplePosition;
     private AudioSource gunSound;
+    private AudioSource harpoonSound;
 
 
     void Awake() {
@@ -63,6 +64,7 @@ public class GrapplingGun : MonoBehaviour {
         HarpRend = harpoon.GetComponent<Renderer>();
         HarpStaticRend = harpoonStatic.GetComponent<Renderer>();
         gunSound = transform.GetComponent<AudioSource>();
+        harpoonSound = harpoon.GetComponent<AudioSource>();
         HarpRend.enabled = false;
 
     }
@@ -135,7 +137,7 @@ public class GrapplingGun : MonoBehaviour {
         if (Physics.Raycast(m_camera.position, m_camera.forward, out hit, maxDistance, whatIsGrappleable))
         {
             Instantiate(FireHookEffectPrefab, gunTip.position, gunTip.rotation);
-            gunSound.Play();
+            gunSound.Play();    
             
             if(hit.transform.tag == "Item")
             {
@@ -373,6 +375,7 @@ public class GrapplingGun : MonoBehaviour {
         if ((posA - posB).magnitude < 0.5f)
         {
             Instantiate(HarpoonHitEffectPrefab, harpoon.position, gunTip.rotation);
+            harpoonSound.Play();
 
             return true;
         }
