@@ -155,7 +155,7 @@ Transform:
   - {fileID: 500974978}
   - {fileID: 389681109}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &241584108
 GameObject:
@@ -406,82 +406,87 @@ Transform:
   m_Father: {fileID: 154791240}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &878281521 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 318426725, guid: 8792f883ad1600540ab07f2ea65f826d, type: 3}
-  m_PrefabInstance: {fileID: 981649635}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e67df520d9d13f447bbd963000584cf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &981649635
+--- !u!1001 &878544176
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 432398360, guid: 8792f883ad1600540ab07f2ea65f826d, type: 3}
+    - target: {fileID: 432398360, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 432398360, guid: 8792f883ad1600540ab07f2ea65f826d, type: 3}
+    - target: {fileID: 432398360, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 653010900576616383, guid: 8792f883ad1600540ab07f2ea65f826d, type: 3}
+    - target: {fileID: 1680357355173483183, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 653010900576616383, guid: 8792f883ad1600540ab07f2ea65f826d, type: 3}
+    - target: {fileID: 5062106014970349094, guid: 77927ce0fc9c06547850545663950468, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062106014970349094, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.105034
+      value: 2.7803757
       objectReference: {fileID: 0}
-    - target: {fileID: 653010900576616383, guid: 8792f883ad1600540ab07f2ea65f826d, type: 3}
+    - target: {fileID: 5062106014970349094, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_LocalPosition.y
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 653010900576616383, guid: 8792f883ad1600540ab07f2ea65f826d, type: 3}
+    - target: {fileID: 5062106014970349094, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.66067
+      value: 47.597977
       objectReference: {fileID: 0}
-    - target: {fileID: 653010900576616383, guid: 8792f883ad1600540ab07f2ea65f826d, type: 3}
+    - target: {fileID: 5062106014970349094, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 653010900576616383, guid: 8792f883ad1600540ab07f2ea65f826d, type: 3}
+    - target: {fileID: 5062106014970349094, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 653010900576616383, guid: 8792f883ad1600540ab07f2ea65f826d, type: 3}
+    - target: {fileID: 5062106014970349094, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 653010900576616383, guid: 8792f883ad1600540ab07f2ea65f826d, type: 3}
+    - target: {fileID: 5062106014970349094, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 653010900576616383, guid: 8792f883ad1600540ab07f2ea65f826d, type: 3}
+    - target: {fileID: 5062106014970349094, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 653010900576616383, guid: 8792f883ad1600540ab07f2ea65f826d, type: 3}
+    - target: {fileID: 5062106014970349094, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 653010900576616383, guid: 8792f883ad1600540ab07f2ea65f826d, type: 3}
+    - target: {fileID: 5062106014970349094, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1217722444658843378, guid: 8792f883ad1600540ab07f2ea65f826d, type: 3}
+    - target: {fileID: 5715001328954726785, guid: 77927ce0fc9c06547850545663950468, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715001328954726785, guid: 77927ce0fc9c06547850545663950468, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893317169197066091, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_Name
-      value: Player Container With Health Bar
+      value: Player Container With Health Bar Fixed (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7192918628704665089, guid: 77927ce0fc9c06547850545663950468, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8792f883ad1600540ab07f2ea65f826d, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 77927ce0fc9c06547850545663950468, type: 3}
 --- !u!1 &1006398547
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +582,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1006398552
 MonoBehaviour:
@@ -610,8 +615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  collider: {fileID: 1006398548}
-  playerHealth: {fileID: 878281521}
+  playerHealth: {fileID: 0}
 --- !u!1 &1583423967
 GameObject:
   m_ObjectHideFlags: 0
