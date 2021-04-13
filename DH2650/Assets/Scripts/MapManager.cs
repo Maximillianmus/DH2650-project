@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour
 {
@@ -50,6 +51,10 @@ public class MapManager : MonoBehaviour
 		else if (Input.GetKeyUp(KeyCode.RightArrow))
 		{
 			Boat.TrySetDirection(Direction.Right);
+		}
+		else if (Input.GetKeyUp(KeyCode.Return))
+        {
+			SceneManager.LoadScene(Boat.CurrentPin.SceneToLoad, LoadSceneMode.Additive);
 		}
 	}
 

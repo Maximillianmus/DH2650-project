@@ -59,10 +59,18 @@ public class PlayerMovement : MonoBehaviour {
 
     
     private void FixedUpdate() {
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
         Movement();
     }
 
     private void Update() {
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
         MyInput();
         Look();
     }
