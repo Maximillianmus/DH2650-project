@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5015419899243352547}
   - component: {fileID: 5015419899243352546}
   - component: {fileID: 5015419899243352550}
-  - component: {fileID: 5015419899243352477}
+  - component: {fileID: 845136870035781432}
   m_Layer: 6
   m_Name: Orb
   m_TagString: Item
@@ -113,7 +113,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5015419899243352477
+--- !u!114 &845136870035781432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,7 +122,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5015419899243352476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58f85871575c6fd499326b45531f30d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 637e3bd3248036e4b82689e14484ab3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerLayer: 7
+  inContainer: 0
+  container: {fileID: 0}
