@@ -8,7 +8,7 @@ public class Container : Interactable
     [SerializeField] int maxNumberOfItems = 0;
 
     [SerializeField] Transform[] itemContainers = new Transform[0];
-    [SerializeField] Activation[] connectedObjects = new Activation[0];
+    public Activation[] connectedObjects = new Activation[0];
 
     public GameObject[] containedItems;
     public bool[] usedContainers;
@@ -113,6 +113,14 @@ public class Container : Interactable
             containedItems[pos] = null;
             usedContainers[pos] = false;
             currentNumberOfItems--;
+
+            if(connectedObjects.Length > 0)
+            {
+                foreach (Activation connObj in connectedObjects)
+                {
+                    connObj.DeActivate();
+                }
+            }
         }
     }
 
