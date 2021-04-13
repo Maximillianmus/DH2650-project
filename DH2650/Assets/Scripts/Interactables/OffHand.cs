@@ -7,7 +7,7 @@ public class OffHand : MonoBehaviour
     [SerializeField] Transform m_camera;
     [SerializeField] float pickUpRange = 2f;
     [SerializeField] LayerMask whatIsInteractable;
-    public LayerMask GroundLayer;
+    public int GroundLayer;
     [SerializeField] KeyCode InteractButton;
     public bool slotFull;
     public GameObject heldItem;
@@ -57,8 +57,7 @@ public class OffHand : MonoBehaviour
         Rigidbody rb = heldItem.GetComponent<Collider>().gameObject.GetComponent<Rigidbody>();
         rb.isKinematic = false;
 
-        // THIS DOES NOT WORK
-        //heldItem.layer = GroundLayer.value;
+        heldItem.layer = GroundLayer;
 
         Collider coll = heldItem.GetComponent<Collider>().gameObject.GetComponent<Collider>();
         coll.isTrigger = false;
