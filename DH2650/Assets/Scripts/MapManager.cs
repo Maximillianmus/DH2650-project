@@ -54,7 +54,7 @@ public class MapManager : MonoBehaviour
 		}
 		else if (Input.GetKeyUp(KeyCode.Return))
         {
-			SceneManager.LoadScene(Boat.CurrentPin.SceneToLoad, LoadSceneMode.Additive);
+			SceneManager.LoadScene(Boat.CurrentPin.SceneToLoad);
 		}
 	}
 
