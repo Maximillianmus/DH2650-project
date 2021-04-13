@@ -51,6 +51,9 @@ public class Item : Interactable
             rb.isKinematic = true;
             gameObject.layer = PlayerLayer;
             coll.isTrigger = true;
+            
+            // Remove smoother movement for item
+            rb.interpolation = RigidbodyInterpolation.None;
         }
     }
     public void ReleaseFromContainer()
