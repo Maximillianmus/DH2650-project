@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OffHand : MonoBehaviour
 {
     [SerializeField] Transform m_camera;
     [SerializeField] float pickUpRange = 2f;
     [SerializeField] LayerMask whatIsInteractable;
+    [SerializeField] Text interactText; // For UI
     public int GroundLayer;
     [SerializeField] KeyCode InteractButton;
     public bool slotFull;
@@ -30,31 +32,46 @@ public class OffHand : MonoBehaviour
             startTime = Time.time;
         }
 
+        // Reset what interact text
+        interactText.text = "";
+
         // Determine what player is looking at
         if (Physics.Raycast(m_camera.position, m_camera.forward, out hit, pickUpRange, whatIsInteractable)){
 
             // I have seperated these in case we might want to do different things based on what player is interacting with
 
-            if(hit.collider.tag == "Item" && Input.GetKeyDown(InteractButton))
+            if(hit.collider.tag == "Item")
             {
-                hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
-                keyDown = false;
-                performedAction = true;
+                interactText.text = "Press E to pick up";
+                if(Input.GetKeyDown(InteractButton))
+                {
+                    hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
+                    keyDown = false;
+                    performedAction = true;
+                }
+            }
+            else if(hit.collider.tag == "Container")
+            {
+                interactText.text = "Press E to interact";
+                if(Input.GetKeyDown(InteractButton))
+                {
+                    hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
+                    keyDown = false;
+                    performedAction = true;
+                }
             }
             
-            else if(hit.collider.tag == "Container" && Input.GetKeyDown(InteractButton))
+            else if(hit.collider.tag == "Interactable")
             {
-                hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
-                keyDown = false;
-                performedAction = true;
+                interactText.text = "Press E to interact";
+                if(Input.GetKeyDown(InteractButton))
+                {
+                    hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
+                    keyDown = false;
+                    performedAction = true;
+                }
             }
 
-            else if(hit.collider.tag == "Interactable" && Input.GetKeyDown(InteractButton))
-            {
-                hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
-                keyDown = false;
-                performedAction = true;
-            }
         }
         // If we have not done any other action, hold an item and release E. Then we drop it.
         if(!performedAction && slotFull && keyDown && Input.GetKeyUp(InteractButton))
