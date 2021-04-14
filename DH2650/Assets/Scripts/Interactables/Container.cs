@@ -109,6 +109,11 @@ public class Container : Interactable
             Collider coll = item.GetComponent<Collider>();
             coll.isTrigger = true;
             
+            item.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.None;
+
+            item.GetComponent<Item>().inContainer = false;
+            item.GetComponent<Item>().container = null;
+            
             // Container no longer has an item
             containedItems[pos] = null;
             usedContainers[pos] = false;

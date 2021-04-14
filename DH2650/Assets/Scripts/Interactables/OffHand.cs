@@ -56,7 +56,10 @@ public class OffHand : MonoBehaviour
                 interactText.text = "Press E to interact";
                 if(Input.GetKeyDown(InteractButton))
                 {
-                    heldItem.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
+                    if(heldItem != null)
+                    {
+                        heldItem.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
+                    }
                     hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
                     keyDown = false;
                     performedAction = true;
