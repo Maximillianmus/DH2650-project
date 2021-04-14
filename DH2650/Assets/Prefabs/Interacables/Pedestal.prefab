@@ -144,8 +144,11 @@ MonoBehaviour:
   maxNumberOfItems: 1
   itemContainers:
   - {fileID: 154948776514135416}
-  connectedObjects:
-  - {fileID: 0}
   containedItems:
   - {fileID: 0}
   usedContainers: 00
+  connectedObjects:
+  - {fileID: 0}
+  triggerWhenFull: 1
+  triggerOnSpecificItem: 0
+  specificItems: []
