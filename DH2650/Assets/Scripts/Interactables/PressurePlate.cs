@@ -8,35 +8,74 @@ public class PressurePlate : MonoBehaviour
     [Header("Options")]
     [SerializeField] float delayOnEnter = 0f;
     [SerializeField] float delayOnExit = 0f;
-    [SerializeField] bool triggerOnlyOnPlayer = false;
+    [SerializeField] bool triggerOnPlayer = false;
+    [SerializeField] bool triggerOnItem = false;
+    [SerializeField] bool triggerOnAnything = false;
+    [SerializeField] bool triggerOnSpecificItem = false;
+    [SerializeField] GameObject[] specificItems = new GameObject[0];
 
     private void OnTriggerEnter(Collider other)
     {
-        if(triggerOnlyOnPlayer)
+        if(triggerOnAnything)
+        {
+            StartCoroutine(Activate());
+        }
+        if(triggerOnPlayer)
         {
             if(other.tag == "Player")
             {
                 StartCoroutine(Activate());
             }
         }
-        else
+        if(triggerOnItem)
         {
-            StartCoroutine(Activate());
+            if(other.tag == "Item")
+            {
+                StartCoroutine(Activate());
+            }
+        }
+        if(triggerOnSpecificItem)
+        {
+            for(int i = 0; i < specificItems.Length; ++i)
+            {
+                if(other.gameObject == specificItems[i])
+                {
+                    StartCoroutine(Activate());
+                }
+
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(triggerOnlyOnPlayer)
+        if(triggerOnAnything)
+        {
+            StartCoroutine(DeActivate());
+        }
+        if(triggerOnPlayer)
         {
             if(other.tag == "Player")
             {
                 StartCoroutine(DeActivate());
             }
         }
-        else
+        if(triggerOnItem)
         {
-            StartCoroutine(DeActivate());
+           if(other.tag == "Item")
+           {
+                StartCoroutine(DeActivate());
+           }
+        }
+        if(triggerOnSpecificItem)
+        {
+            for(int i = 0; i < specificItems.Length; ++i)
+            {
+                if(other.gameObject == specificItems[i])
+                {
+                    StartCoroutine(DeActivate());
+                }
+            }
         }
     }
 

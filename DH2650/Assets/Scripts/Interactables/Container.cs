@@ -5,13 +5,19 @@ using UnityEngine;
 public class Container : Interactable
 {
     public int currentNumberOfItems = 0;
+    [Header("Must Set these")]
     [SerializeField] int maxNumberOfItems = 0;
-
     [SerializeField] Transform[] itemContainers = new Transform[0];
-    public Activation[] connectedObjects = new Activation[0];
-
     public GameObject[] containedItems;
     public bool[] usedContainers;
+
+    [Header("Options for connected Objects")]
+    public Activation[] connectedObjects = new Activation[0];
+    [SerializeField] bool triggerWhenFull = false;
+    [SerializeField] bool triggerOnSpecificItem = false;
+    [SerializeField] GameObject[] specificItems = new GameObject[0];
+
+
 
     void Start()
     {
@@ -72,17 +78,8 @@ public class Container : Interactable
         Collider coll = item.GetComponent<Collider>();
         coll.isTrigger = false;
 
-        // Activate the connected objects
-        if(currentNumberOfItems == maxNumberOfItems)
-        {
-            if(connectedObjects.Length > 0)
-            {
-                foreach (Activation connObj in connectedObjects)
-                {
-                    connObj.Activate();
-                }
-            }
-        }
+        
+        ActivateObjects();
     }
 
     // Take item from container
@@ -119,13 +116,7 @@ public class Container : Interactable
             usedContainers[pos] = false;
             currentNumberOfItems--;
 
-            if(connectedObjects.Length > 0)
-            {
-                foreach (Activation connObj in connectedObjects)
-                {
-                    connObj.DeActivate();
-                }
-            }
+            DeActivateObjects();
         }
     }
 
@@ -167,6 +158,116 @@ public class Container : Interactable
             }
         }
         return -1;
+    }
+
+    private void ActivateObjects()
+    {
+        bool activate = false;
+
+        if(triggerWhenFull && triggerOnSpecificItem)
+        {
+            // Container must be full
+            if(currentNumberOfItems == maxNumberOfItems)
+            {
+                // Check that all specified items are in the container
+                int numCorrect = 0;
+                foreach (GameObject obj in containedItems)
+                {
+                    for(int i = 0; i <specificItems.Length; ++i)
+                    {
+                        if(obj == specificItems[i])
+                        {
+                            numCorrect++;
+                            break;
+                        }
+                    }
+                }
+                if(numCorrect == specificItems.Length)
+                {
+                    activate = true;
+                }
+            }
+        }
+
+        if(triggerWhenFull)
+        {
+            if(currentNumberOfItems == maxNumberOfItems)
+            {
+                activate = true;
+            }
+        }
+
+        if(triggerOnSpecificItem)
+        {
+            // Check that all specified items are in the container
+            int numCorrect = 0;
+            foreach (GameObject obj in containedItems)
+            {
+                for(int i = 0; i <specificItems.Length; ++i)
+                {
+                    if(obj == specificItems[i])
+                    {
+                        numCorrect++;
+                        break;
+                    }
+                }
+            }
+            if(numCorrect == specificItems.Length)
+            {
+                activate = true;
+            }
+        }
+
+        if(activate)
+        {
+            foreach (Activation connObj in connectedObjects)
+            {
+                connObj.Activate();
+            }
+        }
+    }
+
+    private void DeActivateObjects()
+    {
+        bool deactivate = false;
+
+        if(triggerWhenFull)
+        {
+            if(currentNumberOfItems != maxNumberOfItems)
+            {
+                deactivate = true;
+            }
+        }
+
+        if(triggerOnSpecificItem)
+        {
+            // Check if all 
+            int numCorrect = 0;
+            foreach (GameObject obj in containedItems)
+            {
+                for(int i = 0; i <specificItems.Length; ++i)
+                {
+                    if(obj == specificItems[i])
+                    {
+                        numCorrect++;
+                        break;
+                    }
+                }
+            }
+            if(numCorrect != specificItems.Length)
+            {
+                deactivate = true;
+            }
+        }
+
+        if(deactivate)
+        {
+            foreach (Activation connObj in connectedObjects)
+            {
+                connObj.DeActivate();
+            }
+        }
+
     }
 
 }
