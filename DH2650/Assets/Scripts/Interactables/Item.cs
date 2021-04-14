@@ -74,13 +74,7 @@ public class Item : Interactable
             container.usedContainers[pos] = false;
             container.currentNumberOfItems--;
 
-            if(container.connectedObjects.Length > 0)
-            {
-                foreach (Activation connObj in container.connectedObjects)
-                {
-                    connObj.DeActivate();
-                }
-            }
+            container.DeActivateObjects();
 
             inContainer = false;
             container = null;

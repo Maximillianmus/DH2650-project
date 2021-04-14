@@ -222,12 +222,15 @@ public class Container : Interactable
         {
             foreach (Activation connObj in connectedObjects)
             {
-                connObj.Activate();
+                if(connObj !=null)
+                {
+                    connObj.Activate();
+                }
             }
         }
     }
 
-    private void DeActivateObjects()
+    public void DeActivateObjects()
     {
         bool deactivate = false;
 
@@ -264,7 +267,10 @@ public class Container : Interactable
         {
             foreach (Activation connObj in connectedObjects)
             {
-                connObj.DeActivate();
+                if(connObj != null)
+                {
+                    connObj.DeActivate();
+                }
             }
         }
 
