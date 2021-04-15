@@ -603,6 +603,10 @@ PrefabInstance:
       value: Player Container With Health Bar
       objectReference: {fileID: 0}
     - target: {fileID: 6831475700438147429, guid: 83cee00a1fcee9548aeacdeb42978843, type: 3}
+      propertyPath: playerRb
+      value: 
+      objectReference: {fileID: 8577580188920344668}
+    - target: {fileID: 6831475700438147429, guid: 83cee00a1fcee9548aeacdeb42978843, type: 3}
       propertyPath: throwForce
       value: 80
       objectReference: {fileID: 0}
@@ -636,6 +640,11 @@ GameObject:
 --- !u!1 &2290266946442041151 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4908356041911401994, guid: 83cee00a1fcee9548aeacdeb42978843, type: 3}
+  m_PrefabInstance: {fileID: 6617285901804005685}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &8577580188920344668 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 3232737683603986793, guid: 83cee00a1fcee9548aeacdeb42978843, type: 3}
   m_PrefabInstance: {fileID: 6617285901804005685}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1986296124483410633 stripped

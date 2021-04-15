@@ -8,8 +8,8 @@ public class Container : Interactable
     [Header("Must Set these")]
     [SerializeField] int maxNumberOfItems = 0;
     [SerializeField] Transform[] itemContainers = new Transform[0];
-    public GameObject[] containedItems;
-    public bool[] usedContainers;
+    public GameObject[] containedItems = new GameObject[0];
+    public bool[] usedContainers = new bool[0];
 
     [Header("Options for connected Objects")]
     public Activation[] connectedObjects = new Activation[0];
@@ -18,11 +18,32 @@ public class Container : Interactable
     [SerializeField] GameObject[] specificItems = new GameObject[0];
 
 
-
+    // Make it easier to make it so container already has items
     void Start()
     {
-        GameObject[] containedItems = new GameObject[maxNumberOfItems];
-        bool[] usedContainers = new bool[maxNumberOfItems];
+        foreach (GameObject item in containedItems)
+        {
+            if(item != null)
+            {
+                item.GetComponent<Item>().inContainer = true;
+                item.GetComponent<Item>().container = this;
+                item.layer = 6;
+                
+                // Reset its position in the container
+                item.transform.localPosition = Vector3.zero;
+                item.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
+                item.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
+
+                // Make it so item has collision
+                Collider coll = item.GetComponent<Collider>();
+                coll.isTrigger = false;
+                Rigidbody rb = item.GetComponent<Rigidbody>();
+                rb.isKinematic = true;
+                
+            }
+        }
+        ActivateObjects();
     }
 
     // Define what happens when player interacts with the Container
@@ -222,12 +243,15 @@ public class Container : Interactable
         {
             foreach (Activation connObj in connectedObjects)
             {
-                connObj.Activate();
+                if(connObj !=null)
+                {
+                    connObj.Activate();
+                }
             }
         }
     }
 
-    private void DeActivateObjects()
+    public void DeActivateObjects()
     {
         bool deactivate = false;
 
@@ -264,7 +288,10 @@ public class Container : Interactable
         {
             foreach (Activation connObj in connectedObjects)
             {
-                connObj.DeActivate();
+                if(connObj != null)
+                {
+                    connObj.DeActivate();
+                }
             }
         }
 
