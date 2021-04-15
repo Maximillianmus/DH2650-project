@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Patrol_Ground : MonoBehaviour
+public class Patrol : MonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -42,7 +42,7 @@ public class Patrol_Ground : MonoBehaviour
             ChasePlayer();
         } else
         {
-            Patrol(dist);
+            Patrol_Path(dist);
         }
 
         
@@ -53,7 +53,7 @@ public class Patrol_Ground : MonoBehaviour
     /*
      *  Enemy movement
      */
-    void Patrol(float dist)
+    void Patrol_Path(float dist)
     {
         transform.LookAt(waypoints[waypointIndex].position);
         if (dist < 1f)

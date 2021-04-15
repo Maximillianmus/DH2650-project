@@ -242,12 +242,15 @@ MonoBehaviour:
   itemContainers:
   - {fileID: 5375645670078725783}
   - {fileID: 1864991973486434210}
-  connectedObjects:
-  - {fileID: 0}
   containedItems:
   - {fileID: 0}
   - {fileID: 0}
   usedContainers: 0000
+  connectedObjects:
+  - {fileID: 0}
+  triggerWhenFull: 1
+  triggerOnSpecificItem: 0
+  specificItems: []
 --- !u!1 &8342061611803246300
 GameObject:
   m_ObjectHideFlags: 0
