@@ -547,38 +547,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &221623464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6316612978967198400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
 --- !u!1001 &6617285901804005685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -592,15 +560,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5513679639285791642, guid: 83cee00a1fcee9548aeacdeb42978843, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 292.0519
+      value: -19.122334
       objectReference: {fileID: 0}
     - target: {fileID: 5513679639285791642, guid: 83cee00a1fcee9548aeacdeb42978843, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -24.91
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5513679639285791642, guid: 83cee00a1fcee9548aeacdeb42978843, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 700.57
+      value: 40.331326
       objectReference: {fileID: 0}
     - target: {fileID: 5513679639285791642, guid: 83cee00a1fcee9548aeacdeb42978843, type: 3}
       propertyPath: m_LocalRotation.w
@@ -646,10 +614,6 @@ PrefabInstance:
       propertyPath: interactText
       value: 
       objectReference: {fileID: 5715001327303079586}
-    - target: {fileID: 7033773766454108100, guid: 83cee00a1fcee9548aeacdeb42978843, type: 3}
-      propertyPath: far clip plane
-      value: 10000
-      objectReference: {fileID: 0}
     - target: {fileID: 8006675430433878922, guid: 83cee00a1fcee9548aeacdeb42978843, type: 3}
       propertyPath: FireHookEffect
       value: 
@@ -668,11 +632,6 @@ PrefabInstance:
       objectReference: {fileID: 2482976806777592026, guid: 4c515b0dbe920a445ae6405205c64083, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83cee00a1fcee9548aeacdeb42978843, type: 3}
---- !u!1 &6316612978967198400 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 899678131106632693, guid: 83cee00a1fcee9548aeacdeb42978843, type: 3}
-  m_PrefabInstance: {fileID: 6617285901804005685}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5451787687836127430 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1188376853403433459, guid: 83cee00a1fcee9548aeacdeb42978843, type: 3}
