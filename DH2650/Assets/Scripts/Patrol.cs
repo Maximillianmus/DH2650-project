@@ -8,7 +8,6 @@ public class Patrol : MonoBehaviour
 
 
     GameObject Player;
-    public EnragedDonut enragedScript;
 
     public Transform[] waypoints;
     public float speed;
@@ -45,9 +44,7 @@ public class Patrol : MonoBehaviour
             ChasePlayer();
             if(Vector3.Distance(Player.transform.position, transform.position) > awarnessRange)
             {
-                hasSeenPlayer = false;
-                if (enragedScript != null)
-                    enragedScript.isEnraged = false;
+                hasSeenPlayer = false;  
             }
         } else
         {
@@ -98,9 +95,6 @@ public class Patrol : MonoBehaviour
             if (playerHit.collider.tag == "Player")
             {
                 hasSeenPlayer = true;
-
-                if (enragedScript != null)
-                    enragedScript.isEnraged = true;
                 return true;
             }
         }

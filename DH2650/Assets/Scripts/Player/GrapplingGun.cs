@@ -296,8 +296,6 @@ public class GrapplingGun : MonoBehaviour {
             joint.spring = 4.5f;
             joint.damper = 7f;
             joint.massScale = 4.5f;
-            //joint.breakForce = 0;
-            //joint.breakTorque
         }
        
     }
