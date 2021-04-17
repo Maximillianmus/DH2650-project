@@ -16,6 +16,7 @@ public class GrapplingGun : MonoBehaviour {
     public float FastPullSpeed = 20f;
     public LayerMask IgnoredGrapelingLayer;
     public bool BreakIfObstructed = false;
+    public float ObstructionProximityThreshold = 1f;
     public float ObstructionThreshold = 0;
     public Collider FootCollider;
     public KeyCode HookShootButton;
@@ -227,7 +228,7 @@ public class GrapplingGun : MonoBehaviour {
 
         if (hasHit)
         {
-            itemRb.AddForce((gunTip.transform.position - itemHitPoint).normalized * grabbingSpeed);
+            itemRb.AddForce((gunTip.transform.position - itemHitPoint).normalized * grabbingSpeed *Time.deltaTime * 15);
         }
         else if(CheckIfHit(currentGrapplePosition, itemRb.position))
         {
@@ -295,6 +296,8 @@ public class GrapplingGun : MonoBehaviour {
             joint.spring = 4.5f;
             joint.damper = 7f;
             joint.massScale = 4.5f;
+            //joint.breakForce = 0;
+            //joint.breakTorque
         }
        
     }
@@ -357,16 +360,19 @@ public class GrapplingGun : MonoBehaviour {
     void BreakIfObstruction()
     {
         //the 7 is the layer that the linecast should ignore, which in this case is layer 7,  ~ inverts the bitmask so 7 is 0, and all other layers are 1
-
-        if (Physics.Linecast(gunTip.position, currentGrapplePosition, ~IgnoredGrapelingLayer) && BreakIfObstructed)
+        RaycastHit hit;
+        if (Physics.Linecast(gunTip.position, currentGrapplePosition, out hit ,~IgnoredGrapelingLayer) && BreakIfObstructed)
         {
-            if (currentObstructionIteration >= ObstructionThreshold)
+            if (Vector3.Distance(currentGrapplePosition, hit.point) >ObstructionProximityThreshold)
             {
-                StopGrapple();
-             
-            }      
-            else
-                currentObstructionIteration++;
+                if (currentObstructionIteration >= ObstructionThreshold)
+                {
+                    StopGrapple();
+
+                }
+                else
+                    currentObstructionIteration++;
+            }
                 
         }
 
