@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: db8250909f556d74d8c5c28637b94185
+guid: 5bbabf6d65fe5cb40a779ea318ea8fef
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
+      74: -1773290051261474256
+    second: Armature|still
+  - first:
       74: -4086864642940237741
     second: Armature|Swim
   - first:
-      74: -4219534751575347666
-    second: Armature|Swim.001
-  - first:
-      74: 1417832536440734181
-    second: Armature|Swim.002
+      74: -4998860238490408146
+    second: Armature|Swim (1)
   externalObjects: {}
   materials:
     materialImportMode: 2
