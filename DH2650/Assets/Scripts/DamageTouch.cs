@@ -4,27 +4,29 @@ using UnityEngine;
 
 public class DamageTouch : MonoBehaviour
 {
-    public float damage;
+    public int damage;
     public PlayerHealth playerHealth;
 
-
-    private void OnTriggerStay(Collider other)
+    // Start is called before the first frame update
+    void Start()
     {
-        if (other.tag == "Player")
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.name == "Player")
         {
             DealDamage(damage);
         }
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.collider.tag == "Player")
-        {
-            DealDamage(damage);
-        }
-    }
-
-    void DealDamage(float damage)
+    void DealDamage(int damage)
     {
         playerHealth.TakeDamage(damage);
     }

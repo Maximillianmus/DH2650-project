@@ -8,18 +8,14 @@ public class Patrol : MonoBehaviour
 
 
     GameObject Player;
-    public EnragedDonut enragedScript;
 
     public Transform[] waypoints;
     public float speed;
     public float detectionRange;
-    //the distance the enemy will keep following the player
-    public float awarnessRange;
 
     private int waypointIndex;
     private float dist;
     private int playerMask;
-    private bool hasSeenPlayer;
 
     //Initialize here, or it won't work
     void Start()
@@ -40,15 +36,10 @@ public class Patrol : MonoBehaviour
          */
 
         dist = Vector3.Distance(transform.position, waypoints[waypointIndex].position);
-        if(DetectPlayer() || hasSeenPlayer)
+        print(DetectPlayer());
+        if(DetectPlayer())
         {
             ChasePlayer();
-            if(Vector3.Distance(Player.transform.position, transform.position) > awarnessRange)
-            {
-                hasSeenPlayer = false;
-                if (enragedScript != null)
-                    enragedScript.isEnraged = false;
-            }
         } else
         {
             Patrol_Path(dist);
@@ -78,7 +69,7 @@ public class Patrol : MonoBehaviour
             }
             transform.LookAt(waypoints[waypointIndex].position); 
         }
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].position, speed);
     }
 
     /*
@@ -97,10 +88,6 @@ public class Patrol : MonoBehaviour
 
             if (playerHit.collider.tag == "Player")
             {
-                hasSeenPlayer = true;
-
-                if (enragedScript != null)
-                    enragedScript.isEnraged = true;
                 return true;
             }
         }
@@ -114,6 +101,6 @@ public class Patrol : MonoBehaviour
     {
 
         transform.LookAt(Player.transform);
-        transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime) ;
+        transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, speed);
     }
 }

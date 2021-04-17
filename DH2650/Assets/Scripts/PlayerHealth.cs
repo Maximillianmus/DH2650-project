@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
 
-    public float maxHealth = 20;
-    public float currentHealth;
+    public int maxHealth = 20;
+    public int currentHealth;
 
     public HealthBar healthbar;
 
@@ -22,24 +21,18 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(1);
+        }
         
     }
     /*
     * Public so enemy can access this function
     */
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
-        if (currentHealth > 1)
-        {
-            currentHealth -= damage;
-            healthbar.SetHealth(currentHealth);
-        }
-        else
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-        
-
+        currentHealth -= damage;
+        healthbar.SetHealth(currentHealth);
     }
 }
