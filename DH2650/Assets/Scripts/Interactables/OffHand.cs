@@ -94,7 +94,7 @@ public class OffHand : MonoBehaviour
         heldItem.transform.SetParent(null);
 
         // Restore collisions and physics and stuff
-        Rigidbody rb = heldItem.GetComponent<Collider>().gameObject.GetComponent<Rigidbody>();
+        Rigidbody rb = heldItem.GetComponent<Rigidbody>();
         rb.isKinematic = false;
         rb.interpolation = RigidbodyInterpolation.Interpolate;
 
@@ -109,7 +109,7 @@ public class OffHand : MonoBehaviour
 
         heldItem.layer = GroundLayer;
 
-        Collider coll = heldItem.GetComponent<Collider>().gameObject.GetComponent<Collider>();
+        Collider coll = heldItem.GetComponent<Collider>();
         coll.isTrigger = false;
 
         heldItem = null;

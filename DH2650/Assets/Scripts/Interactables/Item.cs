@@ -15,7 +15,7 @@ public class Item : Interactable
     void Start()
     {
         coll = this.GetComponent<Collider>();
-        rb = this.GetComponent<Collider>().gameObject.GetComponent<Rigidbody>();
+        rb = this.GetComponent<Rigidbody>();
     }
 
 
