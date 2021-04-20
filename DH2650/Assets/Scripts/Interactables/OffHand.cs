@@ -46,7 +46,7 @@ public class OffHand : MonoBehaviour
                 interactText.text = "Press E to pick up";
                 if(Input.GetKeyDown(InteractButton))
                 {
-                    hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
+                    hit.transform.gameObject.GetComponent<Interactable>().Interact(this);
                     keyDown = false;
                     performedAction = true;
                 }
@@ -56,11 +56,7 @@ public class OffHand : MonoBehaviour
                 interactText.text = "Press E to interact";
                 if(Input.GetKeyDown(InteractButton))
                 {
-                    if(heldItem != null)
-                    {
-                        heldItem.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
-                    }
-                    hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
+                    hit.transform.gameObject.GetComponent<Interactable>().Interact(this);
                     keyDown = false;
                     performedAction = true;
                 }
@@ -71,7 +67,7 @@ public class OffHand : MonoBehaviour
                 interactText.text = "Press E to interact";
                 if(Input.GetKeyDown(InteractButton))
                 {
-                    hit.collider.gameObject.GetComponent<Interactable>().Interact(this);
+                    hit.transform.gameObject.GetComponent<Interactable>().Interact(this);
                     keyDown = false;
                     performedAction = true;
                 }
