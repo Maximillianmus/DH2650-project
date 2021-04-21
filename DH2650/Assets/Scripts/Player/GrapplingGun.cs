@@ -20,15 +20,22 @@ public class GrapplingGun : MonoBehaviour {
     public float ObstructionThreshold = 0;
     public Collider FootCollider;
     public KeyCode HookShootButton;
+    public Transform playerContainer;
 
     //this is for the harpoon
     public Transform harpoon, harpoonStatic,harpoonPos;
+    public float harpoonSpeed = 1;
     private Renderer HarpStaticRend, HarpRend;
+    private Transform ropePoint;
+
 
 
     //this is for Grappeling
     private bool isGrappeling;
     private float distanceFromPoint;
+    //this is a object that is used when grappeling to keep track of the point on moving objects
+    private GameObject grappelingPointObject;
+    private Rigidbody grappledObjectRB;
 
 
     //this is for Item grabbing
@@ -66,11 +73,23 @@ public class GrapplingGun : MonoBehaviour {
         HarpStaticRend = harpoonStatic.GetComponent<Renderer>();
         gunSound = transform.GetComponent<AudioSource>();
         harpoonSound = harpoon.GetComponent<AudioSource>();
+        ropePoint = harpoon.GetChild(0);
         HarpRend.enabled = false;
 
     }
 
     void Update() {
+
+        if (grappelingPointObject != null)
+        {
+            grapplePoint = grappelingPointObject.transform.position;
+            if (joint != null && grappledObjectRB == null)
+            {
+                joint.connectedAnchor = grapplePoint;
+            }
+        }
+
+
         if (Input.GetMouseButtonDown(0) && !isGrabbing && !isGrappeling && !isActivating) {
             ActivateHookGun();
         }
@@ -257,8 +276,15 @@ public class GrapplingGun : MonoBehaviour {
     // Call at start of graple
     void StartGrapple(RaycastHit hit) {
         isGrappeling = true;
+        //creat grappeling point object
+        grappelingPointObject = new GameObject("GrappelingPoint");
+
         //the expression after the + sign is to make the grapple point not be in the wall
         grapplePoint = hit.point+((player.position-grapplePoint).normalized *0.1f);
+        grappelingPointObject.transform.position = grapplePoint;
+        grappelingPointObject.transform.SetParent(hit.transform);
+
+        hit.transform.TryGetComponent<Rigidbody>(out grappledObjectRB);
  
         distanceFromPoint = Vector3.Distance(player.position, grapplePoint);
         ropeLength = distanceFromPoint;
@@ -288,11 +314,29 @@ public class GrapplingGun : MonoBehaviour {
             hasHit = true;
             joint = player.gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;
-            joint.connectedAnchor = grapplePoint;
+
+            if(grappelingPointObject != null && grappledObjectRB != null)
+            {
+                joint.connectedBody = grappledObjectRB;
+                //joint.connectedAnchor = grappelingPointObject.transform.localPosition;
+                ropePoint.SetParent(grappledObjectRB.transform);
+                joint.connectedAnchor = ropePoint.localPosition;
+                ropePoint.SetParent(harpoon);
+                harpoon.GetComponent<Rigidbody>().freezeRotation = false;
+            }
+            else
+            {
+                joint.connectedAnchor = grapplePoint;
+            }
+
+
+            harpoon.SetParent(grappelingPointObject.transform, true);
+            
 
             joint.maxDistance = distanceFromPoint * 0.8f;
 
             //Adjust these values
+           
             joint.spring = 4.5f;
             joint.damper = 7f;
             joint.massScale = 4.5f;
@@ -305,11 +349,15 @@ public class GrapplingGun : MonoBehaviour {
     void StopGrapple() {
         hasHit = false;
         isGrappeling = false;
+        Destroy(grappelingPointObject);
 
         lr.positionCount = 0;
         currentObstructionIteration = 0;
 
         //reset the harpoon model
+
+        harpoon.SetParent(playerContainer);
+        harpoon.GetComponent<Rigidbody>().freezeRotation = true;
         harpoon.GetComponent<Rigidbody>().velocity = Vector3.zero;
         harpoon.position = harpoonPos.position;
         HarpRend.enabled = false;
@@ -402,22 +450,24 @@ public class GrapplingGun : MonoBehaviour {
 
         if (!hasHit || isGrappeling)
         {
-            currentGrapplePosition = Vector3.Lerp(currentGrapplePosition, grapplePoint, Time.deltaTime * 12f);
+            //currentGrapplePosition = Vector3.Lerp(currentGrapplePosition, grapplePoint, Time.deltaTime * 12f);
+            currentGrapplePosition =  Vector3.MoveTowards(currentGrapplePosition, grapplePoint, harpoonSpeed * Time.deltaTime);
         }
         else
         {
             //if we have already hit something
             currentGrapplePosition = grapplePoint;
         }
-        //moves the harpoon
 
-     
-        harpoon.position = currentGrapplePosition;
+        //moves the harpoon
+        if(  !hasHit || grappelingPointObject == null )
+            harpoon.position = currentGrapplePosition;
+
 
  
            
         lr.SetPosition(0, gunTip.position);
-        lr.SetPosition(1, currentGrapplePosition);
+        lr.SetPosition(1, ropePoint.position);
     }
 
     public bool IsGrapplingWithJoint() {
