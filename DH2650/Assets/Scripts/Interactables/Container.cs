@@ -99,6 +99,7 @@ public class Container : Interactable
         Collider coll = item.GetComponent<Collider>();
         coll.isTrigger = false;
 
+        item.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
         
         ActivateObjects();
     }
@@ -106,38 +107,47 @@ public class Container : Interactable
     // Take item from container
     public void TakeItem(GameObject item, OffHand offHand)
     {
-        int pos = getIndexOfItem(item);
-
-        if(!(pos == -1))
+        // If you dont have anything in the offhand, you can take the item
+        if(!offHand.slotFull)
         {
-            // Move item to offhand
-            item.transform.SetParent(offHand.transform);
-            // Reset position and rotation
-            item.transform.localPosition = Vector3.zero;
-            item.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            int pos = getIndexOfItem(item);
 
-            // Item is now on the player layer
-            item.layer = 7;
+            if(!(pos == -1))
+            {
+                // Move item to offhand
+                item.transform.SetParent(offHand.transform);
+                // Reset position and rotation
+                item.transform.localPosition = Vector3.zero;
+                item.transform.localRotation = Quaternion.Euler(Vector3.zero);
 
-            // offHand has an item
-            offHand.slotFull = true;
-            offHand.heldItem = item;
+                // Item is now on the player layer
+                item.layer = 7;
 
-            // Make it so item has no collision
-            Collider coll = item.GetComponent<Collider>();
-            coll.isTrigger = true;
-            
-            item.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.None;
+                // offHand has an item
+                offHand.slotFull = true;
+                offHand.heldItem = item;
 
-            item.GetComponent<Item>().inContainer = false;
-            item.GetComponent<Item>().container = null;
-            
-            // Container no longer has an item
-            containedItems[pos] = null;
-            usedContainers[pos] = false;
-            currentNumberOfItems--;
+                // Make it so item has no collision
+                Collider coll = item.GetComponent<Collider>();
+                coll.isTrigger = true;
+                
+                item.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.None;
 
-            DeActivateObjects();
+                item.GetComponent<Item>().inContainer = false;
+                item.GetComponent<Item>().container = null;
+                
+                // Container no longer has an item
+                containedItems[pos] = null;
+                usedContainers[pos] = false;
+                currentNumberOfItems--;
+
+                DeActivateObjects();
+            }
+        }
+        // Else just release it from the container
+        else
+        {
+            item.GetComponent<Item>().ReleaseFromContainer();
         }
     }
 
