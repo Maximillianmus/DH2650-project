@@ -14,6 +14,32 @@ public class PressurePlate : MonoBehaviour
     [SerializeField] bool triggerOnSpecificItem = false;
     [SerializeField] GameObject[] specificItems = new GameObject[0];
 
+    public OffHand offhand;
+    private Collider recentCollider = null;
+    private Collider c;
+
+    public void Start()
+    {
+        offhand = GameObject.Find("OffHand").GetComponent<OffHand>();
+        c = GetComponent<Collider>();
+    }
+
+    // To work around that objects lose physics and collision when picked up
+    public void Update()
+    {
+        
+        if(recentCollider != null)
+        {
+            Vector3 p = c.ClosestPoint(recentCollider.transform.position);
+            // If the distance to the most recent object is to great OR if the object has been picked up, then call OnTriggerExit 
+            if(Vector3.Distance(p, recentCollider.transform.position) > 1 || offhand.heldItem == recentCollider.gameObject)
+            {
+                OnTriggerExit(recentCollider);
+                recentCollider = null;
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(triggerOnAnything)
@@ -45,6 +71,7 @@ public class PressurePlate : MonoBehaviour
 
             }
         }
+        recentCollider = other;
     }
 
     private void OnTriggerExit(Collider other)
