@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public enum Direction
@@ -17,6 +19,7 @@ public class Pin : MonoBehaviour
 	public bool IsAutomatic;
 	public bool HideIcon;
 	public string SceneToLoad;
+	public bool IsFirstLevel;
 
 	[Header("Pins")] //
 	public Pin UpPin;
@@ -25,15 +28,64 @@ public class Pin : MonoBehaviour
 	public Pin RightPin;
 
 	private Dictionary<Direction, Pin> _pinDirections;
+	private static Material material;
+	public bool Locked;
+	public Pin[] NextPins;
+	private MeshRenderer meshRenderer;
 
+
+	private void setMaterial()
+    {
+		int score = gameObject.GetComponent<SaveHelper>().LoadScore(SceneToLoad);
+		meshRenderer = gameObject.GetComponent<MeshRenderer>();
+		Debug.Log(score);
+
+		if (score > 1 || IsFirstLevel) {
+			Locked = false;
+			meshRenderer.materials[0] = material;
+			meshRenderer.materials[0].SetColor("_BaseColor", Color.white);
+
+			if (score == 0) return;
+			foreach (Pin pin in NextPins)
+            {
+				pin.Unlock(); 
+            }
+		} else
+        {
+			Locked = true;
+			meshRenderer.materials[0] = material;
+			meshRenderer.materials[0].SetColor("_BaseColor", Color.black);
+			//Debug.Log(lockedMaterial);
+		}
+		
+	}
+
+	public void Unlock()
+    {
+		StartCoroutine(UnlockTask());
+	}
+
+	IEnumerator UnlockTask()
+    {
+		yield return new WaitForSeconds(0.01f);
+		if (!Locked) yield break;
+		Locked = false;
+		meshRenderer.materials[0] = material;
+		meshRenderer.materials[0].SetColor("_BaseColor", Color.white);
+	}
 
 	/// <summary>
 	/// Use this for initialisation
 	/// </summary>
 	private void Start()
 	{
-		// Load the directions into a dictionary for easy access
-		_pinDirections = new Dictionary<Direction, Pin>
+		
+		if (material == null)
+        {
+			material = AssetDatabase.LoadAssetAtPath("Assets/Materials/Level.mat", typeof(Material)) as Material;
+		}
+        // Load the directions into a dictionary for easy access
+        _pinDirections = new Dictionary<Direction, Pin>
 		{
 			{ Direction.Up, UpPin },
 			{ Direction.Down, DownPin },
@@ -46,6 +98,8 @@ public class Pin : MonoBehaviour
 		{
 			GetComponent<SpriteRenderer>().enabled = false;
 		}
+
+		setMaterial();
 	}
 
 
