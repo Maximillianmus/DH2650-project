@@ -13,7 +13,7 @@ public class CustomTower : MonoBehaviour {
     public int dmg = 10;
     public float shootDelay;
     bool isShoot;
-    public Animator anim_2;
+    public Animator anim;
     private float homeY;
     public AudioClip shootsound;
     private AudioSource source;
@@ -24,7 +24,7 @@ public class CustomTower : MonoBehaviour {
 
     void Start()
     {
-        anim_2 = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         homeY = LookAtObj.transform.localRotation.eulerAngles.y;
         source = GetComponent<AudioSource>();
     }
@@ -39,14 +39,10 @@ public class CustomTower : MonoBehaviour {
             dir.y = 0;
             Quaternion rot = Quaternion.LookRotation(dir);
             LookAtObj.transform.rotation = Quaternion.Slerp(LookAtObj.transform.rotation, rot, 5 * Time.deltaTime);
-
         }
-
         else
         {
-
             Quaternion home = new Quaternion(0, homeY, 0, 1);
-
             LookAtObj.transform.rotation = Quaternion.Slerp(LookAtObj.transform.rotation, home, Time.deltaTime);
         }
 
@@ -57,20 +53,7 @@ public class CustomTower : MonoBehaviour {
         if (!isShoot)
         {
             StartCoroutine(shoot());
-
         }
-
-
-        if (Catcher == true)
-        {
-            if (!target || target.CompareTag("Dead"))
-            {
-
-                StopCatcherAttack();
-            }
-
-        }
-
     }
 
     IEnumerator shoot()
@@ -82,6 +65,7 @@ public class CustomTower : MonoBehaviour {
         if (target && Catcher == false)
         {
             float vol = Random.Range(lowVolumeRange, highVolumeRange);
+            anim.SetBool("isFire", true);
             source.PlayOneShot(shootsound, vol);
             GameObject b = GameObject.Instantiate(bullet, shootElement.position, Quaternion.identity) as GameObject;
             b.GetComponent<CustomTowerBullet>().target = target;
@@ -89,27 +73,8 @@ public class CustomTower : MonoBehaviour {
 
         }
 
-        if (target && Catcher == true)
-        {
-            anim_2.SetBool("Attack", true);
-            anim_2.SetBool("T_pose", false);
-        }
-
-
         isShoot = false;
     }
-
-
-
-    void StopCatcherAttack()
-
-        {                
-            target = null;
-            anim_2.SetBool("Attack", false);
-            anim_2.SetBool("T_pose", true);        
-        } 
-          
-
 }
 
 
