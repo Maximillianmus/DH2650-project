@@ -36,24 +36,28 @@ public class MapManager : MonoBehaviour
 	/// </summary>
 	private void CheckForInput()
 	{
-		if (Input.GetKeyUp(KeyCode.UpArrow))
+		if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W))
 		{
 			Boat.TrySetDirection(Direction.Up);
 		}
-		else if (Input.GetKeyUp(KeyCode.DownArrow))
+		else if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S))
 		{
 			Boat.TrySetDirection(Direction.Down);
 		}
-		else if (Input.GetKeyUp(KeyCode.LeftArrow))
+		else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))
 		{
 			Boat.TrySetDirection(Direction.Left);
 		}
-		else if (Input.GetKeyUp(KeyCode.RightArrow))
+		else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D))
 		{
 			Boat.TrySetDirection(Direction.Right);
 		}
 		else if (Input.GetKeyUp(KeyCode.Return))
         {
+			if (Boat.CurrentPin.Locked)
+            {
+				return;
+            }
 			SceneManager.LoadScene(Boat.CurrentPin.SceneToLoad);
 		}
 	}

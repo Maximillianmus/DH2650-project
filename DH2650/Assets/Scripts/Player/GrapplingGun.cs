@@ -71,6 +71,10 @@ public class GrapplingGun : MonoBehaviour {
     }
 
     void Update() {
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
         if (Input.GetMouseButtonDown(0) && !isGrabbing && !isGrappeling && !isActivating) {
             ActivateHookGun();
         }

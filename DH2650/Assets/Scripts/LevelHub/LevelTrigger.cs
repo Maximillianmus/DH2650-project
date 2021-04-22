@@ -16,7 +16,6 @@ public class LevelTrigger : MonoBehaviour
     void OnTriggerExit(Collider collider)
     {
         MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
-
         meshRenderer.enabled = true;
     }
 

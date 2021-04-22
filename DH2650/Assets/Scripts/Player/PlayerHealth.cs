@@ -42,4 +42,9 @@ public class PlayerHealth : MonoBehaviour
         
 
     }
+
+    public void LoadHealth(float health)
+    {
+        healthbar.SetHealth(health);
+    }
 }

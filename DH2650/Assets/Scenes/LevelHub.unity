@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45034277, g: 0.49807733, b: 0.56300974, a: 1}
+  m_IndirectSpecularColor: {r: 0.1829753, g: 0.22630998, b: 0.2931318, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -536,7 +536,23 @@ PrefabInstance:
       objectReference: {fileID: 1566359299}
     - target: {fileID: 1620766873513107795, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
       propertyPath: SceneToLoad
-      value: BasicPuzzle
+      value: Prototype-level
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620766873513107795, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
+      propertyPath: IsFirstLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620766873513107795, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
+      propertyPath: NextPins.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620766873513107795, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
+      propertyPath: NextPins.Array.data[0]
+      value: 
+      objectReference: {fileID: 1840903013}
+    - target: {fileID: 1620766873513107797, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1620766873513107799, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
       propertyPath: m_RootOrder
@@ -665,7 +681,7 @@ PrefabInstance:
       objectReference: {fileID: 1007769718}
     - target: {fileID: 1620766873513107795, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
       propertyPath: SceneToLoad
-      value: BasicPuzzle
+      value: DonutPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 1620766873513107799, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
       propertyPath: m_RootOrder
@@ -804,7 +820,7 @@ PrefabInstance:
       objectReference: {fileID: 1007769718}
     - target: {fileID: 1620766873513107795, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
       propertyPath: SceneToLoad
-      value: BasicPuzzle
+      value: DonutPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 1620766873513107799, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
       propertyPath: m_RootOrder
@@ -888,7 +904,7 @@ PrefabInstance:
       objectReference: {fileID: 1007769718}
     - target: {fileID: 1620766873513107795, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
       propertyPath: SceneToLoad
-      value: BasicPuzzle
+      value: DonutPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 1620766873513107799, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
       propertyPath: m_RootOrder
