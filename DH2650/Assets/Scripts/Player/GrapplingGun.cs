@@ -27,6 +27,7 @@ public class GrapplingGun : MonoBehaviour {
     public float harpoonSpeed = 1;
     private Renderer HarpStaticRend, HarpRend;
     private Transform ropePoint;
+    private Vector3 defaultHarpoonScale;
 
 
 
@@ -73,6 +74,7 @@ public class GrapplingGun : MonoBehaviour {
         HarpStaticRend = harpoonStatic.GetComponent<Renderer>();
         gunSound = transform.GetComponent<AudioSource>();
         harpoonSound = harpoon.GetComponent<AudioSource>();
+        defaultHarpoonScale = harpoon.localScale;
         ropePoint = harpoon.GetChild(0);
         HarpRend.enabled = false;
 
@@ -282,7 +284,8 @@ public class GrapplingGun : MonoBehaviour {
         //the expression after the + sign is to make the grapple point not be in the wall
         grapplePoint = hit.point+((player.position-grapplePoint).normalized *0.1f);
         grappelingPointObject.transform.position = grapplePoint;
-        grappelingPointObject.transform.SetParent(hit.transform);
+        grappelingPointObject.transform.SetParent(hit.transform, true);
+        grappelingPointObject.transform.localScale = new Vector3(1,1,1); 
 
         hit.transform.TryGetComponent<Rigidbody>(out grappledObjectRB);
  
@@ -297,6 +300,7 @@ public class GrapplingGun : MonoBehaviour {
         HarpRend.transform.rotation = Quaternion.LookRotation(grapplePoint -gunTip.position)* Quaternion.Euler(0,90,0);
         HarpRend.enabled = true;
         HarpStaticRend.enabled = false;
+        harpoonSound.enabled = true;
 
            
 
@@ -311,6 +315,7 @@ public class GrapplingGun : MonoBehaviour {
         
         if (!hasHit && CheckIfHit(currentGrapplePosition, grapplePoint))
         {
+            //Quaternion rotation;
             hasHit = true;
             joint = player.gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;
@@ -331,20 +336,39 @@ public class GrapplingGun : MonoBehaviour {
 
 
             harpoon.SetParent(grappelingPointObject.transform, true);
-            
+            harpoon.localScale = Vector3.Scale(harpoon.localScale , divideFloatWithVector3(1, grappelingPointObject.transform.localScale));
 
+
+
+            joint.minDistance =  1f;
             joint.maxDistance = distanceFromPoint * 0.8f;
 
             //Adjust these values
            
             joint.spring = 4.5f;
             joint.damper = 7f;
-            joint.massScale = 4.5f;
+            joint.massScale = 4f;
+
+            //joint.spring = 4.5f;
+            //joint.damper = 7f;
+            //joint.massScale = 4f;
             //joint.breakForce = 0;
             //joint.breakTorque
         }
        
     }
+
+
+    //helper function to divide by vector
+    Vector3 divideFloatWithVector3 (float number, Vector3 vec)
+    {
+        vec.x = number / vec.x;
+        vec.y = number / vec.y;
+        vec.z = number / vec.z;
+
+        return vec;
+    }
+
     // Call to stop grapple
     void StopGrapple() {
         hasHit = false;
@@ -357,6 +381,8 @@ public class GrapplingGun : MonoBehaviour {
         //reset the harpoon model
 
         harpoon.SetParent(playerContainer);
+        harpoon.localScale = defaultHarpoonScale;
+        harpoon.localScale = defaultHarpoonScale;
         harpoon.GetComponent<Rigidbody>().freezeRotation = true;
         harpoon.GetComponent<Rigidbody>().velocity = Vector3.zero;
         harpoon.position = harpoonPos.position;
