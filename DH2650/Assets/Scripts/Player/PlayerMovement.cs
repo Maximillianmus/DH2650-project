@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
     //Assingables
+    public bool debug = false;
     public Transform playerCam;
     public Transform orientation;
 
@@ -23,10 +24,16 @@ public class PlayerMovement : MonoBehaviour {
     public float maxSpeed = 20;
     public bool grounded;
     public LayerMask whatIsGround;
-    
+    public float height;
+
+    public float heightPadding = 0.05f;
+
     public float counterMovement = 0.175f;
     private float threshold = 0.01f;
     public float maxSlopeAngle = 35f;
+    private float groundAngle;
+    private RaycastHit hitInfo;
+    private Vector3 forward, right;
 
     //Crouch & Slide
     private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
@@ -71,8 +78,26 @@ public class PlayerMovement : MonoBehaviour {
         {
             return;
         }
+
+        if (Physics.Raycast(transform.position, -Vector3.up, out hitInfo, height + heightPadding, whatIsGround))
+            grounded = true;
+        else
+            grounded = false;
+
+        debugline();
         MyInput();
         Look();
+    }
+
+
+
+
+    private void debugline()
+    {
+        if (!debug) return;
+
+        Debug.DrawLine(transform.position, transform.position + forward * height * 2, Color.blue);
+        Debug.DrawLine(transform.position, transform.position - Vector3.up * height, Color.green);
     }
 
     // Find user input.
@@ -148,9 +173,23 @@ public class PlayerMovement : MonoBehaviour {
         // Movement while sliding
         if (grounded && crouching) multiplierV = 0f;
 
+
+        //calculated forward, depending on the ground
+        if (grounded)
+        {
+            forward = Vector3.Cross(orientation.right, hitInfo.normal);
+            right = Vector3.Cross(-forward, hitInfo.normal);
+        }
+        else
+        {
+            forward = orientation.transform.forward;
+            right = orientation.transform.right;
+        }
+        
+
         //Apply forces to move player
-        rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
-        rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
+        rb.AddForce(forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
+        rb.AddForce(right * x * moveSpeed * Time.deltaTime * multiplier);
     }
 
     private void Jump() {
@@ -236,8 +275,8 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private bool IsFloor(Vector3 v) {
-        float angle = Vector3.Angle(Vector3.up, v);
-        return angle < maxSlopeAngle;
+        groundAngle = Vector3.Angle(hitInfo.normal, forward);
+        return groundAngle < maxSlopeAngle;
     }
 
     private bool cancellingGrounded;

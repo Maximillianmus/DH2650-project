@@ -323,6 +323,7 @@ public class GrapplingGun : MonoBehaviour {
             if(grappelingPointObject != null && grappledObjectRB != null)
             {
                 joint.connectedBody = grappledObjectRB;
+                joint.enableCollision = true;
                 //joint.connectedAnchor = grappelingPointObject.transform.localPosition;
                 ropePoint.SetParent(grappledObjectRB.transform);
                 joint.connectedAnchor = ropePoint.localPosition;

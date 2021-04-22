@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7238435224138946681}
   - component: {fileID: 4868638817661938867}
   - component: {fileID: 6075765553195675701}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BridgePlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,8 +94,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.3400526, y: 0.36057127, z: 5.529783}
-  m_Center: {x: -0.000000008043473, y: 0.19481671, z: -0.049377922}
+  m_Size: {x: 3.353922, y: 0.36057127, z: 5.529783}
+  m_Center: {x: -0.029584229, y: 0.19481671, z: -0.04937792}
 --- !u!1 &6997242770757655924
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 627584755475871459}
   - component: {fileID: 2681578539018522559}
   - component: {fileID: 1186338745796290692}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Planks.Front.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
