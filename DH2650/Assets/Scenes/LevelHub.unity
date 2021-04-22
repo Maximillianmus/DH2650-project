@@ -681,7 +681,7 @@ PrefabInstance:
       objectReference: {fileID: 1007769718}
     - target: {fileID: 1620766873513107795, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
       propertyPath: SceneToLoad
-      value: DonutPrefab
+      value: Prototype-level
       objectReference: {fileID: 0}
     - target: {fileID: 1620766873513107799, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
       propertyPath: m_RootOrder
@@ -820,7 +820,7 @@ PrefabInstance:
       objectReference: {fileID: 1007769718}
     - target: {fileID: 1620766873513107795, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
       propertyPath: SceneToLoad
-      value: DonutPrefab
+      value: Prototype-level
       objectReference: {fileID: 0}
     - target: {fileID: 1620766873513107799, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
       propertyPath: m_RootOrder
@@ -904,7 +904,7 @@ PrefabInstance:
       objectReference: {fileID: 1007769718}
     - target: {fileID: 1620766873513107795, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
       propertyPath: SceneToLoad
-      value: DonutPrefab
+      value: Prototype-level
       objectReference: {fileID: 0}
     - target: {fileID: 1620766873513107799, guid: 959558a07f9ac4d46b0cbd9ebfeb8ac1, type: 3}
       propertyPath: m_RootOrder
