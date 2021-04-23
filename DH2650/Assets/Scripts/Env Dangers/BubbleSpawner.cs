@@ -40,6 +40,7 @@ public class BubbleSpawner : Activation
     {
         GameObject obj = GameObject.Instantiate(bubble, transform.position, Quaternion.identity);
         Bubble b = obj.GetComponent<Bubble>();
+        b.playerHealth = playerHealth;
         b.lifeTime = bubbleLifeTime;
         b.travelSpeed = bubbleTravelSpeed;
         b.sizeSpeed = bubbleSizeSpeed;
