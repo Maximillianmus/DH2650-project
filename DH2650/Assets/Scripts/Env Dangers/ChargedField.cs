@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChargeTowerAttack : Activation
+public class ChargedField : Activation
 {
     public PlayerHealth playerHealth;
     public bool activated = false;
