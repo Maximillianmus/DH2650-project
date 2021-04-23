@@ -7,6 +7,10 @@ public class DamageTouch : MonoBehaviour
     public float damage;
     public PlayerHealth playerHealth;
 
+    public void Start()
+    {
+        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
+    }
 
     private void OnTriggerStay(Collider other)
     {
