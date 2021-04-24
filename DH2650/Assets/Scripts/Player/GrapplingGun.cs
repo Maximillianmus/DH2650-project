@@ -81,7 +81,12 @@ public class GrapplingGun : MonoBehaviour {
     }
 
     void Update() {
-
+      
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
+      
         if (grappelingPointObject != null)
         {
             grapplePoint = grappelingPointObject.transform.position;
@@ -90,7 +95,6 @@ public class GrapplingGun : MonoBehaviour {
                 joint.connectedAnchor = grapplePoint;
             }
         }
-
 
         if (Input.GetMouseButtonDown(0) && !isGrabbing && !isGrappeling && !isActivating) {
             ActivateHookGun();
