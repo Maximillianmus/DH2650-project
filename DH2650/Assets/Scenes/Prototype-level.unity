@@ -651,7 +651,7 @@ PrefabInstance:
     - target: {fileID: 4151784380102442931, guid: 83e34ecccb3999242a97bc642be657a4, type: 3}
       propertyPath: Player
       value: 
-      objectReference: {fileID: 967379101}
+      objectReference: {fileID: 662213408}
     - target: {fileID: 4151784380125864002, guid: 83e34ecccb3999242a97bc642be657a4, type: 3}
       propertyPath: m_Name
       value: PauseMenuCanvas
@@ -862,7 +862,7 @@ Transform:
   m_Children:
   - {fileID: 1613797517}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &127109521
 GameObject:
@@ -1562,18 +1562,6 @@ MonoBehaviour:
   speed: 10
   detectionRange: 0
   awarnessRange: 0
---- !u!114 &234580673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234580667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f95dcd37c9eea3458c470efb6505b0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &237765677 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 566382556155584031, guid: 7bd87d331d3f3314bb540ba3809c93fc, type: 3}
@@ -4823,8 +4811,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1033560282, guid: 77927ce0fc9c06547850545663950468, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 77927ce0fc9c06547850545663950468, type: 3}
+--- !u!1 &662213408 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2290266946442041151, guid: 77927ce0fc9c06547850545663950468, type: 3}
+  m_PrefabInstance: {fileID: 662213407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &678062313
 GameObject:
   m_ObjectHideFlags: 0
@@ -5041,7 +5035,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5715001329035016188, guid: 77927ce0fc9c06547850545663950468, type: 3}
   m_PrefabInstance: {fileID: 662213407}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967379101}
+  m_GameObject: {fileID: 662213408}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e67df520d9d13f447bbd963000584cf3, type: 3}
@@ -10206,6 +10200,7 @@ MonoBehaviour:
   triggerOnAnything: 0
   triggerOnSpecificItem: 0
   specificItems: []
+  offhand: {fileID: 0}
 --- !u!65 &1360349108
 BoxCollider:
   m_ObjectHideFlags: 0
