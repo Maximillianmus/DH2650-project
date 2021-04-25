@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6725534126077420466, guid: 493658373e095c84bb402a999846dae7, type: 3}
       propertyPath: activated
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6725534126077420466, guid: 493658373e095c84bb402a999846dae7, type: 3}
       propertyPath: shrinkBack
@@ -94,15 +94,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a3f4ebc3c868cbc44ae6f5308f3597f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.108247
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a3f4ebc3c868cbc44ae6f5308f3597f2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.660374
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a3f4ebc3c868cbc44ae6f5308f3597f2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 70.75372
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a3f4ebc3c868cbc44ae6f5308f3597f2, type: 3}
       propertyPath: m_LocalRotation.w

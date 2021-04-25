@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 9198744272519700316, guid: 6af71816cde40014bb32c4ef5f411eb0, type: 3}
   playerHealth: {fileID: 0}
-  activated: 1
+  activated: 0
   delay: 1
   range: 20
   fireballSpeed: 10
@@ -91,15 +91,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8498818fe066a14a98e1206b8644bff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.328861
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8498818fe066a14a98e1206b8644bff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.724893
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8498818fe066a14a98e1206b8644bff, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 94.356926
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8498818fe066a14a98e1206b8644bff, type: 3}
       propertyPath: m_LocalRotation.w

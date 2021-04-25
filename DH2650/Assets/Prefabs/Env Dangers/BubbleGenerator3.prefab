@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubble: {fileID: 2350612159051488980, guid: b668d39fea2841649a8e611d558460a8, type: 3}
   playerHealth: {fileID: 0}
-  activated: 1
+  activated: 0
   delayAfterActivation: 0
   maxRandomAdditionalDelay: 1
   spawnDelay: 8
@@ -79,15 +79,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 69c393e950112cf4a93d46b56f23c284, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.0552907
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 69c393e950112cf4a93d46b56f23c284, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.705038
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 69c393e950112cf4a93d46b56f23c284, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 87.81139
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 69c393e950112cf4a93d46b56f23c284, type: 3}
       propertyPath: m_LocalRotation.w
