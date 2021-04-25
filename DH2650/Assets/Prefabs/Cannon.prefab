@@ -19,30 +19,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5727315047525150530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4880471950082760739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66be74223ab03034c8744e9c743d805b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Catcher: 0
-  shootElement: {fileID: 5727315046086032126}
-  LookAtObj: {fileID: 5727315046086032126}
-  bullet: {fileID: 8553388178143594056, guid: 3a2be83bd9a9fd942949690032617fb4, type: 3}
-  impactNormal_2: {x: 0, y: 0, z: 0}
-  target: {fileID: 0}
-  dmg: 10
-  shootDelay: 1.19
-  anim: {fileID: 5727315047525150533}
-  shootsound: {fileID: 0}
-  lowVolumeRange: 0.1
-  highVolumeRange: 0.3
 --- !u!1 &5727315045844331053
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,8 +196,8 @@ MonoBehaviour:
   shootDelay: 2.52
   anim: {fileID: 5727315047525150533}
   shootsound: {fileID: 8300000, guid: b418865f50b2d474c9b2a3344da191f7, type: 3}
-  lowVolumeRange: 0.1
-  highVolumeRange: 0.3
+  lowVolumeRange: 0.41
+  highVolumeRange: 0.48
 --- !u!82 &5727315047234232779
 AudioSource:
   m_ObjectHideFlags: 0
