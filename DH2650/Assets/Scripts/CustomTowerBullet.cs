@@ -47,9 +47,10 @@ public class CustomTowerBullet : MonoBehaviour {
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.transform == target)
+        //if (other.gameObject.transform == target)
+        if (other.gameObject.tag == "Player")
         {
-            target.GetComponent<PlayerHealth>().TakeDamage(twr.dmg);
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(twr.dmg);
             Destroy(gameObject, i);
             return;
         }
