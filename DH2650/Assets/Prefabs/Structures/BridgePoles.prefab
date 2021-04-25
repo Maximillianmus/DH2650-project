@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 5940620138993467442}
   - component: {fileID: 7340455212860297111}
   - component: {fileID: 4772265663087721309}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BridgePoles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

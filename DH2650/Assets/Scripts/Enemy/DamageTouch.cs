@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class DamageTouch : MonoBehaviour
 {
-    public float damage;
-    public PlayerHealth playerHealth;
 
-    public void Start()
+    [Header("This script damages the player")]
+    public float damage;
+    private PlayerHealth playerHealth;
+
+
+    private void Start()
     {
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
     }
