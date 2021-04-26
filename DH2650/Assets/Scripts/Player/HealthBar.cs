@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-
+    [Header("Don't change the health here! Change in 'PlayerHealth.cs'!")]
     public Slider slider;
     public Text text;
 
