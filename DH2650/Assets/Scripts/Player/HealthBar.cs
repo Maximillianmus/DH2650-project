@@ -26,8 +26,4 @@ public class HealthBar : MonoBehaviour
         text.text = playerHealth.maxHealth.ToString() + "/" + playerHealth.maxHealth.ToString();
     }
 
-    public float getMaxHealth()
-    {
-        return slider.maxValue;
-    }
 }

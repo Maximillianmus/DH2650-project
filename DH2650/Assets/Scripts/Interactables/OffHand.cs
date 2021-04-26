@@ -15,10 +15,17 @@ public class OffHand : MonoBehaviour
     public bool slotFull;
     public GameObject heldItem;
 
+    PlayerHealth playerHealth;
+
     // for throwing items
     private bool keyDown = false;
     private float startTime = 0;
     [SerializeField] float throwForce = 80;
+
+    private void Start()
+    {
+        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -73,6 +80,23 @@ public class OffHand : MonoBehaviour
                 }
             }
 
+            /**
+             *  Currently (04-26) used for campfire healing
+             */
+            else if (hit.collider.tag == "HealObject")
+            {
+                print(InteractButton);
+                interactText.text = "Press E to interact";
+                if (Input.GetKeyDown(InteractButton))
+                {
+                    print("here");
+                    Heal(playerHealth.maxHealth);
+
+                    keyDown = false;
+                    performedAction = true;
+                }
+            }
+
         }
         // If we have not done any other action, hold an item and release E. Then we drop it.
         if(!performedAction && slotFull && keyDown && Input.GetKeyUp(InteractButton))
@@ -113,6 +137,12 @@ public class OffHand : MonoBehaviour
         coll.isTrigger = false;
 
         heldItem = null;
+    }
+
+    public void Heal(float amount)
+    {
+        print("heal plz");
+        playerHealth.LoadHealth(amount);
     }
 
 }
