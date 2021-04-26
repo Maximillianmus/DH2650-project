@@ -50,7 +50,7 @@ public class OffHand : MonoBehaviour
 
             if(hit.collider.tag == "Item")
             {
-                interactText.text = "Press E to pick up";
+                interactText.text = "Press " + InteractButton + " to pick up";
                 if(Input.GetKeyDown(InteractButton))
                 {
                     hit.transform.gameObject.GetComponent<Interactable>().Interact(this);
@@ -60,7 +60,7 @@ public class OffHand : MonoBehaviour
             }
             else if(hit.collider.tag == "Container")
             {
-                interactText.text = "Press E to interact";
+                interactText.text = "Press " + InteractButton + " to interact";
                 if(Input.GetKeyDown(InteractButton))
                 {
                     hit.transform.gameObject.GetComponent<Interactable>().Interact(this);
@@ -71,7 +71,7 @@ public class OffHand : MonoBehaviour
             
             else if(hit.collider.tag == "Interactable")
             {
-                interactText.text = "Press E to interact";
+                interactText.text = "Press " + InteractButton + " to interact";
                 if(Input.GetKeyDown(InteractButton))
                 {
                     hit.transform.gameObject.GetComponent<Interactable>().Interact(this);
@@ -85,7 +85,7 @@ public class OffHand : MonoBehaviour
              */
             else if (hit.collider.tag == "HealObject")
             {
-                interactText.text = "Press E to interact";
+                interactText.text = "Press " + InteractButton + " to interact";
                 if (Input.GetKeyDown(InteractButton))
                 {
                     Heal(playerHealth.maxHealth);

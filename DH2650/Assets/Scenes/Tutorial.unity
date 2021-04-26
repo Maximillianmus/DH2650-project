@@ -846,6 +846,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 367910350427670608, guid: 77927ce0fc9c06547850545663950468, type: 3}
+      propertyPath: InteractButton
+      value: 101
+      objectReference: {fileID: 0}
     - target: {fileID: 1060626249307534306, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_Name
       value: Player Container With Health Bar
@@ -2732,6 +2736,38 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 645f0b783bffa80409d08e74be97ca4d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8383124558419344257, guid: 645f0b783bffa80409d08e74be97ca4d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8383124558419344257, guid: 645f0b783bffa80409d08e74be97ca4d, type: 3}
+      propertyPath: m_TagString
+      value: HealObject
+      objectReference: {fileID: 0}
+    - target: {fileID: -4636300777304409883, guid: 645f0b783bffa80409d08e74be97ca4d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -4636300777304409883, guid: 645f0b783bffa80409d08e74be97ca4d, type: 3}
+      propertyPath: m_TagString
+      value: HealObject
+      objectReference: {fileID: 0}
+    - target: {fileID: -3798597711559607027, guid: 645f0b783bffa80409d08e74be97ca4d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3798597711559607027, guid: 645f0b783bffa80409d08e74be97ca4d, type: 3}
+      propertyPath: m_TagString
+      value: HealObject
+      objectReference: {fileID: 0}
+    - target: {fileID: -2147642314998828177, guid: 645f0b783bffa80409d08e74be97ca4d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -2147642314998828177, guid: 645f0b783bffa80409d08e74be97ca4d, type: 3}
+      propertyPath: m_TagString
+      value: HealObject
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 645f0b783bffa80409d08e74be97ca4d, type: 3}
       propertyPath: m_Name
@@ -6811,6 +6847,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 299b1b5c83bd84ba38c863d2354496e0, type: 3}
   m_PrefabInstance: {fileID: 1959346012}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1172423992 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2147642314998828177, guid: 645f0b783bffa80409d08e74be97ca4d, type: 3}
+  m_PrefabInstance: {fileID: 454150474}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1172423996
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172423992}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4687895321025338212, guid: 645f0b783bffa80409d08e74be97ca4d, type: 3}
 --- !u!1 &1183304775
 GameObject:
   m_ObjectHideFlags: 0
