@@ -85,9 +85,11 @@ public class OffHand : MonoBehaviour
              */
             else if (hit.collider.tag == "HealObject")
             {
+                print(InteractButton);
                 interactText.text = "Press E to interact";
                 if (Input.GetKeyDown(InteractButton))
                 {
+                    print("here");
                     Heal(playerHealth.maxHealth);
 
                     keyDown = false;
@@ -139,6 +141,7 @@ public class OffHand : MonoBehaviour
 
     public void Heal(float amount)
     {
+        print("heal plz");
         playerHealth.LoadHealth(amount);
     }
 
