@@ -309,6 +309,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 221623464, guid: 77927ce0fc9c06547850545663950468, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1060626249307534306, guid: 77927ce0fc9c06547850545663950468, type: 3}
       propertyPath: m_Name
       value: Player Container With Health Bar
@@ -369,7 +373,8 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 200
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1033560282, guid: 77927ce0fc9c06547850545663950468, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 77927ce0fc9c06547850545663950468, type: 3}
 --- !u!1001 &412848098
 PrefabInstance:
