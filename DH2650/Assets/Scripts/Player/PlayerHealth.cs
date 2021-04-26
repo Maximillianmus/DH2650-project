@@ -30,16 +30,16 @@ public class PlayerHealth : MonoBehaviour
     */
     public void TakeDamage(float damage)
     {
+        currentHealth -= damage;
+
         if (currentHealth > 1)
         {
-            currentHealth -= damage;
             healthbar.SetHealth(currentHealth);
         }
         else
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        
 
     }
 

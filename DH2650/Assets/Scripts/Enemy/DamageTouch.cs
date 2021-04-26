@@ -9,6 +9,7 @@ public class DamageTouch : MonoBehaviour
     public float damage;
     private PlayerHealth playerHealth;
 
+
     private void Start()
     {
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
