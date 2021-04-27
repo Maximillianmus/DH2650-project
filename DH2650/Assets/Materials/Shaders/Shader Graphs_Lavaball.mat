@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BasicLava
-  m_Shader: {fileID: -6465566751694194690, guid: 838586b806ef36244a45ce2ae626b9ec, type: 3}
+  m_Name: Shader Graphs_Lavaball
+  m_Shader: {fileID: -6465566751694194690, guid: 7a5507a8295af374dba0f45d17edc604, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -34,13 +34,13 @@ Material:
     m_Floats:
     - Vector1_25e736df1648408595f355013730aaa5: 0.5
     - Vector1_5997126f838748bcb79b9c1b6c4083d8: 0.2
-    - Vector1_94bcb39373af43b5a5d64f0f9a45d2ed: 0.05
+    - Vector1_94bcb39373af43b5a5d64f0f9a45d2ed: 0.1
     - Vector1_98694c59e77c4800b641114da2a6deac: 5
-    - Vector1_b04b8205df3e48709f8f32c891c3e01e: 0.2
+    - Vector1_b04b8205df3e48709f8f32c891c3e01e: 0.5
     - Vector1_d5425fadc1384739ad6aa3df326ec299: 2
     - Vector1_e9f6185132724e5ca97e9ca81699bac4: 4
     m_Colors:
-    - Color_153d18b1072445509add9bd6edcbeee0: {r: 0.8584906, g: 0.42165506, b: 0.101237066, a: 0}
+    - Color_153d18b1072445509add9bd6edcbeee0: {r: 0.85882354, g: 0.42352942, b: 0.101960786, a: 0}
     - Color_63657b98970243ea9d4d26a4e98e20f6: {r: 8.47419, g: 2.1296391, b: 0, a: 1}
-    - Color_e589f334c25d429d86e78c3868e7089a: {r: 0.6415094, g: 0.027233878, b: 0.027233878, a: 0}
+    - Color_e589f334c25d429d86e78c3868e7089a: {r: 0.6431373, g: 0.02745098, b: 0.02745098, a: 0}
   m_BuildTextureStacks: []

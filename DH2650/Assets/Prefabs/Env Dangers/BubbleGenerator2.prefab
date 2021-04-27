@@ -121,6 +121,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BubbleGenerator2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 455dfbf3704c1e340851e44a856cfa32, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 455dfbf3704c1e340851e44a856cfa32, type: 3}
 --- !u!4 &2216945429080212191 stripped
