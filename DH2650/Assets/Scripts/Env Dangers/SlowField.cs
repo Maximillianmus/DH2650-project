@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class SlowField : Activation
 {
-    public float moveSpeed;
+    private PlayerMovement playerMovement;
     public bool activated = false;
     public bool growing = true;
+    [Header("Constant = Will be the same size forever")]
+    public bool constant = true;
     [Header("Options")]
     public bool shrinkBack = false;
     public float maxScale = 10;
     public float minScale = 0;
     public float speed = 5;
     public float delay = 0;
+    [Header("Speed Options, changes time instead due to Player Rigidbody")]
+    public float timeModifier;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         transform.localScale = new Vector3(0, 0, 0);
     }
 
@@ -66,17 +71,22 @@ public class SlowField : Activation
                     StartCoroutine(activateAfterDelay());
                 }
             }
+            if (constant)
+            {
+                transform.localScale = new Vector3(maxScale, maxScale, maxScale);
+            }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        Time.timeScale = timeModifier;
         
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        playerHealth.TakeDamage(damage);
+        Time.timeScale = 1f;
     }
 
     private IEnumerator activateAfterDelay()
