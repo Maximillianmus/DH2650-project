@@ -2,26 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChargedField : Activation
+public class SlowField : Activation
 {
-    public PlayerHealth playerHealth;
+    private PlayerMovement playerMovement;
     public bool activated = false;
     public bool growing = true;
     [Header("Constant = Will be the same size forever")]
-    public bool constant = false;
+    public bool constant = true;
     [Header("Options")]
     public bool shrinkBack = false;
     public float maxScale = 10;
     public float minScale = 0;
-    public float damage = 0.5f;
     public float speed = 5;
     public float delay = 0;
+    [Header("Speed Options, changes time instead due to Player Rigidbody")]
+    public float timeModifier;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
-        if (constant)
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        if(constant)
         {
             transform.localScale = new Vector3(maxScale, maxScale, maxScale);
         }
@@ -36,11 +37,10 @@ public class ChargedField : Activation
     {
         if (constant)
         {
-            if (activated)
+            if(activated)
             {
                 transform.localScale = new Vector3(maxScale, maxScale, maxScale);
-            }
-            else
+            } else
             {
                 transform.localScale = new Vector3(0, 0, 0);
             }
@@ -97,12 +97,13 @@ public class ChargedField : Activation
 
     private void OnTriggerEnter(Collider other)
     {
-        playerHealth.TakeDamage(damage);
+        Time.timeScale = timeModifier;
+        
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        playerHealth.TakeDamage(damage);
+        Time.timeScale = 1f;
     }
 
     private IEnumerator activateAfterDelay()
