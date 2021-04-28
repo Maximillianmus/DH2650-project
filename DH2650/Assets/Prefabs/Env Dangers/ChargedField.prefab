@@ -111,8 +111,9 @@ MonoBehaviour:
   playerHealth: {fileID: 0}
   activated: 0
   growing: 1
-  shrinkBack: 1
-  maxScale: 10
+  constant: 0
+  shrinkBack: 0
+  maxScale: 15
   minScale: 0
   damage: 10
   speed: 5

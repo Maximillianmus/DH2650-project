@@ -22,60 +22,77 @@ public class SlowField : Activation
     void Start()
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        transform.localScale = new Vector3(0, 0, 0);
+        if(constant)
+        {
+            transform.localScale = new Vector3(maxScale, maxScale, maxScale);
+        }
+        else
+        {
+            transform.localScale = new Vector3(0, 0, 0);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (activated)
+        if (constant)
         {
-            if (growing)
+            if(activated)
             {
-                // Increase the scale in all directions
-                if (transform.localScale.x < maxScale)
+                transform.localScale = new Vector3(maxScale, maxScale, maxScale);
+            } else
+            {
+                transform.localScale = new Vector3(0, 0, 0);
+            }
+        }
+        else
+        {
+            if (activated)
+            {
+                if (growing)
                 {
-                    transform.localScale = new Vector3(
-                        transform.localScale.x + speed * Time.deltaTime,
-                        transform.localScale.y + speed * Time.deltaTime,
-                        transform.localScale.z + speed * Time.deltaTime);
-                }
-                else
-                {
-                    if (shrinkBack)
+                    // Increase the scale in all directions
+                    if (transform.localScale.x < maxScale)
                     {
-                        growing = false;
+                        transform.localScale = new Vector3(
+                            transform.localScale.x + speed * Time.deltaTime,
+                            transform.localScale.y + speed * Time.deltaTime,
+                            transform.localScale.z + speed * Time.deltaTime);
                     }
                     else
                     {
-                        transform.localScale = new Vector3(0, 0, 0);
+                        if (shrinkBack)
+                        {
+                            growing = false;
+                        }
+                        else
+                        {
+                            transform.localScale = new Vector3(0, 0, 0);
+                            activated = false;
+                            StartCoroutine(activateAfterDelay());
+                        }
+                    }
+                }
+                else
+                {
+                    // Reduce the scale in all directions
+                    if (transform.localScale.x > minScale)
+                    {
+                        transform.localScale = new Vector3(
+                            transform.localScale.x - speed * Time.deltaTime,
+                            transform.localScale.y - speed * Time.deltaTime,
+                            transform.localScale.z - speed * Time.deltaTime);
+                    }
+                    else
+                    {
                         activated = false;
+                        growing = true;
                         StartCoroutine(activateAfterDelay());
                     }
                 }
             }
-            else
-            {
-                // Reduce the scale in all directions
-                if (transform.localScale.x > minScale)
-                {
-                    transform.localScale = new Vector3(
-                        transform.localScale.x - speed * Time.deltaTime,
-                        transform.localScale.y - speed * Time.deltaTime,
-                        transform.localScale.z - speed * Time.deltaTime);
-                }
-                else
-                {
-                    activated = false;
-                    growing = true;
-                    StartCoroutine(activateAfterDelay());
-                }
-            }
-            if (constant)
-            {
-                transform.localScale = new Vector3(maxScale, maxScale, maxScale);
-            }
         }
+
     }
 
     private void OnTriggerEnter(Collider other)
