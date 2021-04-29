@@ -3203,6 +3203,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1541195528}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1594978431 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 265014223, guid: 639fc2fb52d7e794a908e86d9827d67c, type: 3}
+  m_PrefabInstance: {fileID: 8889047557676543706}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1594978432 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 265014225, guid: 639fc2fb52d7e794a908e86d9827d67c, type: 3}
+  m_PrefabInstance: {fileID: 8889047557676543706}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1594978435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594978431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc36cf265856fc4e82c782ea1ab9ddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1610576283
 GameObject:
   m_ObjectHideFlags: 0
@@ -4255,6 +4277,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 265014224, guid: 639fc2fb52d7e794a908e86d9827d67c, type: 3}
+      propertyPath: isGlobal
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 265014224, guid: 639fc2fb52d7e794a908e86d9827d67c, type: 3}
+      propertyPath: blendDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 265014224, guid: 639fc2fb52d7e794a908e86d9827d67c, type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 9a4a48487467f9e4e9b2b2aa35bec210, type: 2}
+    - target: {fileID: 897521352, guid: 639fc2fb52d7e794a908e86d9827d67c, type: 3}
+      propertyPath: speed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 897521352, guid: 639fc2fb52d7e794a908e86d9827d67c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3752623040264180484, guid: 639fc2fb52d7e794a908e86d9827d67c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4311,5 +4353,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Container With Blur
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8889047557106990637, guid: 639fc2fb52d7e794a908e86d9827d67c, type: 3}
+      propertyPath: m_VolumeTrigger
+      value: 
+      objectReference: {fileID: 1594978432}
+    m_RemovedComponents:
+    - {fileID: 2127910310, guid: 639fc2fb52d7e794a908e86d9827d67c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 639fc2fb52d7e794a908e86d9827d67c, type: 3}
