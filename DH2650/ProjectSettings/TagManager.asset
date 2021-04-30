@@ -7,11 +7,12 @@ TagManager:
   - Item
   - Container
   - Interactable
+  - Head
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Post Processing
   - Water
   - UI
   - Ground
