@@ -19,15 +19,15 @@ MonoBehaviour:
     m_Value: 1
   gaussianStart:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 20.3
     min: 0
   gaussianEnd:
-    m_OverrideState: 1
-    m_Value: 40
+    m_OverrideState: 0
+    m_Value: 140.32
     min: 0
   gaussianMaxRadius:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 1.5
     min: 0.5
     max: 1.5
   highQualitySampling:
@@ -101,7 +101,7 @@ MonoBehaviour:
     max: 100
   colorFilter:
     m_OverrideState: 1
-    m_Value: {r: 0.26779994, g: 0.94138443, b: 0.9622642, a: 1}
+    m_Value: {r: 0.5990566, g: 0.9902209, b: 1, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 1
