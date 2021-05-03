@@ -4,18 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject ProgressBar;
+    public LoadingBar loadingBar;
     public bool lockedMouse = true;
-    public UnityEngine.UI.Button SaveButton;
+    public bool AtSavePoint = false;
+    public float PressingDuration = 2f;
+    private float duration = 0f;
+    private bool pressed = false;
+    private GameObject resumeButton;
+    private CanvasGroup canvasGroup;
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        resumeButton = pauseMenuUI.transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -31,12 +37,45 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+
+        if (GameIsPaused || !AtSavePoint)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            pressed = true;
+        }
+
+        if (pressed)
+        {
+            if (!ProgressBar.activeSelf)
+            {
+                ProgressBar.SetActive(true);
+            }
+            duration += Time.deltaTime;
+            loadingBar.SetProgress(duration / PressingDuration);
+            if (duration > PressingDuration)
+            {
+                gameObject.GetComponent<SaveHelper>().SaveLevel();
+                ProgressBar.SetActive(false);
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            duration = 0f;
+            ProgressBar.SetActive(false);
+            pressed = false;
+        }
+
     }
 
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
         GameIsPaused = false;
         if (lockedMouse)
         {
@@ -48,7 +87,15 @@ public class PauseMenu : MonoBehaviour
     public void Pause()
     {
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
+        if (canvasGroup == null)
+        {
+            canvasGroup = resumeButton.GetComponent<CanvasGroup>();
+        } else
+        {
+            canvasGroup.alpha = 1;
+        }
+        
+        //Time.timeScale = 0f;
         GameIsPaused = true;
         if (lockedMouse)
         {
@@ -59,30 +106,18 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Menu");
+        //Time.timeScale = 1f;
         GameIsPaused = false;
     }
 
     public void LoadLevelHub()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("LevelHub");
+        //Time.timeScale = 1f;
         GameIsPaused = false;
     }
 
     public void QuitGame()
     {
         Application.Quit();
-    }
-
-    public void InactivateSaveButton()
-    {
-        SaveButton.interactable = false;
-    }
-
-    public void ActivateSaveButton()
-    {
-        SaveButton.interactable = true;
     }
 }

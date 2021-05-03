@@ -26,7 +26,7 @@ public class SavePoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             source.PlayOneShot(EnterSound);
-            pauseMenu.ActivateSaveButton();
+            pauseMenu.AtSavePoint = true;
         }
     }
 
@@ -35,7 +35,7 @@ public class SavePoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             source.PlayOneShot(EnterSound);
-            pauseMenu.InactivateSaveButton();
+            pauseMenu.AtSavePoint = false;
         }
     }
 }
