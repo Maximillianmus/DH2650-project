@@ -6,41 +6,62 @@ using UnityEngine;
 
 public class Hookeffect : MonoBehaviour
 {
-    GameObject player;
+
+    //Effects
     UnityEngine.Rendering.VolumeProfile volumeProfile;
-    UnityEngine.Rendering.Universal.Vignette vignette;
+    UnityEngine.Rendering.Universal.LensDistortion LD;
+
+    //Key associated
+    public GrapplingGun grapplingGun; //The Q button
+    KeyCode playerPull;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        //NULL atm
+        playerPull = grapplingGun.HookShootButton;
 
         volumeProfile = GetComponent<UnityEngine.Rendering.Volume>()?.profile;
         if (!volumeProfile) throw new System.NullReferenceException(nameof(UnityEngine.Rendering.VolumeProfile));
 
-        // You can leave this variable out of your function, so you can reuse it throughout your class.
-        
+        if (!volumeProfile.TryGet(out LD)) throw new System.NullReferenceException(nameof(LD));
 
-        if (!volumeProfile.TryGet(out vignette)) throw new System.NullReferenceException(nameof(vignette));
-
-        //vignette.intensity.Override(0.5f);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        print(player.GetComponent<PlayerMovement>().moveSpeed);
+        //print(player.GetComponent<PlayerMovement>().moveSpeed);
         flyEffect();
     }
 
     /*
-     * Flying feeling with vignette effect
+     * Flying feeling with LensDistortion effect
      */
     void flyEffect()
     {
-        vignette.intensity.value = (1 - (1f / player.GetComponent<PlayerMovement>().moveSpeed));
-        //vignette.intensity.Override(1 / player.GetComponent<PlayerMovement>().moveSpeed);
+
+
+        if (Input.GetKey(playerPull) && grapplingGun.IsGrapplingWithJoint())
+        {
+            LD.intensity.value -= 0.05f;
+            
+            if(LD.intensity.value < -0.7f)
+            {
+                LD.intensity.value = -0.7f;
+            }
+        } else
+        {
+            if(LD.intensity.value < 0)
+            {
+                LD.intensity.value += 0.1f;
+            } else if(LD.intensity.value > 0)
+            {
+                LD.intensity.value = 0;
+            }
+        }
+
     }
 
 }
