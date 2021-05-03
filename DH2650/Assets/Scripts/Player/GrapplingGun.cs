@@ -128,6 +128,7 @@ public class GrapplingGun : MonoBehaviour {
         {
             PullIn();   
         }
+        //Changed from GetKeyDown to GetKey for better compliment with Hook Effect
         else if(Input.GetKeyDown(HookShootButton) && IsGrapplingWithJoint())
         {
             StartPullInFast();
