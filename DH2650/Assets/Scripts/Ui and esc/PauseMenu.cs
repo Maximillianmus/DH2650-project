@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public bool lockedMouse = true;
+    public UnityEngine.UI.Button SaveButton;
+
     // Start is called before the first frame update
     void Start()
     {
-
+       
     }
 
     // Update is called once per frame
@@ -70,5 +74,15 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void InactivateSaveButton()
+    {
+        SaveButton.interactable = false;
+    }
+
+    public void ActivateSaveButton()
+    {
+        SaveButton.interactable = true;
     }
 }
