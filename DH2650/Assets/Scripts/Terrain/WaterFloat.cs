@@ -8,6 +8,7 @@ public class WaterFloat : MonoBehaviour
     public float WaterDrag = 10;
     public Transform[] FloatPoints;
     public bool AttachToSurface;
+    public float FloatDistance = 1f;
 
     private Rigidbody rb;
     private waves wavesScript;
@@ -57,48 +58,59 @@ public class WaterFloat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var newWaterLine = 0f;
-        var pointUnderWater = false;
-
-        //avg position of waterline
-        for (int i = 0; i < FloatPoints.Length; i++)
+        //checks if the object is close enough to the water for floating to be relevant
+        if(transform.position.y - (wavesScript.GetHeight(transform.position) + wavesScript.transform.position.y) < FloatDistance)
         {
-            WaterLinePoints[i] = FloatPoints[i].position;
-            WaterLinePoints[i].y = wavesScript.GetHeight(FloatPoints[i].position)+ wavesScript.transform.position.y;
-            newWaterLine += WaterLinePoints[i].y / FloatPoints.Length;
-            if (WaterLinePoints[i].y > FloatPoints[i].position.y)
-                pointUnderWater = true;
-        }
-        var waterLineDelta = newWaterLine - WaterLine;
-        WaterLine = newWaterLine;
+            rb.useGravity = false;
+            var newWaterLine = 0f;
+            var pointUnderWater = false;
 
-        var gravity = Physics.gravity;
-        rb.drag = AirDrag;
-        if(WaterLine > Center.y)
-        {
-            rb.drag = WaterDrag;
-            if (AttachToSurface)
+            //avg position of waterline
+            for (int i = 0; i < FloatPoints.Length; i++)
             {
-                rb.position = new Vector3(rb.position.x, WaterLine - centerOffset.y, rb.position.z);
+                WaterLinePoints[i] = FloatPoints[i].position;
+                WaterLinePoints[i].y = wavesScript.GetHeight(FloatPoints[i].position) + wavesScript.transform.position.y;
+                newWaterLine += WaterLinePoints[i].y / FloatPoints.Length;
+                if (WaterLinePoints[i].y > FloatPoints[i].position.y)
+                    pointUnderWater = true;
             }
-            else
+            var waterLineDelta = newWaterLine - WaterLine;
+            WaterLine = newWaterLine;
+
+            var gravity = Physics.gravity;
+            rb.drag = AirDrag;
+            if (WaterLine > Center.y)
             {
-                gravity = -Physics.gravity;
-                transform.Translate(Vector3.up * waterLineDelta * 0.9f);
+                rb.drag = WaterDrag;
+                if (AttachToSurface)
+                {
+                    rb.position = new Vector3(rb.position.x, WaterLine - centerOffset.y, rb.position.z);
+                }
+                else
+                {
+                    gravity = -Physics.gravity;
+                    transform.Translate(Vector3.up * waterLineDelta * 0.9f);
+                }
+            }
+
+            rb.AddForce(gravity * Mathf.Clamp(Mathf.Abs(WaterLine - Center.y), 0, 1));
+
+            if (pointUnderWater)
+            {
+                //we need to find out wich side is closer 
+
+
+
+                TargetUp = Vector3.SmoothDamp(transform.up, floatingUp, ref smoothVectorRotation, 0.2f);
+                rb.rotation = Quaternion.FromToRotation(transform.up, TargetUp) * rb.rotation;
             }
         }
-
-        rb.AddForce(gravity * Mathf.Clamp(Mathf.Abs(WaterLine - Center.y), 0,1));
-
-        if (pointUnderWater)
+        else
         {
-            //we need to find out wich side is closer 
-
-
-
-            TargetUp = Vector3.SmoothDamp(transform.up, floatingUp, ref smoothVectorRotation, 0.2f);
-            rb.rotation = Quaternion.FromToRotation(transform.up, TargetUp) * rb.rotation;
+            rb.useGravity = true;
+            rb.drag = 0;
         }
+        
     }
 
 
