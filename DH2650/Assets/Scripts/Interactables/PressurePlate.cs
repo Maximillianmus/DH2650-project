@@ -42,6 +42,7 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        print("TriggerEnter");
         if(triggerOnAnything)
         {
             StartCoroutine(Activate());
@@ -51,6 +52,7 @@ public class PressurePlate : MonoBehaviour
             if(other.tag == "Player")
             {
                 StartCoroutine(Activate());
+                return; // To avoid settingg recentCollider to player
             }
         }
         if(triggerOnItem)
@@ -76,6 +78,7 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        print("TriggerExit");
         if(triggerOnAnything)
         {
             StartCoroutine(DeActivate());

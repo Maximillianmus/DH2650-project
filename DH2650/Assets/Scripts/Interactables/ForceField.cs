@@ -18,8 +18,9 @@ public class ForceField : Activation
 
     public override void Activate()
     {
+        print("Activated");
         currentNumActivations++;
-        if(currentNumActivations == requiredActivations)
+        if(currentNumActivations >= requiredActivations)
         {
             meshRenderer.enabled = false;
             coll.enabled = false;
@@ -28,9 +29,13 @@ public class ForceField : Activation
 
     public override void DeActivate()
     {
+        print("DeActivated");
         currentNumActivations--;
-        meshRenderer.enabled = true;
-        coll.enabled = true;
+        if(currentNumActivations < requiredActivations)
+        {
+            meshRenderer.enabled = true;
+            coll.enabled = true;
+        }
     }
 
 }
