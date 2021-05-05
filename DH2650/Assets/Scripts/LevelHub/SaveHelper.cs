@@ -8,10 +8,13 @@ public class SaveHelper : MonoBehaviour
     public GameObject Player;
     private string _sceneName;
     private LevelData _levelData;
+    public AudioClip SaveSound;
+    private AudioSource source;
 
     void Start()
     {
         _sceneName = SceneManager.GetActiveScene().name;
+        source = GetComponent<AudioSource>();
         if (_sceneName != "LevelHub")
         {
             LoadLevel();
@@ -25,6 +28,7 @@ public class SaveHelper : MonoBehaviour
             sceneName = _sceneName;
         }
         SaveSystem.SavePlayer(Player, sceneName);
+        source.PlayOneShot(SaveSound);
     }
 
     public void LoadLevel(string sceneName="")
