@@ -6,6 +6,7 @@ public class PressurePlate : MonoBehaviour
 {
     [SerializeField] Activation[] connectedObjects = new Activation[0];
     [Header("Options")]
+    [SerializeField] bool deActivateObjectOnExit = true;
     [SerializeField] float delayOnEnter = 0f;
     [SerializeField] float delayOnExit = 0f;
     [SerializeField] bool triggerOnPlayer = false;
@@ -42,7 +43,6 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("TriggerEnter");
         if(triggerOnAnything)
         {
             StartCoroutine(Activate());
@@ -78,32 +78,34 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        print("TriggerExit");
-        if(triggerOnAnything)
+        if(deActivateObjectOnExit)
         {
-            StartCoroutine(DeActivate());
-        }
-        if(triggerOnPlayer)
-        {
-            if(other.tag == "Player")
+            if (triggerOnAnything)
             {
                 StartCoroutine(DeActivate());
             }
-        }
-        if(triggerOnItem)
-        {
-           if(other.tag == "Item")
-           {
-                StartCoroutine(DeActivate());
-           }
-        }
-        if(triggerOnSpecificItem)
-        {
-            for(int i = 0; i < specificItems.Length; ++i)
+            if (triggerOnPlayer)
             {
-                if(other.gameObject == specificItems[i])
+                if (other.tag == "Player")
                 {
                     StartCoroutine(DeActivate());
+                }
+            }
+            if (triggerOnItem)
+            {
+                if (other.tag == "Item")
+                {
+                    StartCoroutine(DeActivate());
+                }
+            }
+            if (triggerOnSpecificItem)
+            {
+                for (int i = 0; i < specificItems.Length; ++i)
+                {
+                    if (other.gameObject == specificItems[i])
+                    {
+                        StartCoroutine(DeActivate());
+                    }
                 }
             }
         }

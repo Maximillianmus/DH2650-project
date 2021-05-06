@@ -19,7 +19,6 @@ public class ForceField : Activation
 
     public override void Activate()
     {
-        print("Activated");
         currentNumActivations++;
         if(currentNumActivations >= requiredActivations)
         {
@@ -38,7 +37,6 @@ public class ForceField : Activation
 
     public override void DeActivate()
     {
-        print("DeActivated");
         currentNumActivations--;
         if(currentNumActivations < requiredActivations)
         {
