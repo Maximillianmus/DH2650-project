@@ -79,6 +79,7 @@ public class WaterFloat : MonoBehaviour
 
             var gravity = Physics.gravity;
             rb.drag = AirDrag;
+            rb.angularDrag = 0.2f;
             if (WaterLine > Center.y)
             {
                 rb.drag = WaterDrag;
@@ -97,17 +98,30 @@ public class WaterFloat : MonoBehaviour
 
             if (pointUnderWater)
             {
-                //we need to find out wich side is closer 
 
+                //remove shaking when close to target
+                if (Vector3.Angle(transform.up, floatingUp) < 5)
+                    TargetUp = floatingUp;
+                else if (Vector3.Angle(transform.up, -floatingUp) < 5)
+                    TargetUp = -floatingUp;
 
+                else
+                {
+                    //we need to find out wich side is closer
+                    if (Vector3.Angle(transform.up, floatingUp) > 90)
+                        TargetUp = Vector3.SmoothDamp(transform.up, -floatingUp, ref smoothVectorRotation, 0.2f);
+                    else
+                        TargetUp = Vector3.SmoothDamp(transform.up, floatingUp, ref smoothVectorRotation, 0.2f);
+                }
 
-                TargetUp = Vector3.SmoothDamp(transform.up, floatingUp, ref smoothVectorRotation, 0.2f);
                 rb.rotation = Quaternion.FromToRotation(transform.up, TargetUp) * rb.rotation;
+
             }
         }
         else
         {
             rb.useGravity = true;
+            rb.angularDrag = 0.05f;
             rb.drag = 0;
         }
         

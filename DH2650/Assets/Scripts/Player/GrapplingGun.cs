@@ -482,7 +482,7 @@ public class GrapplingGun : MonoBehaviour {
         if (!hasHit || isGrappeling)
         {
             //currentGrapplePosition = Vector3.Lerp(currentGrapplePosition, grapplePoint, Time.deltaTime * 12f);
-            currentGrapplePosition =  Vector3.MoveTowards(currentGrapplePosition, grapplePoint, harpoonSpeed * Time.deltaTime);
+            currentGrapplePosition =  Vector3.MoveTowards(currentGrapplePosition, grapplePoint, (rb.velocity.magnitude + harpoonSpeed) * Time.deltaTime);
         }
         else
         {

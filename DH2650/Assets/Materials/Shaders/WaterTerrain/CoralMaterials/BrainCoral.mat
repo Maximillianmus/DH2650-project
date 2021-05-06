@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BrainCoral
+  m_Shader: {fileID: -6465566751694194690, guid: a095fcc9bc41c24418bf26779acfb0f3, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_6ae34f1906a8434e8073b43bdd290027:
+        m_Texture: {fileID: 2800000, guid: bc3adc8720ed0cb48b1899bf44a7b078, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_15aa6cb36ef647e2b7db76cbd9308aad: 0
+    - Vector1_688a2bd23f354d41b28c0620cc4546ba: 1
+    - Vector1_8f26198fbce54c918393394ce91d023a: 0
+    - Vector1_b854109afe594712a1aa3e4f5b1dcbad: 1
+    m_Colors:
+    - Color_a4cc2b15390447d6bbcecbde59259481: {r: 0.945098, g: 0.6666667, b: 0.08904416, a: 0}
+    - Color_fcacae040cec477ca8b2b1e142f3c7e3: {r: 0.2169811, g: 0.0752921, b: 0.009211458, a: 0}
+    - Vector2_eb5377b8d01b40e58baa2f2e59185d04: {r: 4, g: 4, b: 0, a: 0}
+  m_BuildTextureStacks: []
