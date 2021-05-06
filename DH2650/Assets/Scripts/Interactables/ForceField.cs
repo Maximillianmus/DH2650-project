@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ForceField : Activation
 {
+    public bool isOnByDefault = true;
     public int requiredActivations = 1;
     public int currentNumActivations = 0;
 
@@ -22,8 +23,16 @@ public class ForceField : Activation
         currentNumActivations++;
         if(currentNumActivations >= requiredActivations)
         {
-            meshRenderer.enabled = false;
-            coll.enabled = false;
+            if(isOnByDefault)
+            {
+                meshRenderer.enabled = false;
+                coll.enabled = false;
+            } 
+            else
+            {
+                meshRenderer.enabled = true;
+                coll.enabled = true;
+            }
         }
     }
 
@@ -33,8 +42,17 @@ public class ForceField : Activation
         currentNumActivations--;
         if(currentNumActivations < requiredActivations)
         {
-            meshRenderer.enabled = true;
-            coll.enabled = true;
+            if(isOnByDefault)
+            {
+                meshRenderer.enabled = true;
+                coll.enabled = true;
+            }
+            else
+            {
+                meshRenderer.enabled = false;
+                coll.enabled = false;
+            }
+
         }
     }
 
