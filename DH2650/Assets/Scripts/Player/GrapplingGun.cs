@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GrapplingGun : MonoBehaviour {
 
@@ -14,6 +15,12 @@ public class GrapplingGun : MonoBehaviour {
     public ParticleSystem HarpoonHitEffectPrefab;
     public float pullSpeed = 1f;
     public float FastPullSpeed = 20f;
+
+    //Ui
+    public Color InRange;
+    public Color OutOfRange;
+    public Image Crosshair;
+
     public LayerMask IgnoredGrapelingLayer;
     public bool BreakIfObstructed = false;
     public float ObstructionProximityThreshold = 1f;
@@ -96,13 +103,25 @@ public class GrapplingGun : MonoBehaviour {
             }
         }
 
+
+        //checks if in range
+        RaycastHit hit;
+        if (Physics.Raycast(m_camera.position, m_camera.forward, out hit, maxDistance, whatIsGrappleable))
+        {
+            Crosshair.color = InRange;
+        }
+        else
+        {
+            Crosshair.color = OutOfRange;
+        }
+
         if (Input.GetMouseButtonDown(0) && !isGrabbing && !isGrappeling && !isActivating) {
             ActivateHookGun();
         }
         else if (!Input.GetMouseButton(0)) {
             if(IsGrapplingWithJoint())
                 StopGrapple();
-
+          
         }
 
         if (Input.GetMouseButton(1) && IsGrapplingWithJoint())

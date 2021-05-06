@@ -15,7 +15,7 @@ public class HealthBar : MonoBehaviour
     {
         slider.value = health;
 
-        text.text = health.ToString() + "/" + playerHealth.maxHealth.ToString();
+        text.text = Mathf.Ceil(health).ToString() + "/" + playerHealth.maxHealth.ToString();
     }
 
     public void SetMaxHealth(float health)
