@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Water
   m_Shader: {fileID: -6465566751694194690, guid: eb78831ae3586094ca3f035005cdf64b, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _RECEIVE_SHADOWS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -40,17 +40,28 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_61faf682da4b44dca6a3fb333eb3b555: 1
+    - BOOLEAN_A801E39177BD4E1ABECBE6EF304B7962: 0
+    - Vector1_0492d5f99e224603aee331aa16bb51a8: 4000
+    - Vector1_0d7585d6153c41f495b0eb2a56d32612: 80
+    - Vector1_10ba86daff0845fe990b1d0a515f6038: 0.6
+    - Vector1_21aee1336ae647b58ac26cec095022ec: 1.2
+    - Vector1_61faf682da4b44dca6a3fb333eb3b555: 0.497
+    - Vector1_66e2827dc5d243c4b8ee4d1e11d3a702: 1.2
+    - Vector1_7a8198ce8a644122b00753da1f7d49b9: 0.03
     - Vector1_88295b6c872846f69c6e6a46cb6b6197: 0
-    - Vector1_892d8e6551174067a3611af6b65b87da: 0.13
+    - Vector1_892d8e6551174067a3611af6b65b87da: 0.179
     - Vector1_982c2b8525734d4eb0e5a9aad7c93281: 1.2
-    - Vector1_a5970765b7094e5bb17cd1779e47c5fd: 0.5
+    - Vector1_a5970765b7094e5bb17cd1779e47c5fd: 1
     - Vector1_b9b26613d4ad4369937e09884f0e2d01: 1
     - Vector1_c8e414647d4f4da79a8e1fec8107d27f: 16
-    - Vector1_f9e4966f583745588273988f22e9bbd4: 1
-    - Vector1_fd9efed778a14fb7a6c6fec0725fcb99: 0.153
+    - Vector1_ded337e707e7430fa3339198331c2980: 1.2
+    - Vector1_ed5094994f224826896b08447d83ab9b: 0.5
+    - Vector1_f9e4966f583745588273988f22e9bbd4: 4
+    - Vector1_fd2f2cdd7d4e4bb19ca09ddfa2a719a0: 1
+    - Vector1_fd9efed778a14fb7a6c6fec0725fcb99: 0.38
     m_Colors:
+    - Color_1ce4925a981f4b6e8acb5194e966c8e4: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 0.8666667}
     - Vector2_3c7a4f4c01424c2980babe0904517041: {r: 0.01, g: 0.5, b: 0, a: 0}
-    - _DeepColor: {r: 0.07450979, g: 0.49803925, b: 0.5960784, a: 0.5686275}
-    - _ShallowWater: {r: 0.40784314, g: 0.74509805, b: 0.81568635, a: 0.7176471}
+    - _DeepColor: {r: 0.13394442, g: 0.6839944, b: 0.8113207, a: 0.5254902}
+    - _ShallowWater: {r: 0.13053763, g: 0.8431913, b: 0.95283014, a: 0.6313726}
   m_BuildTextureStacks: []
