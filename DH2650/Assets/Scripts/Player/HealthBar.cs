@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-
+    [Header("Don't change the health here! Change in 'PlayerHealth.cs'!")]
     public Slider slider;
     public Text text;
 
@@ -26,8 +26,4 @@ public class HealthBar : MonoBehaviour
         text.text = playerHealth.maxHealth.ToString() + "/" + playerHealth.maxHealth.ToString();
     }
 
-    public float getMaxHealth()
-    {
-        return slider.maxValue;
-    }
 }

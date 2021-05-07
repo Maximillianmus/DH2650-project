@@ -15,10 +15,17 @@ public class OffHand : MonoBehaviour
     public bool slotFull;
     public GameObject heldItem;
 
+    PlayerHealth playerHealth;
+
     // for throwing items
     private bool keyDown = false;
     private float startTime = 0;
     [SerializeField] float throwForce = 80;
+
+    private void Start()
+    {
+        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -43,7 +50,7 @@ public class OffHand : MonoBehaviour
 
             if(hit.collider.tag == "Item")
             {
-                interactText.text = "Press E to pick up";
+                interactText.text = "Press " + InteractButton + " to pick up";
                 if(Input.GetKeyDown(InteractButton))
                 {
                     hit.transform.gameObject.GetComponent<Interactable>().Interact(this);
@@ -53,7 +60,7 @@ public class OffHand : MonoBehaviour
             }
             else if(hit.collider.tag == "Container")
             {
-                interactText.text = "Press E to interact";
+                interactText.text = "Press " + InteractButton + " to interact";
                 if(Input.GetKeyDown(InteractButton))
                 {
                     hit.transform.gameObject.GetComponent<Interactable>().Interact(this);
@@ -64,10 +71,25 @@ public class OffHand : MonoBehaviour
             
             else if(hit.collider.tag == "Interactable")
             {
-                interactText.text = "Press E to interact";
+                interactText.text = "Press " + InteractButton + " to interact";
                 if(Input.GetKeyDown(InteractButton))
                 {
                     hit.transform.gameObject.GetComponent<Interactable>().Interact(this);
+                    keyDown = false;
+                    performedAction = true;
+                }
+            }
+
+            /**
+             *  Currently (04-26) used for campfire healing
+             */
+            else if (hit.collider.tag == "HealObject")
+            {
+                interactText.text = "Press " + InteractButton + " to interact";
+                if (Input.GetKeyDown(InteractButton))
+                {
+                    Heal(playerHealth.maxHealth);
+
                     keyDown = false;
                     performedAction = true;
                 }
@@ -113,6 +135,11 @@ public class OffHand : MonoBehaviour
         coll.isTrigger = false;
 
         heldItem = null;
+    }
+
+    public void Heal(float amount)
+    {
+        playerHealth.LoadHealth(amount);
     }
 
 }

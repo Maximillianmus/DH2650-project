@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
 
-    public float maxHealth = 20;
+    [Header("Set the max health here! The player HealthBar updates from here!")]
+
+    public float maxHealth;
     public float currentHealth;
 
     public HealthBar healthbar;
@@ -30,16 +32,16 @@ public class PlayerHealth : MonoBehaviour
     */
     public void TakeDamage(float damage)
     {
+        currentHealth -= damage;
+
         if (currentHealth > 1)
         {
-            currentHealth -= damage;
             healthbar.SetHealth(currentHealth);
         }
         else
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        
 
     }
 
@@ -47,4 +49,6 @@ public class PlayerHealth : MonoBehaviour
     {
         healthbar.SetHealth(health);
     }
+
+
 }
