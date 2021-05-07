@@ -82,7 +82,7 @@ public class Pin : MonoBehaviour
 		
 		if (material == null)
         {
-			material = AssetDatabase.LoadAssetAtPath("Assets/Materials/Level.mat", typeof(Material)) as Material;
+			//material = AssetDatabase.LoadAssetAtPath("Assets/Materials/Level.mat", typeof(Material)) as Material;
 		}
         // Load the directions into a dictionary for easy access
         _pinDirections = new Dictionary<Direction, Pin>
