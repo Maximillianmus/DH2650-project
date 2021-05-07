@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Seaweed stem
+  m_Shader: {fileID: -6465566751694194690, guid: bf7a438a4e439984dbb4fa336118f815, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_385aa2b7c3c54501aabff95018ca3fd5: 0.3
+    - Vector1_8fbab88ff52143149c26820f1fd8fc6c: 0
+    - Vector1_caace341636345e09323999118190306: 0
+    - Vector1_e9f6baee63934260a80edc64d1619995: 300
+    - Vector1_fd98dc2fc4c043628e663959aba1c8ef: 2
+    m_Colors:
+    - Color_c4475c3c60264f9eb6b83adabdd26c7f: {r: 0.02883589, g: 0.22641507, b: 0.040690616, a: 0}
+    - Vector2_b69831901b72445088f811320ffc3be2: {r: 6, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
