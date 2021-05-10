@@ -1,20 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [System.Serializable]
 public class LevelData
 {
     public int Score;
+    public bool[] ChestsOpenStatus;
     public float Health;
     public float[] Position;
 
-    public LevelData (GameObject player)
+    public LevelData (GameObject player, bool[] chestsOpenStatus)
     {
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-        Score = Mathf.RoundToInt(Random.Range(0, 3));
-        Debug.Log($"Random score: {Score}");
+
+        ChestsOpenStatus = chestsOpenStatus;
+        Score = chestsOpenStatus.Count(status => status);
+        Debug.Log($"Score: {Score}");
         Health = playerHealth.currentHealth;
         Debug.Log($"Saved health: {Health}");
         Position = new float[3];
