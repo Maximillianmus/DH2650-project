@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2728793051805059276}
   - component: {fileID: 317377226630322392}
   - component: {fileID: 9044756810251940558}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1275239230739970640}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5853018621852501475}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 2716512341783873214}
   - component: {fileID: 7261116748142670322}
   - component: {fileID: 1756042734388122788}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lid 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 7005485600897923353}
   - component: {fileID: 8239292466561642969}
   - component: {fileID: 1675541123197395409}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +319,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1876402585770801586}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lid_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7226934723799800486}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottom_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 3616761349282898243}
   - component: {fileID: 7159532505340326086}
   - component: {fileID: 808480693}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chest
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -414,10 +414,10 @@ Animator:
   m_GameObject: {fileID: 8041930510497423747}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 7d7a1a7a52dfe5f41a02c2efe65a1d16, type: 3}
-  m_Controller: {fileID: 9100000, guid: fab4a5ceb41ec8e41abd17602a885c81, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7ab8da2348a0dc144ada1ad8897f9cec, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -459,7 +459,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5692886548078514706}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
