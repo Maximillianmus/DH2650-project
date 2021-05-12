@@ -9,25 +9,21 @@ public class BreathingBar : MonoBehaviour
     public Image slider;
     private float maxBreathingTime;
 
-    public void SetBreathing(float health)
+    public void SetBreathing(float breath)
     {
-        //slider.value = health;
-        float amount = health / maxBreathingTime;
+        float amount = breath / maxBreathingTime;
         slider.fillAmount = amount;
     }
 
-    public void SetMaxBreathing(float health)
+    public void SetMaxBreathing(float breath)
     {
-        //slider.maxValue = health;
-        //slider.value = health;
         slider.fillAmount = 1;
-        maxBreathingTime = health;
+        maxBreathingTime = breath;
 
     }
 
     public float getBreathingTime()
     {
-        //return slider.maxValue;
         return maxBreathingTime;
     }
 }
