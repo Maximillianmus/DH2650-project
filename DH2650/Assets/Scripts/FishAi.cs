@@ -11,11 +11,13 @@ public class FishAi : MonoBehaviour
     public float distanceFromSurface = 1f;
     public float distanceFromBottom = 0.5f;
     public float BottomResetHeight = 10f;
+    public float bottomBump = 2f;
 
     //the distance the fish checks for objects infront of it, so it has to turn
     public float turnDistance = 10f;
     public float RandomTurnIntervallBase = 20f;
     public float RandomTurnAddMax = 60;
+    public float turningMultiplier = 2;
     public waves waterScript;
 
     private Rigidbody rb;
@@ -41,22 +43,29 @@ public class FishAi : MonoBehaviour
 
         if(waterScript.GetHeight(transform.position) > transform.position.y - waterScript.transform.position.y)
         {
+   
             rb.useGravity = false;
-            
 
+            Debug.DrawLine(transform.position, transform.position + Vector3.up * distanceFromSurface, Color.red);
 
             //move up and down, keeps the fish from going to high
             if (Mathf.Abs(waterScript.GetHeight(transform.position) - transform.position.y - waterScript.transform.position.y) < distanceFromSurface)
             {
+                print("surface");
                 Vector3 rotaitionTarget = Vector3.MoveTowards(transform.up, -transform.right, rotationSpeed * Time.deltaTime);
                 transform.rotation = Quaternion.FromToRotation(transform.up, rotaitionTarget) * transform.rotation;
+
+                
             }
             //keep the fish from goint to low
             else if(Physics.Raycast(transform.position, Vector3.down, distanceFromBottom) || hitBottom)
             {
-                print("hej");
-                Vector3 rotaitionTarget = Vector3.MoveTowards(-transform.right, transform.up, rotationSpeed * Time.deltaTime);
+                print("bottom");
+                hitBottom = true;
+                Vector3 rotaitionTarget = Vector3.MoveTowards(-transform.right, Vector3.up, rotationSpeed*5 * Time.deltaTime);
                 transform.rotation = Quaternion.FromToRotation(-transform.right, rotaitionTarget) * transform.rotation;
+
+                rb.position = rb.position + Vector3.up*bottomBump;
 
                 if(!Physics.Raycast(transform.position, Vector3.down, BottomResetHeight))
                 {
@@ -65,6 +74,7 @@ public class FishAi : MonoBehaviour
             }
             else
             {
+                print("straightening");
                 Vector3 rotaitionTarget = Vector3.MoveTowards(transform.up, Vector3.up, rotationSpeed * Time.deltaTime);
                 transform.rotation = Quaternion.FromToRotation(transform.up, rotaitionTarget) * transform.rotation;
             }
@@ -86,7 +96,7 @@ public class FishAi : MonoBehaviour
             }
             else if(isTurning)
             {
-                Vector3 rotaitionTarget = Vector3.MoveTowards(-transform.right, turningTarget, rotationSpeed * Time.deltaTime);
+                Vector3 rotaitionTarget = Vector3.MoveTowards(-transform.right, turningTarget, rotationSpeed* turningMultiplier * Time.deltaTime);
                 transform.rotation = Quaternion.FromToRotation(-transform.right, rotaitionTarget) * transform.rotation;
 
                 if(-transform.right == turningTarget)
