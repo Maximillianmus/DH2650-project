@@ -48,11 +48,11 @@ public class FishAi : MonoBehaviour
 
             Debug.DrawLine(transform.position, transform.position + Vector3.up * distanceFromSurface, Color.red);
 
-            //move up and down, keeps the fish from going to high
-            if (Mathf.Abs(waterScript.GetHeight(transform.position) - transform.position.y - waterScript.transform.position.y) < distanceFromSurface)
+            // keeps the fish from going to high
+            if (waterScript.GetHeight(transform.position) - distanceFromSurface < transform.position.y - waterScript.transform.position.y )
             {
                 print("surface");
-                Vector3 rotaitionTarget = Vector3.MoveTowards(transform.up, -transform.right, rotationSpeed * Time.deltaTime);
+                Vector3 rotaitionTarget = Vector3.MoveTowards(transform.up, -transform.right, rotationSpeed*4 * Time.deltaTime);
                 transform.rotation = Quaternion.FromToRotation(transform.up, rotaitionTarget) * transform.rotation;
 
                 
