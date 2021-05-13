@@ -5,12 +5,24 @@ using UnityEngine;
 public class Bubble : MonoBehaviour
 {
     public PlayerHealth playerHealth;
+    public UnderwaterBreath air;
+
+    public bool AirBubble = false;
 
     public float lifeTime = 5;
     public float travelSpeed = 1;
     public float sizeSpeed = 1;
     public float damage = 1;
     public float maxSize = 5;
+
+
+    private void Awake()
+    {
+        if (AirBubble)
+        {
+            air = FindObjectOfType<UnderwaterBreath>();
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -43,11 +55,19 @@ public class Bubble : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        playerHealth.TakeDamage(damage);
+        if (!AirBubble)
+            playerHealth.TakeDamage(damage);
+        else
+        {
+            air.AddBreath(damage);
+            Destroy(gameObject);
+        }
+            
     }
 
     private void OnTriggerStay(Collider other)
     {
-        playerHealth.TakeDamage(damage);
+        if(!AirBubble)
+            playerHealth.TakeDamage(damage);
     }
 }

@@ -6,7 +6,11 @@ public class BubbleSpawner : Activation
 {
     public GameObject bubble;
     public PlayerHealth playerHealth;
+    private UnderwaterBreath airBar;
     [Header("Options")]
+
+    public bool AirSpawner;
+
     public bool activated = false;
     public float delayAfterActivation = 0;
     public float maxRandomAdditionalDelay = 1;
@@ -22,6 +26,7 @@ public class BubbleSpawner : Activation
     void Start()
     {
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
+        airBar = FindObjectOfType<UnderwaterBreath>();
     }
 
     // Update is called once per frame
@@ -42,6 +47,8 @@ public class BubbleSpawner : Activation
         Bubble b = obj.GetComponent<Bubble>();
         b.playerHealth = playerHealth;
         b.lifeTime = bubbleLifeTime;
+        b.AirBubble = AirSpawner;
+        b.air = airBar;
         b.travelSpeed = bubbleTravelSpeed;
         b.sizeSpeed = bubbleSizeSpeed;
         b.maxSize = bubbleMaxSize;
