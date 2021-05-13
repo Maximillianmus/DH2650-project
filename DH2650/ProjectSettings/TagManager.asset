@@ -8,6 +8,8 @@ TagManager:
   - Container
   - Interactable
   - HealObject
+  - Head
+  - Water
   layers:
   - Default
   - TransparentFX
