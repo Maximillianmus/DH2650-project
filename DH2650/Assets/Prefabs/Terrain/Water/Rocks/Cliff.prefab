@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5325464923858655521}
   - component: {fileID: 9099524922868946564}
   - component: {fileID: 6461811133307822670}
-  - component: {fileID: 4832635743023733258}
+  - component: {fileID: 1703062358082765192}
   m_Layer: 0
   m_Name: Cliff
   m_TagString: Untagged
@@ -26,9 +26,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4804226504828748699}
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 526.3994, y: 39.991505, z: 592.3677}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5.1649, y: 5.1649, z: 5.1649}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4832635743023733258
-BoxCollider:
+--- !u!64 &1703062358082765192
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,6 +92,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 7.939636, y: 15.722072, z: 4.3137207}
-  m_Center: {x: -1.4707947, y: 7.860128, z: 0.111753464}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -121586978152425214, guid: 6a333eaceda1cf6488beae35ac9e962d, type: 3}
