@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1527051897241959915}
   - component: {fileID: 2494701763848729166}
   - component: {fileID: 394629294098122372}
-  - component: {fileID: 7963681783516384433}
+  - component: {fileID: 9058896487476383336}
   m_Layer: 0
   m_Name: WaterRock
   m_TagString: Untagged
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7963681783516384433
-BoxCollider:
+--- !u!64 &9058896487476383336
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,6 +92,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.9577048, y: 2.523182, z: 2.4713745}
-  m_Center: {x: 0.26264966, y: 0.90400743, z: 0.25826848}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1547738168616722467, guid: 2358a4054f79cdd4194572533b16317a, type: 3}
