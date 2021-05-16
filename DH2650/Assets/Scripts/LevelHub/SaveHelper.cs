@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class SaveHelper : MonoBehaviour
 {
     public GameObject Player;
     private string _sceneName;
     private LevelData _levelData;
+    public AudioClip SaveSound;
+    private AudioSource source;
+    [SerializeField] Chest[] chests = new Chest[0];
 
     void Start()
     {
         _sceneName = SceneManager.GetActiveScene().name;
+        source = GetComponent<AudioSource>();
         if (_sceneName != "LevelHub")
         {
             LoadLevel();
@@ -24,7 +29,9 @@ public class SaveHelper : MonoBehaviour
         {
             sceneName = _sceneName;
         }
-        SaveSystem.SavePlayer(Player, sceneName);
+        bool[] status = (from chest in chests select chest.IsOpen).ToArray(); ; // chests.ConvertAll<bool>(chest => chest.IsOpen);
+        SaveSystem.SavePlayer(Player, status, sceneName);
+        source.PlayOneShot(SaveSound);
     }
 
     public void LoadLevel(string sceneName="")
@@ -60,6 +67,12 @@ public class SaveHelper : MonoBehaviour
             _levelData.Position[1],
             _levelData.Position[2]
         );
+
+        for (int i = 0; i < chests.Length; i++)
+        {
+            if (_levelData.ChestsOpenStatus[i])
+                chests[i].SetOpen();
+        }
     }
 
     public int LoadScore(string sceneName="")

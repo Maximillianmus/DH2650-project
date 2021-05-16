@@ -4,13 +4,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveSystem
 {
-    public static void SavePlayer(GameObject player, string sceneName)
+    public static void SavePlayer(GameObject player, bool[] chestsOpenStatus, string sceneName)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = $"{Application.persistentDataPath}/{sceneName}.yarrharr";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        LevelData data = new LevelData(player);
+        LevelData data = new LevelData(player, chestsOpenStatus);
 
         formatter.Serialize(stream, data);
         stream.Close();

@@ -1,0 +1,210 @@
+fileFormatVersion: 2
+guid: 6c4ad6b4c595143ff9ec7eb0a4a7e652
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      74: 8738571795870772972
+    second: steering001|chest001|Take 001|BaseLayer
+  - first:
+      74: -809154530928263093
+    second: steering001|chest002|Take 001|BaseLayer
+  - first:
+      74: -6672093281294318590
+    second: steering001|chest|Take 001|BaseLayer
+  - first:
+      74: 5453218270656237979
+    second: steering001|lid001|Take 001|BaseLayer
+  - first:
+      74: -8521234779067127364
+    second: steering001|lid|Take 001|BaseLayer
+  - first:
+      74: 6465578741910398407
+    second: steering001|steering001|Take 001|BaseLayer
+  - first:
+      74: 7978260946904000690
+    second: chest002|chest001|Take 001|BaseLayer
+  - first:
+      74: -4308756316721127928
+    second: chest002|chest002|Take 001|BaseLayer
+  - first:
+      74: -7170518516949543250
+    second: chest002|chest|Take 001|BaseLayer
+  - first:
+      74: -3361437893510474230
+    second: chest002|lid001|Take 001|BaseLayer
+  - first:
+      74: 2706507139155261145
+    second: chest002|lid|Take 001|BaseLayer
+  - first:
+      74: -350712828253766516
+    second: chest002|steering001|Take 001|BaseLayer
+  - first:
+      74: 4128097390100151180
+    second: lid001|chest001|Take 001|BaseLayer
+  - first:
+      74: -1174191795863730384
+    second: lid001|chest002|Take 001|BaseLayer
+  - first:
+      74: 5187551828132052667
+    second: lid001|chest|Take 001|BaseLayer
+  - first:
+      74: 3466570709235202511
+    second: lid001|lid001|Take 001|BaseLayer
+  - first:
+      74: -6676998653447215749
+    second: lid001|lid|Take 001|BaseLayer
+  - first:
+      74: 6122741635102526912
+    second: lid001|steering001|Take 001|BaseLayer
+  - first:
+      74: -6072815307248019720
+    second: chest001|chest001|Take 001|BaseLayer
+  - first:
+      74: -5646940033810821538
+    second: chest001|chest002|Take 001|BaseLayer
+  - first:
+      74: 600775545905637103
+    second: chest001|chest|Take 001|BaseLayer
+  - first:
+      74: -7295455984645632117
+    second: chest001|lid001|Take 001|BaseLayer
+  - first:
+      74: -7722182663221473267
+    second: chest001|lid|Take 001|BaseLayer
+  - first:
+      74: -6179184289758459211
+    second: chest001|steering001|Take 001|BaseLayer
+  - first:
+      74: 8012013584467554175
+    second: lid|chest001|Take 001|BaseLayer
+  - first:
+      74: 1754446113082917787
+    second: lid|chest002|Take 001|BaseLayer
+  - first:
+      74: -2157857693103669325
+    second: lid|chest|Take 001|BaseLayer
+  - first:
+      74: 7396213631207720772
+    second: lid|lid001|Take 001|BaseLayer
+  - first:
+      74: 4797863360240053461
+    second: lid|lid|Take 001|BaseLayer
+  - first:
+      74: 772897741429596556
+    second: lid|steering001|Take 001|BaseLayer
+  - first:
+      74: -6628778499731760568
+    second: chest|chest001|Take 001|BaseLayer
+  - first:
+      74: 2001660152108042513
+    second: chest|chest002|Take 001|BaseLayer
+  - first:
+      74: 8281889409514902569
+    second: chest|chest|Take 001|BaseLayer
+  - first:
+      74: -1091562638274553755
+    second: chest|lid001|Take 001|BaseLayer
+  - first:
+      74: 7202632389215497534
+    second: chest|lid|Take 001|BaseLayer
+  - first:
+      74: -4102448973148496648
+    second: chest|steering001|Take 001|BaseLayer
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
