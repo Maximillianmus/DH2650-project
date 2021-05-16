@@ -8,11 +8,13 @@ TagManager:
   - Container
   - Interactable
   - HealObject
+  - Head
+  - Water
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Post Processing
   - Water
   - UI
   - Ground
