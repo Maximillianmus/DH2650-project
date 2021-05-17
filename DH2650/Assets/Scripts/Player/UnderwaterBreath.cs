@@ -18,6 +18,7 @@ public class UnderwaterBreath : MonoBehaviour
     public BreathingBar bar;
 
     public Image breathingBarImage;
+    public Image breathingBarBackground;
     private PlayerHealth pHealth;
 
     // Start is called before the first frame update
@@ -43,6 +44,7 @@ public class UnderwaterBreath : MonoBehaviour
                 currentAir -= Time.deltaTime * AirUsageMultiplier;
             }
             breathingBarImage.enabled = true;
+            breathingBarBackground.enabled = true;
         }
         else
         {
@@ -50,6 +52,7 @@ public class UnderwaterBreath : MonoBehaviour
             {
                 currentAir = MaxAirtime;
                 breathingBarImage.enabled = false;
+                breathingBarBackground.enabled = false;
             }
             else
             {
