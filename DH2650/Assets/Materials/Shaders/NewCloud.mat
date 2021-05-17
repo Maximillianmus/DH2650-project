@@ -10,7 +10,7 @@ Material:
   m_Name: NewCloud
   m_Shader: {fileID: -6465566751694194690, guid: 35a7dae5d321800439d6b4f31e8be75d, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -83,7 +83,7 @@ Material:
     - Vector1_597e51ec3c7245339d2d5996ff25f407: 100
     - Vector1_a483580ee71143988168020129009043: 1
     - Vector1_b908fb0143ff406a876f9b9f0703ff27: 2
-    - Vector1_c16261a20ecb4d1bb1853e61ea04abde: 400
+    - Vector1_c16261a20ecb4d1bb1853e61ea04abde: 800
     - Vector1_cbbc055eeb2b4fb6a5949d8419da44e9: -1
     - Vector1_d1ede60fdd024ce7959de997cd2eb4d8: 8
     - Vector1_d9b755cc9a9d4526884cbfcdbbb9ef9c: 0.01
