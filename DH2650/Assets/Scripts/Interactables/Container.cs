@@ -17,18 +17,21 @@ public class Container : Interactable
     [SerializeField] bool triggerOnSpecificItem = false;
     [SerializeField] GameObject[] specificItems = new GameObject[0];
 
+    [Header("For multiple objects")]
+    public bool activated = false;
+
 
     // Make it easier to make it so container already has items
     void Start()
     {
         foreach (GameObject item in containedItems)
         {
-            if(item != null)
+            if (item != null)
             {
                 item.GetComponent<Item>().inContainer = true;
                 item.GetComponent<Item>().container = this;
                 item.layer = 6;
-                
+
                 // Reset its position in the container
                 item.transform.localPosition = Vector3.zero;
                 item.transform.localRotation = Quaternion.Euler(Vector3.zero);
@@ -40,7 +43,7 @@ public class Container : Interactable
                 coll.isTrigger = false;
                 Rigidbody rb = item.GetComponent<Rigidbody>();
                 rb.isKinematic = true;
-                
+
             }
         }
         ActivateObjects();
@@ -48,11 +51,11 @@ public class Container : Interactable
 
     // Define what happens when player interacts with the Container
     public override void Interact(OffHand offHand)
-    {   
+    {
         // If offHand has an item, 
-        if(offHand.slotFull)
+        if (offHand.slotFull)
         {
-            if(currentNumberOfItems < maxNumberOfItems)
+            if (currentNumberOfItems < maxNumberOfItems)
             {
                 PlaceItem(offHand.heldItem, offHand);
             }
@@ -60,7 +63,7 @@ public class Container : Interactable
         // If offHand has no item, then try and take an item
         else
         {
-            if(currentNumberOfItems > 0)
+            if (currentNumberOfItems > 0)
             {
                 GameObject item = GetItemFromContainer();
                 TakeItem(item, offHand);
@@ -100,7 +103,7 @@ public class Container : Interactable
         coll.isTrigger = false;
 
         item.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
-        
+
         ActivateObjects();
     }
 
@@ -108,11 +111,11 @@ public class Container : Interactable
     public void TakeItem(GameObject item, OffHand offHand)
     {
         // If you dont have anything in the offhand, you can take the item
-        if(!offHand.slotFull)
+        if (!offHand.slotFull)
         {
             int pos = getIndexOfItem(item);
 
-            if(!(pos == -1))
+            if (!(pos == -1))
             {
                 // Move item to offhand
                 item.transform.SetParent(offHand.transform);
@@ -130,12 +133,12 @@ public class Container : Interactable
                 // Make it so item has no collision
                 Collider coll = item.GetComponent<Collider>();
                 coll.isTrigger = true;
-                
+
                 item.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.None;
 
                 item.GetComponent<Item>().inContainer = false;
                 item.GetComponent<Item>().container = null;
-                
+
                 // Container no longer has an item
                 containedItems[pos] = null;
                 usedContainers[pos] = false;
@@ -153,10 +156,10 @@ public class Container : Interactable
 
     private int GetIndexOfEmptyContainer()
     {
-        for(int i = 0; i < usedContainers.Length; ++i)
+        for (int i = 0; i < usedContainers.Length; ++i)
         {
             // If slot is not used, then return that index.
-            if(!usedContainers[i])
+            if (!usedContainers[i])
             {
                 return i;
             }
@@ -167,10 +170,10 @@ public class Container : Interactable
 
     private GameObject GetItemFromContainer()
     {
-        for(int i = 0; i < usedContainers.Length; ++i)
+        for (int i = 0; i < usedContainers.Length; ++i)
         {
             // If slot has an item, return it
-            if(usedContainers[i])
+            if (usedContainers[i])
             {
                 return containedItems[i];
             }
@@ -181,9 +184,9 @@ public class Container : Interactable
 
     public int getIndexOfItem(GameObject item)
     {
-        for(int i = 0; i < containedItems.Length; ++i)
+        for (int i = 0; i < containedItems.Length; ++i)
         {
-            if(item == containedItems[i])
+            if (item == containedItems[i])
             {
                 return i;
             }
@@ -195,66 +198,67 @@ public class Container : Interactable
     {
         bool activate = false;
 
-        if(triggerWhenFull && triggerOnSpecificItem)
+        if (triggerWhenFull && triggerOnSpecificItem)
         {
             // Container must be full
-            if(currentNumberOfItems == maxNumberOfItems)
+            if (currentNumberOfItems == maxNumberOfItems)
             {
                 // Check that all specified items are in the container
                 int numCorrect = 0;
                 foreach (GameObject obj in containedItems)
                 {
-                    for(int i = 0; i <specificItems.Length; ++i)
+                    for (int i = 0; i < specificItems.Length; ++i)
                     {
-                        if(obj == specificItems[i])
+                        if (obj == specificItems[i])
                         {
                             numCorrect++;
                             break;
                         }
                     }
                 }
-                if(numCorrect == specificItems.Length)
+                if (numCorrect == specificItems.Length)
                 {
                     activate = true;
                 }
             }
         }
 
-        if(triggerWhenFull)
+        if (triggerWhenFull)
         {
-            if(currentNumberOfItems == maxNumberOfItems)
+            if (currentNumberOfItems == maxNumberOfItems)
             {
                 activate = true;
             }
         }
 
-        if(triggerOnSpecificItem)
+        if (triggerOnSpecificItem)
         {
             // Check that all specified items are in the container
             int numCorrect = 0;
             foreach (GameObject obj in containedItems)
             {
-                for(int i = 0; i <specificItems.Length; ++i)
+                for (int i = 0; i < specificItems.Length; ++i)
                 {
-                    if(obj == specificItems[i])
+                    if (obj == specificItems[i])
                     {
                         numCorrect++;
                         break;
                     }
                 }
             }
-            if(numCorrect == specificItems.Length)
+            if (numCorrect == specificItems.Length)
             {
                 activate = true;
             }
         }
 
-        if(activate)
+        if (activate)
         {
             foreach (Activation connObj in connectedObjects)
             {
-                if(connObj !=null)
+                if (connObj != null)
                 {
+                    activated = true;
                     connObj.Activate();
                 }
             }
@@ -265,41 +269,42 @@ public class Container : Interactable
     {
         bool deactivate = false;
 
-        if(triggerWhenFull)
+        if (triggerWhenFull)
         {
-            if(currentNumberOfItems != maxNumberOfItems)
+            if (currentNumberOfItems != maxNumberOfItems)
             {
                 deactivate = true;
             }
         }
 
-        if(triggerOnSpecificItem)
+        if (triggerOnSpecificItem)
         {
             // Check if all 
             int numCorrect = 0;
             foreach (GameObject obj in containedItems)
             {
-                for(int i = 0; i <specificItems.Length; ++i)
+                for (int i = 0; i < specificItems.Length; ++i)
                 {
-                    if(obj == specificItems[i])
+                    if (obj == specificItems[i])
                     {
                         numCorrect++;
                         break;
                     }
                 }
             }
-            if(numCorrect != specificItems.Length)
+            if (numCorrect != specificItems.Length)
             {
                 deactivate = true;
             }
         }
 
-        if(deactivate)
+        if (deactivate)
         {
             foreach (Activation connObj in connectedObjects)
             {
-                if(connObj != null)
+                if (connObj != null)
                 {
+                    activated = false;
                     connObj.DeActivate();
                 }
             }
