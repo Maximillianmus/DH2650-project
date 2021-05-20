@@ -22,14 +22,10 @@ public class OrbRespawn : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("trigger!");
-        print("Curr orb pos: " + orbPos);
         Collider collider = GameObject.Find("Cloudmesh").GetComponent<BoxCollider>();
         if(other == collider)
         {
-            print("respawn!");
             Instantiate(orb, orbPos, Quaternion.identity);
-            print("New orb pos: " + orbPos);
             Destroy(orb);
         }
         
