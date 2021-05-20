@@ -8,24 +8,24 @@ public class Lava : Activation
     public float travelSpeed;
     public float[] yLevels = new float[0];
     public bool isMoving = false;
-    private int currentIndex = 0;
+    public int currentIndex = 0;
 
     void Update()
     {
         if (isMoving)
         {
             // If lavas y position is close enough to the current layer then stop movement
-            if(yLevels[currentIndex] - 0.005 <= transform.position.y && yLevels[currentIndex] + 0.005 >= transform.position.y)
+            if(yLevels[currentIndex] - 0.005 <= transform.localPosition.y && yLevels[currentIndex] + 0.005 >= transform.localPosition.y)
             {
                 isMoving = false;
             }
             // if lava is below, move up
-            else if(yLevels[currentIndex] > transform.position.y)
+            else if(yLevels[currentIndex] > transform.localPosition.y)
             {
                 transform.Translate(new Vector3(0, travelSpeed * Time.deltaTime, 0));
             }
             // if lava is above, move down
-            else if(yLevels[currentIndex] < transform.position.y)
+            else if(yLevels[currentIndex] < transform.localPosition.y)
             {
                 transform.Translate(new Vector3(0, -travelSpeed * Time.deltaTime, 0));
             }
