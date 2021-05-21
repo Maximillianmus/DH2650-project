@@ -9,6 +9,12 @@ public class Lava : Activation
     public float[] yLevels = new float[0];
     public bool isMoving = false;
     public int currentIndex = 0;
+    public PlayerHealth playerHealth;
+
+    private void Start()
+    {
+        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
+    }
 
     void Update()
     {
@@ -49,6 +55,15 @@ public class Lava : Activation
         {
             isMoving = true;
             currentIndex--;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // If head collides with lava, player dies.
+        if(other.tag == "Head")
+        {
+            playerHealth.TakeDamage(playerHealth.currentHealth);
         }
     }
 }
