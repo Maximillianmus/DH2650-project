@@ -108,7 +108,15 @@ public class GrapplingGun : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(m_camera.position, m_camera.forward, out hit, maxDistance, whatIsGrappleable))
         {
-            Crosshair.color = InRange;
+            // If raycast hits object with the NonGrappable layer
+            if(hit.collider.gameObject.layer == 8)
+            {
+                Crosshair.color = OutOfRange;
+            }
+            else
+            {
+                Crosshair.color = InRange;
+            }
         }
         else
         {
@@ -181,6 +189,12 @@ public class GrapplingGun : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(m_camera.position, m_camera.forward, out hit, maxDistance, whatIsGrappleable))
         {
+            // If the layer we hook to is nonGrappable, don't fire the grappling gun
+            if(hit.collider.gameObject.layer == 8)
+            {
+                return;
+            }
+
             Instantiate(FireHookEffectPrefab, gunTip.position, gunTip.rotation);
             gunSound.Play();    
             
