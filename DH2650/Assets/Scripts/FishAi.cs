@@ -20,6 +20,19 @@ public class FishAi : MonoBehaviour
     public float turningMultiplier = 2;
     public waves waterScript;
 
+
+    public bool isHostile = false;
+    public float followRange = 10f;
+    public int DetectionWidth = 2;
+    public float detectionSpacing = 0.5f;
+    public float detectionRange;
+    public float chasingAddVelocity = 10f;
+    public Transform player;
+    public LayerMask groundAndPlayer;
+
+    private bool hasDetected = false;
+
+
     private Rigidbody rb;
 
     private bool hitBottom = false;
@@ -49,9 +62,25 @@ public class FishAi : MonoBehaviour
             Debug.DrawLine(transform.position, transform.position + Vector3.up * distanceFromSurface, Color.red);
 
             // keeps the fish from going to high
-            if (waterScript.GetHeight(transform.position) - distanceFromSurface < transform.position.y - waterScript.transform.position.y )
+
+            if (detection() || hasDetected)
             {
-                print("surface");
+                if (Vector3.Distance(player.position, transform.position) > followRange)
+                    hasDetected = false;
+                else
+                    hasDetected = true;
+
+                print("detected");
+                //rotate towards player over time
+
+                Vector3 rotaitionTarget = Vector3.MoveTowards(-transform.right, (player.position - transform.position).normalized, rotationSpeed * 4 * Time.deltaTime);
+                transform.rotation = Quaternion.FromToRotation(-transform.right, rotaitionTarget) * transform.rotation;
+
+
+
+            }
+            else if (waterScript.GetHeight(transform.position) - distanceFromSurface < transform.position.y - waterScript.transform.position.y )
+            {
                 Vector3 rotaitionTarget = Vector3.MoveTowards(transform.up, -transform.right, rotationSpeed*4 * Time.deltaTime);
                 transform.rotation = Quaternion.FromToRotation(transform.up, rotaitionTarget) * transform.rotation;
 
@@ -60,7 +89,6 @@ public class FishAi : MonoBehaviour
             //keep the fish from goint to low
             else if(Physics.Raycast(transform.position, Vector3.down, distanceFromBottom) || hitBottom)
             {
-                print("bottom");
                 hitBottom = true;
                 Vector3 rotaitionTarget = Vector3.MoveTowards(-transform.right, Vector3.up, rotationSpeed*5 * Time.deltaTime);
                 transform.rotation = Quaternion.FromToRotation(-transform.right, rotaitionTarget) * transform.rotation;
@@ -74,7 +102,6 @@ public class FishAi : MonoBehaviour
             }
             else
             {
-                print("straightening");
                 Vector3 rotaitionTarget = Vector3.MoveTowards(transform.up, Vector3.up, rotationSpeed * Time.deltaTime);
                 transform.rotation = Quaternion.FromToRotation(transform.up, rotaitionTarget) * transform.rotation;
             }
@@ -111,12 +138,23 @@ public class FishAi : MonoBehaviour
             timeUntilNextTurn -= 1 * Time.deltaTime;
 
 
-
-            if (rb.velocity.magnitude < maxVelocity)
+            if (!hasDetected)
             {
-                //the fish is turned sideways so therefore left is forward
-                rb.velocity = Vector3.MoveTowards(-transform.right * maxVelocity, rb.velocity, acceleration * Time.deltaTime);
+                if (rb.velocity.magnitude < maxVelocity)
+                {
+                    //the fish is turned sideways so therefore left is forward
+                    rb.velocity = Vector3.MoveTowards(-transform.right * maxVelocity, rb.velocity, acceleration * Time.deltaTime);
+                }
             }
+            else
+            {
+                if (rb.velocity.magnitude < maxVelocity+ chasingAddVelocity)
+                {
+                    //the fish is turned sideways so therefore left is forward
+                    rb.velocity = Vector3.MoveTowards(-transform.right * (maxVelocity +chasingAddVelocity), rb.velocity, acceleration * Time.deltaTime);
+                }
+            }
+
 
         }
         else
@@ -128,4 +166,29 @@ public class FishAi : MonoBehaviour
         
     }
 
+    //doesn't work
+    //direction also has to be fixed
+    private bool detection()
+    {
+        Vector3 direction = -transform.right;
+        Vector3 spacing = transform.forward * detectionSpacing;
+
+        direction = direction - spacing *DetectionWidth;
+ 
+        RaycastHit hit;
+        for (int x = -DetectionWidth;  x <= DetectionWidth; x++)
+        {
+            Debug.DrawLine(transform.position, transform.position + direction * detectionRange, Color.red);
+            if (Physics.Raycast(transform.position, direction, out hit, detectionRange, groundAndPlayer))
+            {
+                if(hit.transform.tag == "Player")
+                    return true;
+            }
+
+            direction += spacing;
+        }
+
+
+        return false;
+    }
 }
