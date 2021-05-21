@@ -8,24 +8,30 @@ public class Lava : Activation
     public float travelSpeed;
     public float[] yLevels = new float[0];
     public bool isMoving = false;
-    private int currentIndex = 0;
+    public int currentIndex = 0;
+    public PlayerHealth playerHealth;
+
+    private void Start()
+    {
+        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
+    }
 
     void Update()
     {
         if (isMoving)
         {
             // If lavas y position is close enough to the current layer then stop movement
-            if(yLevels[currentIndex] - 0.005 <= transform.position.y && yLevels[currentIndex] + 0.005 >= transform.position.y)
+            if(yLevels[currentIndex] - 0.005 <= transform.localPosition.y && yLevels[currentIndex] + 0.005 >= transform.localPosition.y)
             {
                 isMoving = false;
             }
             // if lava is below, move up
-            else if(yLevels[currentIndex] > transform.position.y)
+            else if(yLevels[currentIndex] > transform.localPosition.y)
             {
                 transform.Translate(new Vector3(0, travelSpeed * Time.deltaTime, 0));
             }
             // if lava is above, move down
-            else if(yLevels[currentIndex] < transform.position.y)
+            else if(yLevels[currentIndex] < transform.localPosition.y)
             {
                 transform.Translate(new Vector3(0, -travelSpeed * Time.deltaTime, 0));
             }
@@ -49,6 +55,15 @@ public class Lava : Activation
         {
             isMoving = true;
             currentIndex--;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // If head collides with lava, player dies.
+        if(other.tag == "Head")
+        {
+            playerHealth.TakeDamage(playerHealth.currentHealth);
         }
     }
 }
