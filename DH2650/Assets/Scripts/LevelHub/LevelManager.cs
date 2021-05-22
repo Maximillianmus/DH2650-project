@@ -8,19 +8,19 @@ public class LevelManager : MonoBehaviour
     private LevelPoint[] levels;
     public TMP_Text mText;
     private float distanceThreshold = 100;
+    public int SumScore = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         levels = gameObject.GetComponentsInChildren<LevelPoint>();
-        int sumScore = 0;
         foreach (LevelPoint levelPoint in levels)
         {
             LevelData data = SaveSystem.LoadPlayer(levelPoint.SceneName);
             if (data != null)
-                sumScore += data.Score;
+                SumScore += data.Score;
         }
-        mText.SetText($"{sumScore}");
+        mText.SetText($"{SumScore}");
     }
 
     // Update is called once per frame

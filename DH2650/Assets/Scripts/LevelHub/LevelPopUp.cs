@@ -11,10 +11,11 @@ public class LevelPopUp : MonoBehaviour
     public TMP_Text title;
     public TMP_Text chestNum;
     public Ricimi.CleanButton trashBtn;
-    //public 
+    public Ricimi.CleanButton playBtn;
     private float delay;
     public GameObject closeButton;
     private CanvasGroup canvasGroup;
+    public LevelManager levelManager;
 
     void Start()
     {
@@ -63,6 +64,13 @@ public class LevelPopUp : MonoBehaviour
         chestNum.SetText($"{score}");
 
         trashBtn.gameObject.SetActive(SaveSystem.LoadPlayer(levelName) != null);
+        if (levelManager.SumScore < score)
+        {
+            playBtn.SetEnabled(false);
+        } else
+        {
+            playBtn.SetEnabled(true);
+        }
         SetPopupActive(true);
         Debug.Log($"Updated info to {levelName}");
     }
