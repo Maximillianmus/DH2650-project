@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mText: {fileID: 1579239145}
+  SumScore: 0
 --- !u!1 &195452086
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,7 +615,9 @@ MonoBehaviour:
   title: {fileID: 1256837020}
   chestNum: {fileID: 1179724964}
   trashBtn: {fileID: 1880388096}
+  playBtn: {fileID: 947566722}
   closeButton: {fileID: 614612608}
+  levelManager: {fileID: 186966831}
 --- !u!1 &592880676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,6 +1054,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28c7de8f9a4a547f79324f7413a2358e, type: 3}
+--- !u!114 &947566722 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5377640303764131140, guid: df01ed3a3691a4e2db8ca308b5ee6693, type: 3}
+  m_PrefabInstance: {fileID: 1392635738}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32414c8154f854aea9dca3538cec788b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1143820023
 GameObject:
   m_ObjectHideFlags: 0
@@ -1531,7 +1545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6363652367325754507, guid: df01ed3a3691a4e2db8ca308b5ee6693, type: 3}
       propertyPath: m_RaycastTarget
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7675511347205126733, guid: df01ed3a3691a4e2db8ca308b5ee6693, type: 3}
       propertyPath: m_text
