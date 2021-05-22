@@ -67,12 +67,16 @@ public class SaveHelper : MonoBehaviour
             _levelData.Position[1],
             _levelData.Position[2]
         );
-
+        
         for (int i = 0; i < chests.Length; i++)
         {
             if (_levelData.ChestsOpenStatus[i])
                 chests[i].SetOpen();
         }
+
+        GameObject chestBar = GameObject.Find("ChestBar");
+        if (chestBar)
+            chestBar.GetComponent<ChestBar>().UpdateChestProgress(_levelData.Score);
     }
 
     public int LoadScore(string sceneName="")
