@@ -14,6 +14,12 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         levels = gameObject.GetComponentsInChildren<LevelPoint>();
+        UpdateSum();
+    }
+
+    public void UpdateSum()
+    {
+        SumScore = 0;
         foreach (LevelPoint levelPoint in levels)
         {
             LevelData data = SaveSystem.LoadPlayer(levelPoint.SceneName);
