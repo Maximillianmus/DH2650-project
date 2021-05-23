@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject guidePanel;
     public void PlayGame()
     {
         SceneManager.LoadScene("LevelHub");
@@ -13,6 +14,16 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void EnterGuide()
+    {
+        guidePanel.SetActive(true);
+    }
+
+    public void ExitGuide()
+    {
+        guidePanel.SetActive(false);
     }
     // Start is called before the first frame update
     void Start()
