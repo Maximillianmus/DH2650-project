@@ -49,7 +49,7 @@ public class PressurePlate : MonoBehaviour
         }
         if(triggerOnPlayer)
         {
-            if(other.tag == "Player")
+            if(other.gameObject.name == "Foot")
             {
                 StartCoroutine(Activate());
                 return; // To avoid settingg recentCollider to player

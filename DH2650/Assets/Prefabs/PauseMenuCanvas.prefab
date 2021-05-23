@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe329cf26bfc433b8374ebbf9aed181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: LevelHub
+  scene: LevelHub-v.2
   duration: 1
   color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &4151784380125864002
@@ -230,6 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   SaveSound: {fileID: 8300000, guid: 76c8d56f998364b4c9d3affeab81e05d, type: 3}
+  chests: []
 --- !u!82 &4698090516512010349
 AudioSource:
   m_ObjectHideFlags: 0

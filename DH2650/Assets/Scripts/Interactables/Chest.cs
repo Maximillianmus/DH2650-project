@@ -7,11 +7,12 @@ public class Chest : Interactable
     public Animator anim;
     public bool IsOpen = false;
     private AudioSource source;
-
+    GameObject chestBar;
 
     void Start()
     {
         source = GetComponent<AudioSource>();
+        chestBar = GameObject.Find("ChestBar");
     }
 
     public void SetOpen()
@@ -34,6 +35,10 @@ public class Chest : Interactable
         IsOpen = true;
         anim.SetTrigger("Open");
         source.Play();
+        if (chestBar)
+        {
+            chestBar.GetComponent<ChestBar>().UpdateOpenCount();
+        }
     }
 
 
