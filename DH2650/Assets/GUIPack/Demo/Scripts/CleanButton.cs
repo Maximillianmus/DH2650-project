@@ -17,6 +17,7 @@ namespace Ricimi
         public float fadeTime = 0.2f;
         public float onHoverAlpha;
         public float onClickAlpha;
+        private bool Enabled = true;
 
         [Serializable]
         public class ButtonClickedEvent : UnityEvent { }
@@ -26,13 +27,34 @@ namespace Ricimi
 
         private CanvasGroup canvasGroup;
 
+
+        public void SetEnabled(bool enabled)
+        {
+            if (canvasGroup == null)
+            {
+                canvasGroup = gameObject.AddComponent<CanvasGroup>();
+            }
+            if (enabled)
+            {
+                canvasGroup.alpha = 1.0f;
+            } else
+            {
+                canvasGroup.alpha = onHoverAlpha;
+            }
+            Enabled = enabled;
+        }
+
         private void Awake()
         {
-            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+            if (canvasGroup == null)
+            {
+                canvasGroup = gameObject.AddComponent<CanvasGroup>();
+            }
         }
 
         public virtual void OnPointerEnter(PointerEventData eventData)
         {
+            if (!Enabled) return;
             if (eventData.button != PointerEventData.InputButton.Left)
             {
                 return;
@@ -43,6 +65,7 @@ namespace Ricimi
 
         public virtual void OnPointerExit(PointerEventData eventData)
         {
+            if (!Enabled) return;
             if (eventData.button != PointerEventData.InputButton.Left)
             {
                 return;
@@ -54,6 +77,7 @@ namespace Ricimi
 
         public virtual void OnPointerDown(PointerEventData eventData)
         {
+            if (!Enabled) return;
             if (eventData.button != PointerEventData.InputButton.Left)
             {
                 return;
@@ -66,6 +90,7 @@ namespace Ricimi
 
         public virtual void OnPointerUp(PointerEventData eventData)
         {
+            if (!Enabled) return;
             if (eventData.button != PointerEventData.InputButton.Left)
             {
                 return;
