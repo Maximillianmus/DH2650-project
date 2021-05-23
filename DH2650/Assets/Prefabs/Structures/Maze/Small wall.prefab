@@ -100,6 +100,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LargeStoneWall
       objectReference: {fileID: 0}
+    - target: {fileID: 5331395372124064637, guid: a0561c4f944dd5a48a0ec70fa846db8f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5979680416203958952, guid: a0561c4f944dd5a48a0ec70fa846db8f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

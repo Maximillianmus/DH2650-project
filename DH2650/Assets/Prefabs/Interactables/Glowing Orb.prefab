@@ -49,7 +49,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -77,7 +77,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -85,7 +85,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -5019,7 +5019,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9e28725ab24406441b0b639d0f8579fa, type: 2}
     - target: {fileID: 919132149155446097, guid: bad731704d750964995efd38f534da62, type: 3}
       propertyPath: m_Name
-      value: Orb
+      value: Glowing Orb
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bad731704d750964995efd38f534da62, type: 3}
       propertyPath: m_Layer
