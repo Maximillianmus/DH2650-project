@@ -1,3 +1,4 @@
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -78,6 +79,19 @@ public class LevelPopUp : MonoBehaviour
     public void RemoveDataFile()
     {
         string path = $"{Application.persistentDataPath}/{title.text}.yarrharr";
+        File.Delete(path);
+        trashBtn.gameObject.SetActive(false);
+
+        levelManager.UpdateSum();
+        var score = LevelInfo.ScoresInfo[title.text][0];
+        if (levelManager.SumScore < score)
+        {
+            playBtn.SetEnabled(false);
+        }
+        else
+        {
+            playBtn.SetEnabled(true);
+        }
         Debug.Log($"Removed {path}");
     }
 
