@@ -19,4 +19,12 @@ public class DeathOnTouch : MonoBehaviour
             playerHealth.TakeDamage(playerHealth.currentHealth);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            playerHealth.TakeDamage(playerHealth.currentHealth);
+        }
+    }
 }
