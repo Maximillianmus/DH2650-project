@@ -43,6 +43,11 @@ public class OffHand : MonoBehaviour
         // Reset what interact text
         interactText.text = "";
 
+        if (PauseMenu.AtSavePoint)
+        {
+            interactText.text = "Press " + InteractButton + " to save progress";
+        }
+
         // Determine what player is looking at
         if (Physics.Raycast(m_camera.position, m_camera.forward, out hit, pickUpRange, whatIsInteractable)){
 
