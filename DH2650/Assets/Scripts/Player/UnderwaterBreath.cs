@@ -8,6 +8,7 @@ public class UnderwaterBreath : MonoBehaviour
 
     //the time that a player can be without air
     public float MaxAirtime;
+    public float wateDrag = 0.3f;
     public float DamageMultiplier = 1;
     public float AirUsageMultiplier = 1;
     public float AirRecoveryMultiplier = 1;
@@ -20,6 +21,7 @@ public class UnderwaterBreath : MonoBehaviour
     public Image breathingBarImage;
     public Image breathingBarBackground;
     private PlayerHealth pHealth;
+    private Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,7 @@ public class UnderwaterBreath : MonoBehaviour
         currentAir = MaxAirtime;
         bar.SetMaxBreathing(MaxAirtime);
         pHealth = FindObjectOfType<PlayerHealth>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -34,7 +37,7 @@ public class UnderwaterBreath : MonoBehaviour
     {
         if (underwater)
         {
-            
+            rb.drag = wateDrag;
             if(currentAir <= 0)
             {
                 pHealth.TakeDamage(Time.deltaTime * DamageMultiplier);
@@ -48,6 +51,7 @@ public class UnderwaterBreath : MonoBehaviour
         }
         else
         {
+            rb.drag = 0;
             if(currentAir >= MaxAirtime)
             {
                 currentAir = MaxAirtime;

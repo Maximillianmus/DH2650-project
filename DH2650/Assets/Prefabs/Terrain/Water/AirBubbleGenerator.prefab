@@ -25,9 +25,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 441061757043830106}
-  m_LocalRotation: {x: 0.035850957, y: 0.005194607, z: -0.12536025, w: 0.9914497}
+  m_LocalRotation: {x: 0.035848342, y: 0.0051912, z: -0.12536107, w: 0.9914497}
   m_LocalPosition: {x: 527.316, y: 41.455, z: 520.3869}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 0.51114285, y: 0.5111429, z: 0.51114297}
   m_Children:
   - {fileID: 1421582815831838912}
   m_Father: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1421582815831838912}
   - component: {fileID: 1421582815831838913}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpawnPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,6 +134,6 @@ MonoBehaviour:
   spawnDelay: 8
   bubbleTravelSpeed: 1
   bubbleSizeSpeed: 1
-  bubbleDamage: 10
+  bubbleDamage: 100
   bubbleLifeTime: 8
   bubbleMaxSize: 10
