@@ -17,7 +17,7 @@ public class SaveHelper : MonoBehaviour
     {
         _sceneName = SceneManager.GetActiveScene().name;
         source = GetComponent<AudioSource>();
-        if (_sceneName != "LevelHub")
+        if (_sceneName != "LevelHub-v.2")
         {
             LoadLevel();
         }
