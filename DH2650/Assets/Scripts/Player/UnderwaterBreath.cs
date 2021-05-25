@@ -35,6 +35,7 @@ public class UnderwaterBreath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PauseMenu.GameIsPaused) return;
         if (underwater)
         {
             rb.drag = wateDrag;
