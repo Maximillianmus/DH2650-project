@@ -8,20 +8,24 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject gameOverScreen;
     public GameObject ProgressBar;
     public LoadingBar loadingBar;
     public bool lockedMouse = true;
-    public bool AtSavePoint = false;
+    public static bool AtSavePoint = false;
     public float PressingDuration = 2f;
     private float duration = 0f;
     private bool pressed = false;
     private GameObject resumeButton;
+    private GameObject tryAgainButton;
     private CanvasGroup canvasGroup;
+    private CanvasGroup gameOverCanvasGroup;
 
     // Start is called before the first frame update
     void Start()
     {
         resumeButton = pauseMenuUI.transform.GetChild(0).gameObject;
+        tryAgainButton = gameOverScreen.transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -69,7 +73,40 @@ public class PauseMenu : MonoBehaviour
             ProgressBar.SetActive(false);
             pressed = false;
         }
+    }
 
+    public void GameOverPause()
+    {
+        gameOverScreen.SetActive(true);
+        if (gameOverCanvasGroup == null)
+        {
+            gameOverCanvasGroup = tryAgainButton.GetComponent<CanvasGroup>();
+        }
+        else
+        {
+            gameOverCanvasGroup.alpha = 1;
+        }
+
+        //Time.timeScale = 0f;
+        GameIsPaused = true;
+        if (lockedMouse)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+
+    public void GameOverTryAgain()
+    {
+        gameOverScreen.SetActive(false);
+        //Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameIsPaused = false;
+        if (lockedMouse)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     public void Resume()
