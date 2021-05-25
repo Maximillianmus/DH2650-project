@@ -8,8 +8,8 @@ public class LevelInfo
     public static Dictionary<string, int[]> ScoresInfo = new Dictionary<string, int[]>
     {
         {"Tutorial", new int[]{0, 3, } },
-        {"SkyLevel", new int[]{1, 3, } },
-        {"Cave", new int[]{1, 4, } },
-        {"WaterLevel", new int[]{1, 5, } },
+        {"SkyLevel", new int[]{2, 3, } },
+        {"Cave", new int[]{4, 4, } },
+        {"WaterLevel", new int[]{3, 5, } },
     };
 }
