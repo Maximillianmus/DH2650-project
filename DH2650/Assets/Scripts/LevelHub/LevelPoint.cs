@@ -21,17 +21,10 @@ public class LevelPoint : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-
+        if (levelPopUp.IsActive()) return;
         if (other.gameObject.tag == "Player")
         {
             levelPopUp.UpdateLevelInfo(SceneName);
         }
-    }
-    void OnTriggerStay(Collider other)
-    {
-        //if (other.gameObject.tag == "Player")
-        //{
-        //    Debug.Log("stay");
-        //}
     }
 }
