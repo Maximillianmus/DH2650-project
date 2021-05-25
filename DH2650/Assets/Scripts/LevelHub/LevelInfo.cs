@@ -9,7 +9,7 @@ public class LevelInfo
     {
         {"Tutorial", new int[]{0, 3, } },
         {"SkyLevel", new int[]{2, 3, } },
-        {"Cave", new int[]{4, 4, } },
+        {"Cave", new int[]{4, 6, } },
         {"WaterLevel", new int[]{3, 5, } },
     };
 }
