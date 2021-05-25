@@ -22,7 +22,8 @@ public class LevelPoint : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (levelPopUp.IsActive()) return;
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && 
+                (boat.agent.remainingDistance < 100 || boat.agent.remainingDistance == float.PositiveInfinity))
         {
             levelPopUp.UpdateLevelInfo(SceneName);
         }
