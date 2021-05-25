@@ -394,17 +394,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4663814018792882067, guid: 83e34ecccb3999242a97bc642be657a4, type: 3}
-      propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: LoadMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 6481949055292533290, guid: 83e34ecccb3999242a97bc642be657a4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6836946194680118756, guid: 83e34ecccb3999242a97bc642be657a4, type: 3}
-      propertyPath: scene
-      value: Menu
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83e34ecccb3999242a97bc642be657a4, type: 3}
