@@ -10,6 +10,6 @@ public class LevelInfo
         {"Tutorial", new int[]{0, 4, } },
         {"SkyLevel", new int[]{1, 4, } },
         {"Cave", new int[]{1, 4, } },
-        {"WaterLevel", new int[]{0, 4} }
+        {"WaterLevel", new int[]{1, 4, } },
     };
 }
