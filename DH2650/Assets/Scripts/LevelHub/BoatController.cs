@@ -27,13 +27,18 @@ public class BoatController : MonoBehaviour
             }
         }
 
-        if (agent.velocity.magnitude > 0 && agent.remainingDistance < distanceThreshold)
-        {
-            LevelPoint closestLevel = levelmanager.GetClosestLevel(transform);
-            if (closestLevel != null)
-                levelPopUp.UpdateLevelInfo(closestLevel.SceneName);
-        }
+        //if (agent.velocity.magnitude > 0 && agent.remainingDistance < distanceThreshold)
+        //{
+        //    LevelPoint closestLevel = levelmanager.GetClosestLevel(transform);
+        //    if (closestLevel != null)
+        //        levelPopUp.UpdateLevelInfo(closestLevel.SceneName);
+        //}
         
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("colliding");
     }
 }
     

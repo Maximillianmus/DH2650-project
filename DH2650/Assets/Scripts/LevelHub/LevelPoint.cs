@@ -5,6 +5,8 @@ using UnityEngine;
 public class LevelPoint : MonoBehaviour
 {
     public string SceneName;
+    public LevelPopUp levelPopUp;
+    public BoatController boat;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,5 +17,21 @@ public class LevelPoint : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.tag == "Player")
+        {
+            levelPopUp.UpdateLevelInfo(SceneName);
+        }
+    }
+    void OnTriggerStay(Collider other)
+    {
+        //if (other.gameObject.tag == "Player")
+        //{
+        //    Debug.Log("stay");
+        //}
     }
 }
