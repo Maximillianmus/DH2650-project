@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GreenCrystal
+  m_Shader: {fileID: -6465566751694194690, guid: 4b3462d9e03efb848942875a11da78f4, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_20f3b42ee45e418fa95282895a8c4bdc: 0.02
+    - Vector1_708d59be2ed247ffbf23df22e79e2080: 0.58
+    - Vector1_9341d904b20b4a25a5283aa30349cf61: 0.34
+    - Vector1_9a3c7679365542bc8af739f1a90c64d0: 1.76
+    - Vector1_9c9a230d69464d65b4310c4d08ba3608: 1
+    - Vector1_a669d9d385974c6cbcfeaf9becdd250a: 1
+    - Vector1_f8c1ca0f0e394703b899be3ab36dbe5c: 1
+    m_Colors:
+    - Color_36b8ecd0fdc34f17aaf0eb6d33e6920c: {r: 0.10481047, g: 4.0037794, b: 0, a: 0}
+    - Color_aeeb1370497841f1afb3c0cc45318e68: {r: 0.32941177, g: 1.3647059, b: 0.36078432, a: 0}
+  m_BuildTextureStacks: []

@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
 
     public float maxHealth;
     public float currentHealth;
+    private PauseMenu pauseMenu;
 
     public HealthBar healthbar;
 
@@ -19,6 +20,11 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthbar.SetMaxHealth(currentHealth);
+        var pauseMenuGameObject = GameObject.Find("PauseMenuCanvas");
+        if (pauseMenuGameObject)
+        {
+            pauseMenu = pauseMenuGameObject.GetComponent<PauseMenu>();
+        }
     }
 
     // Update is called once per frame
@@ -32,6 +38,7 @@ public class PlayerHealth : MonoBehaviour
     */
     public void TakeDamage(float damage)
     {
+        if (PauseMenu.GameIsPaused) return;
         currentHealth -= damage;
 
         if (currentHealth > 1)
@@ -40,7 +47,14 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            healthbar.SetHealth(0);
+            if (pauseMenu)
+            {
+                pauseMenu.GameOverPause();
+            } else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
 
     }
