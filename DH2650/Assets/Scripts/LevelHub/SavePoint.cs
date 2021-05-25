@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SavePoint : MonoBehaviour
 {
-    private PauseMenu pauseMenu;
+    //private PauseMenu pauseMenu;
     public AudioClip EnterSound;
     private AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
-        pauseMenu = FindObjectOfType<PauseMenu>();
+        //pauseMenu = FindObjectOfType<PauseMenu>();
         source = GetComponent<AudioSource>();
     }
 
@@ -26,7 +26,7 @@ public class SavePoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             source.PlayOneShot(EnterSound);
-            pauseMenu.AtSavePoint = true;
+            PauseMenu.AtSavePoint = true;
         }
     }
 
@@ -35,7 +35,7 @@ public class SavePoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             source.PlayOneShot(EnterSound);
-            pauseMenu.AtSavePoint = false;
+            PauseMenu.AtSavePoint = false;
         }
     }
 }
