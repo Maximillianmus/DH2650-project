@@ -38,6 +38,7 @@ public class PlayerHealth : MonoBehaviour
     */
     public void TakeDamage(float damage)
     {
+        if (PauseMenu.GameIsPaused) return;
         currentHealth -= damage;
 
         if (currentHealth > 1)
