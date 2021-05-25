@@ -11,10 +11,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Menu.unity
     guid: 53b7b9bd27250994dae980c34d591a66
-  - enabled: 1
-    path: Assets/Scenes/Prototype-level.unity
-    guid: 2ec6de686d135a54ab6bd3919a694cee
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Scenes/DonutPrefab.unity
     guid: df85b96fb1abc8448b7a7633c767ee04
+  - enabled: 1
+    path: Assets/Scenes/WaterLevel.unity
+    guid: a76331530217ab242ac3e08c66768ea8
   m_configObjects: {}
