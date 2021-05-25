@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4430844885018389616}
+  - component: {fileID: 7624501062189660231}
   m_Layer: 0
   m_Name: Seaweed cluster
   m_TagString: Untagged
@@ -33,6 +34,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &7624501062189660231
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291245142424038318}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.56337166, y: 1.3099571, z: -0.04031536}
+  m_Size: 2.254254
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.09975699
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7209558083596988561}
+    - renderer: {fileID: 7209558083440657224}
+    - renderer: {fileID: 7209558084742583730}
+  - screenRelativeHeight: 0.0055846055
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7209558083596988561}
+  m_Enabled: 1
 --- !u!1 &9155117177629139613
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,5 +289,10 @@ PrefabInstance:
 --- !u!4 &8378474581874691070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7322260719328071070, guid: 025c52b0d827c9346b434a781257b48d, type: 3}
+  m_PrefabInstance: {fileID: 1286823784239548000}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7209558083596988561 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8491195737236272881, guid: 025c52b0d827c9346b434a781257b48d, type: 3}
   m_PrefabInstance: {fileID: 1286823784239548000}
   m_PrefabAsset: {fileID: 0}
