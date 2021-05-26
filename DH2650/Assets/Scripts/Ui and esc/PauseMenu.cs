@@ -69,9 +69,23 @@ public class PauseMenu : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.E))
         {
-            duration = 0f;
-            ProgressBar.SetActive(false);
-            pressed = false;
+            BreakOffSaving();
+        }
+    }
+
+    public void BreakOffSaving()
+    {
+        duration = 0f;
+        ProgressBar.SetActive(false);
+        pressed = false;
+    }
+
+    public void ChangeAtSavePoint(bool atSavePoint)
+    {
+        AtSavePoint = atSavePoint;
+        if (!atSavePoint)
+        {
+            BreakOffSaving();
         }
     }
 
