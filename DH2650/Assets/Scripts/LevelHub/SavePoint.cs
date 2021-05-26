@@ -7,10 +7,11 @@ public class SavePoint : MonoBehaviour
     //private PauseMenu pauseMenu;
     public AudioClip EnterSound;
     private AudioSource source;
+    public PauseMenu pauseMenu;
     // Start is called before the first frame update
     void Start()
     {
-        //pauseMenu = FindObjectOfType<PauseMenu>();
+        pauseMenu = FindObjectOfType<PauseMenu>();
         source = GetComponent<AudioSource>();
     }
 
@@ -26,7 +27,8 @@ public class SavePoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             source.PlayOneShot(EnterSound);
-            PauseMenu.AtSavePoint = true;
+            pauseMenu.ChangeAtSavePoint(true);
+            //PauseMenu.AtSavePoint = true;
         }
     }
 
@@ -35,7 +37,8 @@ public class SavePoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             source.PlayOneShot(EnterSound);
-            PauseMenu.AtSavePoint = false;
+            pauseMenu.ChangeAtSavePoint(false);
+            //PauseMenu.AtSavePoint = false;
         }
     }
 }
