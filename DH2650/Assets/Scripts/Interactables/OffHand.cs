@@ -45,7 +45,7 @@ public class OffHand : MonoBehaviour
 
         if (PauseMenu.AtSavePoint)
         {
-            interactText.text = "Press " + InteractButton + " to save progress";
+            interactText.text = "Hold " + InteractButton + " to save progress";
         }
 
         // Determine what player is looking at
