@@ -12,4 +12,15 @@ public class LevelInfo
         {"Cave", new int[]{4, 7, } },
         {"WaterLevel", new int[]{3, 5, } },
     };
+
+    public static int TotalScore()
+    {
+        int total = 0;
+        foreach (var scene in ScoresInfo.Keys)
+        {
+            var scores = ScoresInfo[scene];
+            total += scores[1];
+        }
+        return total;
+    }
 }
