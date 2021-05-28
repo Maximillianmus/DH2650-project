@@ -7,7 +7,7 @@ public class DisableWater : MonoBehaviour
     public GameObject water;
     public GameObject waterContainer;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         print("Disable!");
         water.GetComponent<waves>().enabled = false;

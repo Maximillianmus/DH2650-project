@@ -7,7 +7,7 @@ public class SetCaveLighning : MonoBehaviour
 
     public GameObject dirSkyLight;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         dirSkyLight.GetComponent<Light>().enabled = false;
     }
