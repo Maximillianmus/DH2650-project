@@ -12,6 +12,7 @@ public class SavePoint : MonoBehaviour
     void Start()
     {
         pauseMenu = FindObjectOfType<PauseMenu>();
+        pauseMenu.ChangeAtSavePoint(false);
         source = GetComponent<AudioSource>();
     }
 

@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class LevelPopUp : MonoBehaviour
 {
     public GameObject popup;
+    public GameObject congrats;
     public TMP_Text title;
     public TMP_Text chestNum;
     public Ricimi.CleanButton trashBtn;
@@ -61,7 +62,8 @@ public class LevelPopUp : MonoBehaviour
     public void UpdateLevelInfo(string levelName)
     {
         title.SetText(levelName);
-        var score = LevelInfo.ScoresInfo[levelName][0];
+        var scores = LevelInfo.ScoresInfo[levelName];
+        var score = scores[0];
         chestNum.SetText($"{score}");
 
         trashBtn.gameObject.SetActive(SaveSystem.LoadPlayer(levelName) != null);
@@ -72,6 +74,11 @@ public class LevelPopUp : MonoBehaviour
         {
             playBtn.SetEnabled(true);
         }
+
+        //if (levelManager.GetSceneScore(levelName) == scores[1])
+        //{
+        //    congrats.SetActive(true);
+        //}
         SetPopupActive(true);
         Debug.Log($"Updated info to {levelName}");
     }
