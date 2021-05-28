@@ -25,6 +25,12 @@ public class MainMenu : MonoBehaviour
     {
         guidePanel.SetActive(false);
     }
+
+    public void OpenWebsite()
+    {
+        Application.OpenURL("https://orrhsu.wixsite.com/yarr-harr");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
