@@ -1,6 +1,6 @@
 # DH2650
 
-some things need fixing
+some things need fixing, especially buttons
 
 **Set Features:**
 
