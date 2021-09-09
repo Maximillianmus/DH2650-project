@@ -1,5 +1,7 @@
 # DH2650
 
+some things need fixing
+
 **Set Features:**
 
 - Style: Low poly, make our own models?
