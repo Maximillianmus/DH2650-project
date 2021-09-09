@@ -8,7 +8,7 @@ public class BackgroundMusic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FindObjectOfType<AudioManager>().Play(SoundName);
+    
     }
 
     // Update is called once per frame
